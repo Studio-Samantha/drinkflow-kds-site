@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DrinkFlow KDS | See your rush as it happens</title>
+    <title>DrinkFlow KDS | Drink workflow visibility for real rushes</title>
     <meta
       name="description"
-      content="DrinkFlow KDS is a real-time drink workflow board and owner insight system for coffee shops, smoothie bars, juice shops, carts, and food trucks."
+      content="DrinkFlow KDS is a real-time drink workflow board and owner insight system shaped with Goldie's Coffee & Goods during live service."
     />
     <meta property="og:title" content="DrinkFlow KDS" />
     <meta
@@ -28,6 +28,7 @@
         <a href="#product">Product</a>
         <a href="#case-study">Case Study</a>
         <a href="#owners">Owners</a>
+        <a href="#roadmap">Roadmap</a>
         <a href="#contact" class="nav-button">Ask about setup</a>
       </div>
     </nav>
@@ -39,8 +40,9 @@
           <h1>See your rush as it happens.</h1>
           <p class="lead">
             DrinkFlow KDS gives coffee shops, smoothie bars, juice shops, carts,
-            and food trucks a calm live view of what needs to be made, what is in
-            progress, and what is ready.
+            and food trucks a calm live view of what needs to be made, what is
+            being made, and what is ready. It started as a custom Goldie's KDS
+            build and is becoming a focused product for drink counters.
           </p>
           <div class="hero-actions">
             <a class="button primary" href="#contact">Ask about setup</a>
@@ -60,8 +62,8 @@
             <div class="columns">
               <div class="column">
                 <div class="column-head"><span>New</span><strong>5</strong></div>
-                <div class="ticket"><b>#104</b><span>Latte</span><em>2 min</em></div>
-                <div class="ticket"><b>#105</b><span>Mango Smoothie</span><em>4 min</em></div>
+                <div class="ticket"><b>Megan</b><span>Latte</span><em>2 min</em></div>
+                <div class="ticket scheduled"><b>11:00 pickup</b><span>Americano</span><em>scheduled</em></div>
               </div>
               <div class="column">
                 <div class="column-head"><span>Making</span><strong>3</strong></div>
@@ -104,20 +106,21 @@
           <p class="eyebrow">Product</p>
           <h2>A focused board for the drink counter.</h2>
           <p>
-            The first screen is the workflow: New, Making, Ready. Everything else
-            supports that rhythm without crowding the team during service.
+            The core board is New Tickets, Making, and Ready. Focus mode pares
+            the work down to New Tickets and Making when staff need fewer columns.
+            Everything else supports that rhythm without crowding the team during service.
           </p>
         </div>
         <div class="feature-grid">
           <article class="card">
             <span class="icon">01</span>
             <h3>Focus Board</h3>
-            <p>Readable order cards with order number, drink items, age, stage time, dining type, and clear move-forward controls.</p>
+            <p>Readable order cards with name or order number, drink items when needed, ticket age, stage time, dining type, and clear move controls.</p>
           </article>
           <article class="card">
             <span class="icon">02</span>
             <h3>Scheduled Orders</h3>
-            <p>Future pickup orders stay visually separate until they are ready to enter the live make queue.</p>
+            <p>Future pickup orders stay visually separate with a clear pickup time so they do not enter the live make queue too early.</p>
           </article>
           <article class="card">
             <span class="icon">03</span>
@@ -139,6 +142,26 @@
             <h3>Menu Sync</h3>
             <p>DrinkFlow is moving toward one source of truth so online ordering, menu boards, and KDS labels stay aligned.</p>
           </article>
+          <article class="card">
+            <span class="icon">07</span>
+            <h3>Drink Checkoff</h3>
+            <p>Multi-drink tickets can be checked off item by item, then move to Ready when the drink work is complete.</p>
+          </article>
+          <article class="card">
+            <span class="icon">08</span>
+            <h3>Online Pickup</h3>
+            <p>Square checkout, pickup labels, and customer-facing Orders Up screens keep online orders separate from counter noise.</p>
+          </article>
+          <article class="card">
+            <span class="icon">09</span>
+            <h3>Menu Availability</h3>
+            <p>Out-of-stock controls are planned to flow from the menu board to online ordering so unavailable drinks cannot be sold by mistake.</p>
+          </article>
+          <article class="card">
+            <span class="icon">10</span>
+            <h3>Recipe Reference</h3>
+            <p>Staff-facing recipe and SOP guidance can sit behind the menu so employees can check build steps without showing that content to customers.</p>
+          </article>
         </div>
       </section>
 
@@ -147,21 +170,55 @@
           <p class="eyebrow">Live case study</p>
           <h2>Built with Goldie's during real service.</h2>
           <p>
-            Goldie's is a rural Iowa coffee shop in a town of roughly 700 people.
-            The shop runs from 7am to 3pm and sees about 89-90 drinks per day.
-            DrinkFlow is being shaped inside that real operating rhythm.
+            Goldie's Coffee & Goods in Exira, Iowa is the first live DrinkFlow KDS shop.
+            It sits in a rural town of roughly 700 people and sees about 89-90 drinks
+            per day. Weekday service runs 7 AM-3 PM, Saturday service runs 8 AM-1 PM,
+            and the product is being shaped inside that real operating rhythm.
           </p>
           <ul>
             <li>Scheduled orders need a clear pickup time before they enter the make queue.</li>
             <li>Unpaid online orders should not be made until payment is confirmed.</li>
             <li>Front-facing order boards need stable always-on behavior.</li>
             <li>Owners need day context, not just raw totals.</li>
+            <li>Menu changes like Decaf (Americano) need to show everywhere consistently.</li>
           </ul>
         </div>
         <div class="case-panel">
           <div class="stat"><strong>89-90</strong><span>drinks per day</span></div>
-          <div class="stat"><strong>7-3</strong><span>daily service window</span></div>
+          <div class="stat"><strong>7-3</strong><span>weekday service window</span></div>
+          <div class="stat"><strong>8-1</strong><span>Saturday service window</span></div>
           <div class="stat"><strong>~700</strong><span>town population</span></div>
+        </div>
+      </section>
+
+      <section class="section proof-section">
+        <div class="section-heading">
+          <p class="eyebrow">Live case study</p>
+          <h2>The shop notices something. The product gets sharper.</h2>
+          <p>
+            Goldie's is not a pretend demo. Opening-week feedback exposed the
+            exact problems DrinkFlow is meant to solve: unclear make timing,
+            noisy tickets, display reliability, online payment timing, and owner
+            reporting that has to explain the day in plain language.
+          </p>
+        </div>
+        <div class="proof-grid">
+          <article>
+            <strong>Founding shop</strong>
+            <span>Goldie's is the first live DrinkFlow shop and receives lifetime free use of its current setup.</span>
+          </article>
+          <article>
+            <strong>Built close to service</strong>
+            <span>Feedback comes directly from counter use, then shows up in version history and release notes.</span>
+          </article>
+          <article>
+            <strong>Drink-first analytics</strong>
+            <span>Retail items stay out of drink counts so owner reports stay useful.</span>
+          </article>
+          <article>
+            <strong>Customer-facing boards</strong>
+            <span>Menu Board, Orders Up, Drive Thru, and Volume Board turn live KDS data into clear displays.</span>
+          </article>
         </div>
       </section>
 
@@ -172,7 +229,8 @@
           <p>
             DrinkFlow is designed to turn live drink workflow into plain-language
             owner insight: rush shape, drink mix, repeat patterns, and context like
-            weather that may explain the day.
+            weather that may explain the day. The goal is a useful daily read,
+            not a pile of charts the owner has to interpret alone.
           </p>
         </div>
         <div class="owner-grid">
@@ -191,6 +249,63 @@
           <article>
             <h3>Weather Context</h3>
             <p>Compare the day against rain, heat, snow, wind, and other real-world conditions.</p>
+          </article>
+          <article>
+            <h3>Average Drink Time</h3>
+            <p>Track daily average drink times from completed tickets so owners can see whether the bar stayed smooth.</p>
+          </article>
+          <article>
+            <h3>Exports</h3>
+            <p>CSV, Excel, and branded PDF reports help owners keep a record without rebuilding the day by hand.</p>
+          </article>
+          <article>
+            <h3>Supply Signals</h3>
+            <p>Future prep and reorder tools can connect high-use items to low-stock notes during the day.</p>
+          </article>
+          <article>
+            <h3>Customer Notes</h3>
+            <p>Names, favorites, and small pickup details can become useful customer insights over time.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section timeline-section" id="roadmap">
+        <div class="section-heading">
+          <p class="eyebrow">Current build</p>
+          <h2>What the live shop has taught us.</h2>
+          <p>
+            DrinkFlow is currently on v1.9.4 in the Goldie's build. The latest
+            work is about protecting staff from avoidable mistakes during real rushes.
+          </p>
+        </div>
+        <div class="timeline">
+          <article class="timeline-item">
+            <div class="timeline-date">v1.9.4</div>
+            <div>
+              <h3>Workflow clarity during service.</h3>
+              <p>Scheduled pickup visibility, paid-order protection, customer name display from notes, individual drink checkoff, always-on display behavior, Decaf (Americano) menu sync, and Saturday hours awareness.</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <div class="timeline-date">v1.9.3</div>
+            <div>
+              <h3>Customer ordering choices got less confusing.</h3>
+              <p>Temperature and size choices moved out of drink additions, and duplicate add-on names were cleaned up so online pickup and kiosk ordering feel simpler.</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <div class="timeline-date">v1.9.0</div>
+            <div>
+              <h3>Online ordering moved into beta checkout.</h3>
+              <p>DrinkFlow added a branded drinks-only ordering beta with Square checkout, online-order labels, and customer-facing Online versus In person status.</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <div class="timeline-date">Next</div>
+            <div>
+              <h3>Inventory-aware menus, staff recipes, and richer daily context.</h3>
+              <p>The next useful layer is menu availability that flows into online ordering, staff-facing recipe/SOP references, plus owner portal context from weather, local conditions, supplies, and customer patterns.</p>
+            </div>
           </article>
         </div>
       </section>
@@ -211,8 +326,9 @@
         <p class="eyebrow">DrinkFlowKDS.com</p>
         <h2>Ready to see your rush clearly?</h2>
         <p>
-          DrinkFlow is currently being built and tested with a live shop. If you
-          run a drink-first business and want early access, reach out.
+          DrinkFlow is currently live at Goldie's and being shaped with real
+          service feedback. If you run a drink-first business and want early
+          access, reach out.
         </p>
         <a class="button primary" href="mailto:samantha@studiosamantha.com?subject=DrinkFlow%20KDS%20setup">Ask about setup</a>
       </section>
