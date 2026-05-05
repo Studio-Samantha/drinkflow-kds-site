@@ -29,11 +29,11 @@
         <a href="#lemonade">Hardware</a>
         <a href="#owners">Owners</a>
         <a href="#pricing">Pricing</a>
-        <a href="./setup.html">Free Setup</a>
+        <a href="./setup.html" class="signup-trigger">Free Setup</a>
         <a href="#proof">Proof</a>
         <a href="#survey">Survey</a>
         <a href="#faq">FAQ</a>
-        <a href="./setup.html" class="nav-button">Claim free starter</a>
+        <a href="./setup.html" class="nav-button signup-trigger">Claim free starter</a>
       </div>
     </nav>
 
@@ -51,7 +51,7 @@
             <span>For coffee shops, carts, smoothie bars, lemonade stands, and event drink lines.</span>
           </div>
           <div class="hero-actions">
-            <a class="button primary" href="./setup.html">Claim free starter</a>
+            <a class="button primary signup-trigger" href="./setup.html">Claim free starter</a>
             <a class="button secondary" href="#savings">Compare savings</a>
             <a class="button secondary" href="#screens">See screens</a>
           </div>
@@ -770,7 +770,7 @@
           <p class="eyebrow">Free starter setup</p>
           <h3>Ready to try it on your counter?</h3>
           <p>Setup has its own page now so this homepage can stay fast, visual, and easy to skim.</p>
-          <a class="button primary" href="./setup.html">Open setup request</a>
+          <a class="button primary signup-trigger" href="./setup.html">Create free app</a>
         </div>
         <form class="onboarding-form homepage-hidden-form" id="onboarding-form">
           <div class="form-intro">
@@ -1082,9 +1082,82 @@
         <span class="brand-stack"><span>DrinkFlow</span><small>KDS</small></span>
       </a>
       <span>See your rush as it happens.</span>
-      <a href="./setup.html">Free setup</a>
+      <a href="./setup.html" class="signup-trigger">Free setup</a>
       <a href="https://goldieskds.com/developer">Plug & Play Beta Login</a>
     </footer>
+
+    <div class="signup-modal" id="signup-modal" hidden>
+      <div class="signup-modal-card">
+        <button type="button" class="signup-modal-close" id="signup-modal-close" aria-label="Close signup">×</button>
+        <p class="eyebrow">Free starter</p>
+        <h2>Create your app.</h2>
+        <p>Three quick steps. Square connects next through Square's secure login.</p>
+        <form class="modal-signup-form" id="modal-signup-form">
+          <div class="modal-progress" aria-label="Signup progress">
+            <span class="active">1</span>
+            <span>2</span>
+            <span>3</span>
+          </div>
+          <div class="modal-step active" data-modal-step="1">
+            <label>
+              <span>Your name</span>
+              <input type="text" name="contactName" autocomplete="name" placeholder="Samantha" />
+            </label>
+            <label>
+              <span>Email</span>
+              <input type="email" name="email" autocomplete="email" required placeholder="you@yourshop.com" />
+            </label>
+            <button class="button primary modal-next" type="button" data-next-step="2">Next</button>
+          </div>
+          <div class="modal-step" data-modal-step="2">
+            <label>
+              <span>App name</span>
+              <input type="text" name="workspaceSlug" required placeholder="prairie-bean" />
+            </label>
+            <p class="modal-url-preview"><strong>Preview:</strong> <span id="modal-domain-preview">prairie-bean.drinkflowkds.com</span></p>
+            <label>
+              <span>Shop name</span>
+              <input type="text" name="shopName" autocomplete="organization" placeholder="Prairie Bean Co." />
+            </label>
+            <div class="modal-actions">
+              <button class="button secondary modal-prev" type="button" data-prev-step="1">Back</button>
+              <button class="button primary modal-next" type="button" data-next-step="3">Choose theme</button>
+            </div>
+          </div>
+          <div class="modal-step" data-modal-step="3">
+            <input type="hidden" name="starterTheme" value="Coffee Bar" />
+            <div class="modal-theme-grid">
+              <button type="button" class="modal-theme coffee-card active" data-theme="Coffee Bar">
+                <span>Coffee</span><strong>Morning rush</strong><small>Warm counter tones</small>
+              </button>
+              <button type="button" class="modal-theme lemonade-card" data-theme="Lemonade Stand">
+                <span>Lemonade</span><strong>Sunny stand</strong><small>Bright with citrus pattern</small>
+              </button>
+              <button type="button" class="modal-theme smoothie-card" data-theme="Smoothie Shop">
+                <span>Smoothie</span><strong>Fresh bar</strong><small>Fruit color energy</small>
+              </button>
+              <button type="button" class="modal-theme vendor-event-card" data-theme="Vendor/Event Booth">
+                <span>Event</span><strong>Artist alley</strong><small>Preorders and pickup</small>
+              </button>
+            </div>
+            <div class="modal-actions">
+              <button class="button secondary modal-prev" type="button" data-prev-step="2">Back</button>
+              <button class="button primary" type="submit">Create free app</button>
+            </div>
+          </div>
+          <input type="text" name="company" tabindex="-1" autocomplete="off" class="hidden-field" />
+          <p class="form-status" id="modal-signup-status" role="status" aria-live="polite"></p>
+          <div class="starter-card" id="modal-square-card" hidden>
+            <p class="eyebrow">Next step</p>
+            <h3>Your app is ready to connect.</h3>
+            <p id="modal-workspace-url"></p>
+            <a class="button primary" id="modal-square-link" href="#">Connect Square</a>
+          </div>
+        </form>
+        <a class="signup-fallback" href="./setup.html">Use full-page signup instead</a>
+      </div>
+    </div>
+
     <script>
       const leadForm = document.getElementById("lead-form");
       const leadStatus = document.getElementById("lead-status");
@@ -1094,6 +1167,153 @@
       const upgradeModal = document.getElementById("upgrade-modal");
       const upgradeTitle = document.getElementById("upgrade-title");
       const upgradeClose = document.getElementById("upgrade-close");
+      const signupModal = document.getElementById("signup-modal");
+      const signupModalClose = document.getElementById("signup-modal-close");
+      const modalSignupForm = document.getElementById("modal-signup-form");
+      const modalSignupStatus = document.getElementById("modal-signup-status");
+      const modalDomainPreview = document.getElementById("modal-domain-preview");
+
+      function cleanWorkspaceSlug(value) {
+        return String(value || "")
+          .toLowerCase()
+          .replace(/[^a-z0-9-]+/g, "-")
+          .replace(/^-+|-+$/g, "")
+          .replace(/-{2,}/g, "-")
+          .slice(0, 42);
+      }
+
+      function showModalStep(step) {
+        document.querySelectorAll("[data-modal-step]").forEach((panel) => {
+          panel.classList.toggle("active", panel.dataset.modalStep === String(step));
+        });
+        document.querySelectorAll(".modal-progress span").forEach((dot, index) => {
+          dot.classList.toggle("active", index + 1 <= Number(step));
+        });
+      }
+
+      function openSignupModal() {
+        signupModal?.removeAttribute("hidden");
+        showModalStep(1);
+        setTimeout(() => modalSignupForm?.elements.email?.focus(), 50);
+      }
+
+      function closeSignupModal() {
+        signupModal?.setAttribute("hidden", "");
+      }
+
+      document.querySelectorAll(".signup-trigger").forEach((link) => {
+        link.addEventListener("click", (event) => {
+          event.preventDefault();
+          openSignupModal();
+        });
+      });
+
+      signupModalClose?.addEventListener("click", closeSignupModal);
+      signupModal?.addEventListener("click", (event) => {
+        if (event.target === signupModal) closeSignupModal();
+      });
+
+      modalSignupForm?.elements.workspaceSlug?.addEventListener("input", (event) => {
+        const slug = cleanWorkspaceSlug(event.target.value) || "your-name";
+        modalDomainPreview.textContent = `${slug}.drinkflowkds.com`;
+      });
+
+      document.querySelectorAll(".modal-next").forEach((button) => {
+        button.addEventListener("click", () => {
+          const nextStep = button.dataset.nextStep;
+          const currentStep = button.closest("[data-modal-step]");
+          const requiredInputs = Array.from(currentStep.querySelectorAll("[required]"));
+          const valid = requiredInputs.every((input) => input.reportValidity());
+          if (valid) showModalStep(nextStep);
+        });
+      });
+
+      document.querySelectorAll(".modal-prev").forEach((button) => {
+        button.addEventListener("click", () => showModalStep(button.dataset.prevStep));
+      });
+
+      document.querySelectorAll(".modal-theme").forEach((button) => {
+        button.addEventListener("click", () => {
+          document.querySelectorAll(".modal-theme").forEach((theme) => theme.classList.remove("active"));
+          button.classList.add("active");
+          modalSignupForm.elements.starterTheme.value = button.dataset.theme;
+        });
+      });
+
+      async function createDrinkFlowAppFromForm(form, statusEl, squareCardId, workspaceTextId, squareLinkId) {
+        statusEl.textContent = "Creating your app...";
+        const data = new FormData(form);
+        const payload = {
+          contactName: data.get("contactName"),
+          email: data.get("email"),
+          shopName: data.get("shopName"),
+          workspaceSlug: cleanWorkspaceSlug(data.get("workspaceSlug")),
+          location: "",
+          businessType: "Drink business",
+          posSystem: "Square",
+          starterTheme: data.get("starterTheme") || "Coffee Bar",
+          screenNeeds: ["Staff KDS", "Orders Up"],
+          orderSources: ["In person"],
+          averageDailyOrders: "",
+          rushWindow: "",
+          pricingComfort: "Free starter",
+          timeline: "ASAP",
+          currentPain: "",
+          socialLinks: [],
+          notes: "",
+          company: data.get("company"),
+          source: "drinkflowkds.com-modal",
+          pagePath: window.location.pathname,
+          referrer: document.referrer
+        };
+
+        const workspaceResponse = await fetch("https://goldieskds.com/api/drinkflow-workspaces", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            slug: payload.workspaceSlug,
+            shopName: payload.shopName,
+            ownerName: payload.contactName,
+            ownerEmail: payload.email
+          })
+        });
+        const workspaceResult = await workspaceResponse.json().catch(() => ({}));
+        if (!workspaceResponse.ok) {
+          throw new Error(workspaceResult.error || "Your app could not be created yet.");
+        }
+
+        const response = await fetch("https://goldieskds.com/api/drinkflow-onboarding", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          throw new Error(result.error || "Setup request failed");
+        }
+
+        const slug = workspaceResult.workspace?.slug || payload.workspaceSlug;
+        const appUrl = workspaceResult.workspace?.app_url || `https://${slug}.drinkflowkds.com`;
+        statusEl.textContent = "App created. Check your email for verification, then connect Square.";
+        document.getElementById(workspaceTextId).textContent = `${appUrl} is reserved for your starter app.`;
+        document.getElementById(squareLinkId).href = `https://goldieskds.com/api/drinkflow/square/oauth/start?slug=${encodeURIComponent(slug)}`;
+        document.getElementById(squareCardId).hidden = false;
+      }
+
+      modalSignupForm?.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        try {
+          await createDrinkFlowAppFromForm(
+            modalSignupForm,
+            modalSignupStatus,
+            "modal-square-card",
+            "modal-workspace-url",
+            "modal-square-link"
+          );
+        } catch (error) {
+          modalSignupStatus.textContent = error.message || "That did not work yet. Try the full-page signup.";
+        }
+      });
 
       document.querySelectorAll(".theme-choice").forEach((button) => {
         button.addEventListener("click", () => {
