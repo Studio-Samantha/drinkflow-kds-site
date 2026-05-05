@@ -548,6 +548,44 @@ h3 {
   color: var(--muted);
 }
 
+.price-card strong {
+  display: block;
+  margin-top: 1rem;
+  color: var(--green);
+  font-size: 1.35rem;
+}
+
+.fine-print {
+  margin: 1.2rem 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  font-weight: 720;
+}
+
+.faq-list {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.faq-list details {
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 14px 34px rgba(15, 64, 54, 0.06);
+  padding: 1rem 1.15rem;
+}
+
+.faq-list summary {
+  color: var(--green-dark);
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.faq-list p {
+  margin: 0.7rem 0 0;
+  color: var(--muted);
+}
+
 .brand-kit {
   display: grid;
   grid-template-columns: minmax(0, 0.65fr) minmax(18rem, 1.35fr);
