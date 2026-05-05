@@ -326,7 +326,6 @@ h3 {
 .truth-band,
 .section,
 .case-study,
-.brand-kit,
 .cta {
   margin: 0 clamp(1rem, 5vw, 5rem) clamp(1rem, 4vw, 3rem);
   border: 1px solid rgba(255, 255, 255, 0.78);
@@ -400,7 +399,6 @@ h3 {
 
 .section-heading p,
 .case-copy p,
-.brand-kit p,
 .cta p {
   color: var(--muted);
   font-size: 1.08rem;
@@ -586,20 +584,221 @@ h3 {
   color: var(--muted);
 }
 
-.brand-kit {
+.setup-steps,
+.survey-grid {
   display: grid;
-  grid-template-columns: minmax(0, 0.65fr) minmax(18rem, 1.35fr);
-  gap: 2rem;
-  align-items: center;
-  padding: clamp(2rem, 5vw, 4rem);
-  background: rgba(255, 255, 255, 0.62);
-  overflow: hidden;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
 }
 
-.brand-kit img {
-  width: 100%;
+.app-preview {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(18rem, 0.88fr);
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.app-panel {
+  border: 1px solid var(--line);
   border-radius: 1.2rem;
-  box-shadow: var(--shadow);
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 18px 46px rgba(15, 64, 54, 0.08);
+  padding: 1.2rem;
+}
+
+.setup-console {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.console-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 0.9rem;
+}
+
+.setup-row {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr);
+  gap: 0.8rem;
+  border: 1px solid rgba(15, 64, 54, 0.1);
+  border-radius: 0.95rem;
+  padding: 0.9rem;
+  background: #fffdf8;
+}
+
+.setup-row > span {
+  display: inline-flex;
+  width: 2.35rem;
+  height: 2.35rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #fff;
+  background: var(--green);
+  font-weight: 950;
+}
+
+.setup-row.active {
+  border-color: rgba(187, 91, 47, 0.35);
+  background: #fff5e8;
+}
+
+.setup-row.complete > span {
+  background: #187a53;
+}
+
+.setup-row strong {
+  display: block;
+  color: var(--green-dark);
+}
+
+.setup-row p {
+  margin: 0.2rem 0 0;
+  color: var(--muted);
+}
+
+.shop-app {
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(217, 164, 65, 0.2), transparent 14rem),
+    linear-gradient(135deg, var(--green-dark), var(--green));
+}
+
+.phone-shell {
+  width: min(100%, 21rem);
+  border: 10px solid #151515;
+  border-radius: 2rem;
+  background: #fffaf1;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.22);
+  padding: 1rem;
+}
+
+.phone-top {
+  color: var(--green);
+  font-weight: 950;
+  letter-spacing: 0.18em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.phone-card {
+  margin-top: 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: #fff;
+  padding: 0.95rem;
+}
+
+.phone-card.selected {
+  border-color: rgba(187, 91, 47, 0.32);
+  background: #fff5e8;
+}
+
+.phone-card span {
+  color: var(--clay);
+  font-size: 0.72rem;
+  font-weight: 950;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.phone-card strong {
+  display: block;
+  color: var(--green-dark);
+  font-size: 1.35rem;
+}
+
+.phone-card p {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+  font-weight: 720;
+}
+
+.phone-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.55rem;
+  margin-top: 0.85rem;
+}
+
+.phone-grid button {
+  border: 0;
+  border-radius: 0.8rem;
+  padding: 0.75rem;
+  color: #fff;
+  background: var(--green);
+  font: inherit;
+  font-weight: 900;
+}
+
+.setup-steps article,
+.survey-card,
+.signup-form {
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.76);
+  box-shadow: 0 14px 34px rgba(15, 64, 54, 0.06);
+  padding: 1.2rem;
+}
+
+.setup-steps span {
+  display: inline-flex;
+  margin-bottom: 0.8rem;
+  color: var(--clay);
+  font-weight: 950;
+}
+
+.survey-grid {
+  grid-template-columns: minmax(0, 0.85fr) minmax(18rem, 1.15fr);
+  align-items: start;
+}
+
+.survey-card p,
+.setup-steps p,
+.signup-form p {
+  color: var(--muted);
+}
+
+.signup-form {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.signup-form label {
+  display: grid;
+  gap: 0.35rem;
+  color: var(--green-dark);
+  font-weight: 850;
+}
+
+.signup-form input,
+.signup-form textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 0.8rem;
+  padding: 0.85rem 0.95rem;
+  color: var(--ink);
+  background: #fffdf8;
+  font: inherit;
+}
+
+.signup-form textarea {
+  resize: vertical;
+}
+
+.signup-form button {
+  cursor: pointer;
+}
+
+.form-status {
+  min-height: 1.5rem;
+  margin: 0;
+  font-weight: 800;
 }
 
 .cta {
@@ -630,15 +829,17 @@ footer {
 @media (max-width: 980px) {
   .hero,
   .truth-band,
-  .case-study,
-  .brand-kit {
+  .case-study {
     grid-template-columns: 1fr;
   }
 
   .feature-grid,
   .owner-grid,
   .proof-grid,
-  .truth-grid {
+  .truth-grid,
+  .setup-steps,
+  .survey-grid,
+  .app-preview {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -684,7 +885,10 @@ footer {
   .feature-grid,
   .owner-grid,
   .proof-grid,
-  .truth-grid {
+  .truth-grid,
+  .setup-steps,
+  .survey-grid,
+  .app-preview {
     grid-template-columns: 1fr;
   }
 
