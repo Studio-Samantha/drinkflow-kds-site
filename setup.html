@@ -36,7 +36,7 @@
           </p>
         </div>
 
-        <form class="onboarding-form" id="onboarding-form">
+        <form class="onboarding-form signup-flow" id="onboarding-form">
           <div class="form-intro">
             <p class="eyebrow">Free starter</p>
             <h3>Create your app.</h3>
@@ -51,35 +51,84 @@
             </div>
           </div>
 
-          <div class="form-grid">
+          <div class="signup-steps" aria-label="Signup progress">
+            <span class="active">1 Account</span>
+            <span>2 App name</span>
+            <span>3 Theme</span>
+            <span>4 Square</span>
+          </div>
+
+          <section class="signup-step active" data-step="1">
+            <label>
+              <span>Your name</span>
+              <input type="text" name="contactName" autocomplete="name" placeholder="Samantha" />
+            </label>
             <label>
               <span>Email</span>
               <input type="email" name="email" autocomplete="email" required placeholder="you@yourshop.com" />
             </label>
+            <button class="button primary" type="button" data-next-step="2">Next</button>
+          </section>
+
+          <section class="signup-step" data-step="2" hidden>
             <label>
               <span>App name</span>
               <input type="text" name="workspaceSlug" required placeholder="prairie-bean" />
             </label>
+            <p class="signup-hint">This reserves your future app URL: app-name.drinkflowkds.com</p>
             <label>
               <span>Shop name</span>
               <input type="text" name="shopName" autocomplete="organization" placeholder="Prairie Bean Co." />
             </label>
-            <label>
-              <span>Starter theme</span>
-              <select name="starterTheme">
-                <option>Coffee Bar</option>
-                <option>Smoothie Shop</option>
-                <option>Lemonade Stand</option>
-                <option>Wine Cart</option>
-                <option>Hot Chocolate</option>
-              </select>
-            </label>
-          </div>
+            <div class="step-actions">
+              <button class="button secondary" type="button" data-prev-step="1">Back</button>
+              <button class="button primary" type="button" data-next-step="3">Next</button>
+            </div>
+          </section>
+
+          <section class="signup-step" data-step="3" hidden>
+            <input type="hidden" name="starterTheme" value="Coffee Bar" />
+            <div class="theme-card-grid">
+              <button type="button" class="signup-theme active coffee-card" data-theme-value="Coffee Bar">
+                <span>Coffee Bar</span>
+                <strong>Warm espresso counter</strong>
+                <small>Deep green, clay, cream, classic cafe energy.</small>
+              </button>
+              <button type="button" class="signup-theme smoothie-card" data-theme-value="Smoothie Shop">
+                <span>Smoothie Shop</span>
+                <strong>Bright blend line</strong>
+                <small>Juicy color, fast tickets, playful cold-drink feel.</small>
+              </button>
+              <button type="button" class="signup-theme lemonade-card" data-theme-value="Lemonade Stand">
+                <span>Lemonade Stand</span>
+                <strong>Sunny event stand</strong>
+                <small>Lemon pattern, cheerful pickup, pop-up ready.</small>
+              </button>
+              <button type="button" class="signup-theme wine-card" data-theme-value="Wine Cart">
+                <span>Wine Cart</span>
+                <strong>Elegant pour queue</strong>
+                <small>Deep berry, gold, slower service rhythm.</small>
+              </button>
+              <button type="button" class="signup-theme cocoa-card" data-theme-value="Hot Chocolate">
+                <span>Hot Chocolate</span>
+                <strong>Cozy seasonal bar</strong>
+                <small>Cocoa, caramel, winter market warmth.</small>
+              </button>
+              <button type="button" class="signup-theme vendor-event-card" data-theme-value="Vendor/Event Booth">
+                <span>Vendor/Event Booth</span>
+                <strong>Artist alley pickup flow</strong>
+                <small>Event queue, custom orders, pickup names, and booth handoff.</small>
+              </button>
+            </div>
+            <div class="step-actions">
+              <button class="button secondary" type="button" data-prev-step="2">Back</button>
+              <button class="button primary" type="submit">Create free app</button>
+            </div>
+          </section>
 
           <input type="text" name="company" tabindex="-1" autocomplete="off" class="hidden-field" />
-          <button class="button primary" type="submit">Create free app</button>
           <p class="form-status" id="onboarding-status" role="status" aria-live="polite"></p>
-          <div class="starter-card" id="square-connect-card" hidden>
+          <div class="starter-card signup-step" id="square-connect-card" data-step="4" hidden>
             <p class="eyebrow">Next step</p>
             <h3>Your app name is reserved.</h3>
             <p id="workspace-url"></p>
@@ -102,6 +151,43 @@
     <script>
       const onboardingForm = document.getElementById("onboarding-form");
       const onboardingStatus = document.getElementById("onboarding-status");
+      const progressSteps = Array.from(document.querySelectorAll(".signup-steps span"));
+      const signupSteps = Array.from(document.querySelectorAll(".signup-step[data-step]"));
+
+      function showStep(step) {
+        signupSteps.forEach((panel) => {
+          const isActive = panel.dataset.step === String(step);
+          panel.hidden = !isActive;
+          panel.classList.toggle("active", isActive);
+        });
+        progressSteps.forEach((item, index) => {
+          item.classList.toggle("active", index + 1 === Number(step));
+        });
+      }
+
+      document.querySelectorAll("[data-next-step]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const currentPanel = button.closest(".signup-step");
+          const invalid = currentPanel?.querySelector("input:invalid");
+          if (invalid) {
+            invalid.reportValidity();
+            return;
+          }
+          showStep(button.dataset.nextStep);
+        });
+      });
+
+      document.querySelectorAll("[data-prev-step]").forEach((button) => {
+        button.addEventListener("click", () => showStep(button.dataset.prevStep));
+      });
+
+      document.querySelectorAll(".signup-theme").forEach((button) => {
+        button.addEventListener("click", () => {
+          document.querySelectorAll(".signup-theme").forEach((theme) => theme.classList.remove("active"));
+          button.classList.add("active");
+          onboardingForm.elements.starterTheme.value = button.dataset.themeValue || "Coffee Bar";
+        });
+      });
 
       onboardingForm?.addEventListener("submit", async (event) => {
         event.preventDefault();
@@ -165,7 +251,7 @@
           document.getElementById("workspace-url").textContent = `${appUrl} is reserved for your starter app.`;
           const squareLink = document.getElementById("square-connect-link");
           squareLink.href = `https://goldieskds.com/api/drinkflow/square/oauth/start?slug=${encodeURIComponent(slug)}`;
-          document.getElementById("square-connect-card").hidden = false;
+          showStep(4);
         } catch (error) {
           const message = error.message || "";
           onboardingStatus.textContent = message.includes("Supabase setup")
