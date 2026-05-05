@@ -458,6 +458,117 @@
             </div>
           </div>
         </div>
+        <form class="onboarding-form" id="onboarding-form">
+          <div class="form-intro">
+            <p class="eyebrow">Setup request</p>
+            <h3>Show us the counter you want to fix.</h3>
+            <p>
+              This is the first version of the plug-and-play intake. It gives
+              DrinkFlow enough context to decide whether a shop needs a simple
+              board, owner reports, customer pickup screens, or a deeper setup.
+            </p>
+          </div>
+          <div class="form-grid">
+            <label>
+              <span>Your name</span>
+              <input type="text" name="contactName" autocomplete="name" placeholder="Samantha Carey" />
+            </label>
+            <label>
+              <span>Email</span>
+              <input type="email" name="email" autocomplete="email" required placeholder="you@yourshop.com" />
+            </label>
+            <label>
+              <span>Shop name</span>
+              <input type="text" name="shopName" autocomplete="organization" placeholder="Prairie Bean Co." />
+            </label>
+            <label>
+              <span>Location</span>
+              <input type="text" name="location" autocomplete="address-level2" placeholder="Exira, Iowa" />
+            </label>
+            <label>
+              <span>Business type</span>
+              <select name="businessType">
+                <option value="">Choose one</option>
+                <option>Coffee shop</option>
+                <option>Food truck</option>
+                <option>Vendor booth</option>
+                <option>Smoothie or juice bar</option>
+                <option>Bakery or cafe</option>
+                <option>Retail shop with drink counter</option>
+              </select>
+            </label>
+            <label>
+              <span>POS system</span>
+              <select name="posSystem">
+                <option>Square</option>
+                <option>Clover</option>
+                <option>Shopify</option>
+                <option>Toast</option>
+                <option>Other</option>
+                <option>Not sure yet</option>
+              </select>
+            </label>
+            <fieldset>
+              <legend>Screens you want</legend>
+              <label><input type="checkbox" name="screenNeeds" value="Staff KDS" /> Staff KDS</label>
+              <label><input type="checkbox" name="screenNeeds" value="Orders Up" /> Orders Up</label>
+              <label><input type="checkbox" name="screenNeeds" value="Owner Portal" /> Owner Portal</label>
+              <label><input type="checkbox" name="screenNeeds" value="Menu Board" /> Menu Board</label>
+              <label><input type="checkbox" name="screenNeeds" value="Kiosk" /> Kiosk</label>
+            </fieldset>
+            <fieldset>
+              <legend>Order sources</legend>
+              <label><input type="checkbox" name="orderSources" value="In person" /> In person</label>
+              <label><input type="checkbox" name="orderSources" value="Online pickup" /> Online pickup</label>
+              <label><input type="checkbox" name="orderSources" value="Drive thru" /> Drive thru</label>
+              <label><input type="checkbox" name="orderSources" value="Events" /> Events</label>
+              <label><input type="checkbox" name="orderSources" value="Delivery apps" /> Delivery apps</label>
+            </fieldset>
+            <label>
+              <span>Average daily orders</span>
+              <input type="text" name="averageDailyOrders" placeholder="Example: 40-90 drinks/day" />
+            </label>
+            <label>
+              <span>Rush window</span>
+              <input type="text" name="rushWindow" placeholder="Example: 7:30-9:30 AM" />
+            </label>
+            <label>
+              <span>Pricing comfort</span>
+              <select name="pricingComfort">
+                <option value="">Choose one</option>
+                <option>$20-$75/mo</option>
+                <option>$75-$150/mo</option>
+                <option>$150-$300/mo</option>
+                <option>Need to see value first</option>
+              </select>
+            </label>
+            <label>
+              <span>Timeline</span>
+              <select name="timeline">
+                <option value="">Choose one</option>
+                <option>ASAP</option>
+                <option>This month</option>
+                <option>Next 1-3 months</option>
+                <option>Researching for later</option>
+              </select>
+            </label>
+            <label class="wide">
+              <span>What is the biggest counter pain point?</span>
+              <textarea name="currentPain" rows="4" placeholder="Yelling names, tickets out of order, no owner reports, online pickup confusion..."></textarea>
+            </label>
+            <label class="wide">
+              <span>Website or social links</span>
+              <textarea name="socialLinks" rows="3" placeholder="Website, Instagram, Facebook, menu link..."></textarea>
+            </label>
+            <label class="wide">
+              <span>Extra notes</span>
+              <textarea name="notes" rows="3" placeholder="Anything special about your setup, staff, rush, menu, or devices?"></textarea>
+            </label>
+          </div>
+          <input type="text" name="company" tabindex="-1" autocomplete="off" class="hidden-field" />
+          <button class="button primary" type="submit">Send setup request</button>
+          <p class="form-status" id="onboarding-status" role="status" aria-live="polite"></p>
+        </form>
       </section>
 
       <section class="section timeline-section" id="roadmap">
@@ -465,13 +576,20 @@
           <p class="eyebrow">Current build</p>
           <h2>Growing in public, but with receipts.</h2>
           <p>
-            DrinkFlow is on v1.9.6 in the Goldie's build. The product is moving
+            DrinkFlow is on v1.9.7 in the Goldie's build. The product is moving
             from custom pilot toward repeatable setup: cleaner boards, better
             owner reports, a developer diary for shop-specific notes, and a path
             toward Square OAuth and Auth0 onboarding for future shops.
           </p>
         </div>
         <div class="timeline">
+          <article class="timeline-item">
+            <div class="timeline-date">v1.9.7</div>
+            <div>
+              <h3>Plug-and-play onboarding became real.</h3>
+              <p>DrinkFlow now has a setup request flow for future shops and a private Studio Samantha queue for reviewing new leads, screen needs, POS fit, pricing comfort, and counter pain points.</p>
+            </div>
+          </article>
           <article class="timeline-item">
             <div class="timeline-date">v1.9.6</div>
             <div>
@@ -641,6 +759,8 @@
     <script>
       const leadForm = document.getElementById("lead-form");
       const leadStatus = document.getElementById("lead-status");
+      const onboardingForm = document.getElementById("onboarding-form");
+      const onboardingStatus = document.getElementById("onboarding-status");
 
       leadForm?.addEventListener("submit", async (event) => {
         event.preventDefault();
@@ -671,6 +791,56 @@
           leadStatus.textContent = "You're on the list. Thank you.";
         } catch (error) {
           leadStatus.textContent = "That did not send. Email samantha@studiosamantha.com and mention DrinkFlow.";
+        }
+      });
+
+      onboardingForm?.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        onboardingStatus.textContent = "Sending setup request...";
+
+        const data = new FormData(onboardingForm);
+        const socialLinks = String(data.get("socialLinks") || "")
+          .split(/\n|,/)
+          .map((item) => item.trim())
+          .filter(Boolean);
+        const payload = {
+          contactName: data.get("contactName"),
+          email: data.get("email"),
+          shopName: data.get("shopName"),
+          location: data.get("location"),
+          businessType: data.get("businessType"),
+          posSystem: data.get("posSystem"),
+          screenNeeds: data.getAll("screenNeeds"),
+          orderSources: data.getAll("orderSources"),
+          averageDailyOrders: data.get("averageDailyOrders"),
+          rushWindow: data.get("rushWindow"),
+          pricingComfort: data.get("pricingComfort"),
+          timeline: data.get("timeline"),
+          currentPain: data.get("currentPain"),
+          socialLinks,
+          notes: data.get("notes"),
+          company: data.get("company"),
+          source: "drinkflowkds.com-onboarding",
+          pagePath: window.location.pathname,
+          referrer: document.referrer
+        };
+
+        try {
+          const response = await fetch("https://goldieskds.com/api/drinkflow-onboarding", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+          });
+          const result = await response.json().catch(() => ({}));
+
+          if (!response.ok) {
+            throw new Error(result.error || "Setup request failed");
+          }
+
+          onboardingForm.reset();
+          onboardingStatus.textContent = "Setup request received. We will review the fit next.";
+        } catch (error) {
+          onboardingStatus.textContent = "That did not send. Email samantha@studiosamantha.com and mention DrinkFlow setup.";
         }
       });
     </script>

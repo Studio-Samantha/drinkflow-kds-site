@@ -738,12 +738,38 @@ h3 {
 
 .setup-steps article,
 .survey-card,
-.signup-form {
+.signup-form,
+.onboarding-form {
   border: 1px solid var(--line);
   border-radius: 1rem;
   background: rgba(255, 255, 255, 0.76);
   box-shadow: 0 14px 34px rgba(15, 64, 54, 0.06);
   padding: 1.2rem;
+}
+
+.onboarding-form {
+  display: grid;
+  gap: 1.1rem;
+  margin-top: 1rem;
+}
+
+.form-intro {
+  max-width: 46rem;
+}
+
+.form-intro h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 3vw, 3.3rem);
+}
+
+.form-intro p {
+  color: var(--muted);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.9rem;
 }
 
 .setup-steps span {
@@ -769,7 +795,8 @@ h3 {
   gap: 0.9rem;
 }
 
-.signup-form label {
+.signup-form label,
+.onboarding-form label {
   display: grid;
   gap: 0.35rem;
   color: var(--green-dark);
@@ -777,7 +804,10 @@ h3 {
 }
 
 .signup-form input,
-.signup-form textarea {
+.signup-form textarea,
+.onboarding-form input,
+.onboarding-form select,
+.onboarding-form textarea {
   width: 100%;
   border: 1px solid var(--line);
   border-radius: 0.8rem;
@@ -787,11 +817,53 @@ h3 {
   font: inherit;
 }
 
-.signup-form textarea {
+.signup-form textarea,
+.onboarding-form textarea {
   resize: vertical;
 }
 
-.signup-form button {
+.onboarding-form fieldset {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: 0.8rem;
+  padding: 0.85rem;
+  color: var(--green-dark);
+  background: #fffdf8;
+}
+
+.onboarding-form legend {
+  padding: 0 0.35rem;
+  font-weight: 900;
+}
+
+.onboarding-form fieldset label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--muted);
+  font-weight: 760;
+}
+
+.onboarding-form input[type="checkbox"] {
+  width: auto;
+}
+
+.wide {
+  grid-column: 1 / -1;
+}
+
+.hidden-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.signup-form button,
+.onboarding-form button {
   cursor: pointer;
 }
 
@@ -883,6 +955,7 @@ footer {
 
   .columns,
   .feature-grid,
+  .form-grid,
   .owner-grid,
   .proof-grid,
   .truth-grid,
