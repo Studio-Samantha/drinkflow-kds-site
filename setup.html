@@ -28,75 +28,44 @@
     <main>
       <section class="section plug-play-section" id="plug-play">
         <div class="section-heading">
-          <p class="eyebrow">Free starter app</p>
-          <h1>Start your DrinkFlow setup.</h1>
+          <p class="eyebrow">Create account</p>
+          <h1>Start your free DrinkFlow app.</h1>
           <p>
-            Reserve your app name, pick a starter look, and get ready to connect
-            Square through Square's secure login screen.
+            Pick a name for your app, choose a starter look, and connect Square
+            on the next step.
           </p>
         </div>
 
         <form class="onboarding-form" id="onboarding-form">
           <div class="form-intro">
-            <p class="eyebrow">Create your free starter app</p>
-            <h3>Choose your app name, then connect Square.</h3>
+            <p class="eyebrow">Free starter</p>
+            <h3>Create your app.</h3>
             <p>
-              DrinkFlow reserves your app first. Then Square opens its own login
-              page so your Square password never touches DrinkFlow.
+              Square opens in its own secure login after this. DrinkFlow never
+              asks for your Square password.
             </p>
             <div class="starter-perks">
-              <span>No per-screen fee in starter</span>
-              <span>Use screens you already own</span>
-              <span>Theme it for your drink business</span>
+              <span>Free starter</span>
+              <span>Choose a theme</span>
+              <span>Connect Square next</span>
             </div>
           </div>
 
           <div class="form-grid">
             <label>
-              <span>Your name</span>
-              <input type="text" name="contactName" autocomplete="name" placeholder="Samantha Carey" />
-            </label>
-            <label>
               <span>Email</span>
               <input type="email" name="email" autocomplete="email" required placeholder="you@yourshop.com" />
+            </label>
+            <label>
+              <span>App name</span>
+              <input type="text" name="workspaceSlug" required placeholder="prairie-bean" />
             </label>
             <label>
               <span>Shop name</span>
               <input type="text" name="shopName" autocomplete="organization" placeholder="Prairie Bean Co." />
             </label>
             <label>
-              <span>App name</span>
-              <input type="text" name="workspaceSlug" placeholder="prairie-bean" />
-            </label>
-            <label>
-              <span>Location</span>
-              <input type="text" name="location" autocomplete="address-level2" placeholder="Exira, Iowa" />
-            </label>
-            <label>
-              <span>Business type</span>
-              <select name="businessType">
-                <option value="">Choose one</option>
-                <option>Coffee shop</option>
-                <option>Food truck</option>
-                <option>Vendor booth</option>
-                <option>Smoothie or juice bar</option>
-                <option>Bakery or cafe</option>
-                <option>Retail shop with drink counter</option>
-              </select>
-            </label>
-            <label>
-              <span>POS system</span>
-              <select name="posSystem">
-                <option>Square</option>
-                <option>Clover</option>
-                <option>Shopify</option>
-                <option>Toast</option>
-                <option>Other</option>
-                <option>Not sure yet</option>
-              </select>
-            </label>
-            <label>
-              <span>Free starter theme</span>
+              <span>Starter theme</span>
               <select name="starterTheme">
                 <option>Coffee Bar</option>
                 <option>Smoothie Shop</option>
@@ -105,66 +74,10 @@
                 <option>Hot Chocolate</option>
               </select>
             </label>
-            <fieldset>
-              <legend>Starter screens</legend>
-              <label><input type="checkbox" name="screenNeeds" value="Staff KDS" /> Staff KDS</label>
-              <label><input type="checkbox" name="screenNeeds" value="Orders Up" /> Orders Up</label>
-              <label><input type="checkbox" name="screenNeeds" value="Menu Board" /> Menu Board</label>
-              <label><input type="checkbox" name="screenNeeds" value="Owner Portal later" /> Owner Portal later</label>
-              <label><input type="checkbox" name="screenNeeds" value="Kiosk later" /> Kiosk later</label>
-            </fieldset>
-            <fieldset>
-              <legend>Order sources</legend>
-              <label><input type="checkbox" name="orderSources" value="In person" /> In person</label>
-              <label><input type="checkbox" name="orderSources" value="Online pickup" /> Online pickup</label>
-              <label><input type="checkbox" name="orderSources" value="Drive thru" /> Drive thru</label>
-              <label><input type="checkbox" name="orderSources" value="Events" /> Events</label>
-              <label><input type="checkbox" name="orderSources" value="Delivery apps" /> Delivery apps</label>
-            </fieldset>
-            <label>
-              <span>Average daily orders</span>
-              <input type="text" name="averageDailyOrders" placeholder="Example: 40-90 drinks/day" />
-            </label>
-            <label>
-              <span>Rush window</span>
-              <input type="text" name="rushWindow" placeholder="Example: 7:30-9:30 AM" />
-            </label>
-            <label>
-              <span>Free starter fit</span>
-              <select name="pricingComfort">
-                <option value="">Choose one</option>
-                <option>Free starter is enough to test</option>
-                <option>Interested in owner reports later</option>
-                <option>Interested in paid multi-screen tools later</option>
-                <option>Need to see it working first</option>
-              </select>
-            </label>
-            <label>
-              <span>Timeline</span>
-              <select name="timeline">
-                <option value="">Choose one</option>
-                <option>ASAP</option>
-                <option>This month</option>
-                <option>Next 1-3 months</option>
-                <option>Researching for later</option>
-              </select>
-            </label>
-            <label class="wide">
-              <span>Biggest counter pain point</span>
-              <textarea name="currentPain" rows="4" placeholder="Yelling names, tickets out of order, no owner reports, pickup confusion..."></textarea>
-            </label>
-            <label class="wide">
-              <span>Website or social links</span>
-              <textarea name="socialLinks" rows="3" placeholder="Website, Instagram, Facebook, menu link..."></textarea>
-            </label>
-            <label class="wide">
-              <span>Extra notes</span>
-              <textarea name="notes" rows="3" placeholder="Anything special about your setup, staff, rush, menu, or devices?"></textarea>
-            </label>
           </div>
 
           <input type="text" name="company" tabindex="-1" autocomplete="off" class="hidden-field" />
-          <button class="button primary" type="submit">Reserve my free app</button>
+          <button class="button primary" type="submit">Create free app</button>
           <p class="form-status" id="onboarding-status" role="status" aria-live="polite"></p>
           <div class="starter-card" id="square-connect-card" hidden>
             <p class="eyebrow">Next step</p>
@@ -195,28 +108,24 @@
         onboardingStatus.textContent = "Reserving your app...";
 
         const data = new FormData(onboardingForm);
-        const socialLinks = String(data.get("socialLinks") || "")
-          .split(/\n|,/)
-          .map((item) => item.trim())
-          .filter(Boolean);
         const payload = {
           contactName: data.get("contactName"),
           email: data.get("email"),
           shopName: data.get("shopName"),
           workspaceSlug: data.get("workspaceSlug"),
-          location: data.get("location"),
-          businessType: data.get("businessType"),
-          posSystem: data.get("posSystem"),
+          location: "",
+          businessType: "Drink business",
+          posSystem: "Square",
           starterTheme: data.get("starterTheme"),
-          screenNeeds: data.getAll("screenNeeds"),
-          orderSources: data.getAll("orderSources"),
-          averageDailyOrders: data.get("averageDailyOrders"),
-          rushWindow: data.get("rushWindow"),
-          pricingComfort: data.get("pricingComfort"),
-          timeline: data.get("timeline"),
-          currentPain: data.get("currentPain"),
-          socialLinks,
-          notes: data.get("notes"),
+          screenNeeds: ["Staff KDS", "Orders Up"],
+          orderSources: ["In person"],
+          averageDailyOrders: "",
+          rushWindow: "",
+          pricingComfort: "Free starter",
+          timeline: "ASAP",
+          currentPain: "",
+          socialLinks: [],
+          notes: "",
           company: data.get("company"),
           source: "drinkflowkds.com/setup",
           pagePath: window.location.pathname,
@@ -230,7 +139,7 @@
             body: JSON.stringify({
               slug: payload.workspaceSlug,
               shopName: payload.shopName,
-              ownerName: payload.contactName,
+              ownerName: "",
               ownerEmail: payload.email
             })
           });
