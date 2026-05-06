@@ -38,6 +38,7 @@
           <h1>Unofficial small-town summer souvenir shop.</h1>
           <p class="lede">Tees, totes, and hats for Exira locals, riders, visitors, and out-of-town souvenir orders.</p>
           <p class="ship-note">Can't make it to ride week? Online orders ship the second week of July.</p>
+          <p class="ship-note" id="launch-countdown">Orders go live June 1.</p>
           <div class="actions">
             <a class="button primary" href="#tees">Shop the catalog</a>
           </div>
@@ -127,6 +128,7 @@
         </div>
         <div class="note-grid">
           <article><h3>Pickup + shipping</h3><p>Choose pickup for July 19 or July 20. Online orders ship the second week of July. Shipping is $5.</p></article>
+          <article><h3>Small batches</h3><p>Items are produced in preorder-sized runs so you can avoid overproducing, reduce waste, and keep the booth focused on what people actually want.</p></article>
           <article><h3>Digital previews</h3><p>Final products may vary slightly from digital previews as blanks, colors, and production details are finalized.</p></article>
           <article><h3>Unofficial merch</h3><p>This is unofficial local summer ride merch and is not presented as an official event product.</p></article>
         </div>
@@ -157,6 +159,10 @@
       <span>Studio Samantha · Exira, Iowa</span>
       <span>Unofficial local summer ride merch. Final products may vary from digital previews.</span>
       <a href="/vendorflow">Powered by VendorFlowDS</a>
+      <a href="/policy.html">Policy</a>
+      <a href="/policy.html#data-use">Data use</a>
+      <a href="/policy.html#ownership">Ownership</a>
+      <a href="/policy.html#trademarks">Trademarks</a>
     </footer>
     <div class="lightbox" aria-hidden="true">
       <button type="button" aria-label="Close enlarged product photo">×</button>
@@ -167,11 +173,32 @@
       const lightboxImage = lightbox.querySelector("img");
       const souvenirLeadForm = document.getElementById("souvenir-lead-form");
       const souvenirLeadStatus = document.getElementById("souvenir-lead-status");
+      const launchCountdown = document.getElementById("launch-countdown");
       const closeLightbox = () => {
         lightbox.classList.remove("is-open");
         lightbox.setAttribute("aria-hidden", "true");
         lightboxImage.src = "";
       };
+
+      if (launchCountdown) {
+        const launchDate = new Date("2026-06-01T00:00:00-05:00");
+        const updateLaunchCountdown = () => {
+          const now = new Date();
+          const diff = launchDate - now;
+
+          if (diff <= 0) {
+            launchCountdown.textContent = "Orders are live now.";
+            return;
+          }
+
+          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+          launchCountdown.textContent = `Orders go live June 1 in ${days} day${days === 1 ? "" : "s"} and ${hours} hour${hours === 1 ? "" : "s"}.`;
+        };
+
+        updateLaunchCountdown();
+        setInterval(updateLaunchCountdown, 60000);
+      }
 
       document.querySelectorAll(".catalog-grid img").forEach((image) => {
         image.addEventListener("click", () => {
