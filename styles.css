@@ -1971,6 +1971,66 @@ footer {
   margin-top: 1.1rem;
 }
 
+.instant-app-panel {
+  display: grid;
+  gap: 0.75rem;
+  border: 1px solid rgba(15, 64, 54, 0.14);
+  border-radius: 1.15rem;
+  padding: 0.8rem;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.modal-primary-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+}
+
+.modal-primary-fields input {
+  min-height: 3.4rem;
+  border: 1px solid rgba(15, 64, 54, 0.16);
+  border-radius: 0.9rem;
+  padding: 0 1rem;
+  color: var(--ink);
+  background: #fffdf8;
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 820;
+}
+
+.modal-primary-fields input::placeholder {
+  color: rgba(20, 33, 29, 0.46);
+}
+
+.domain-pill {
+  display: flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  border-radius: 999px;
+  color: #fff;
+  background: var(--green);
+  font-size: clamp(0.9rem, 3vw, 1.05rem);
+  font-weight: 950;
+  overflow-wrap: anywhere;
+  text-align: center;
+}
+
+.theme-snap {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.theme-snap-title {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 950;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
 .modal-progress {
   display: flex;
   gap: 0.45rem;
@@ -2091,6 +2151,11 @@ footer {
   font-weight: 900;
 }
 
+.modal-submit {
+  width: 100%;
+  justify-content: center;
+}
+
 @media (max-width: 980px) {
   .hero,
   .truth-band,
@@ -2170,7 +2235,8 @@ footer {
   .vendor-grid,
   .locker-grid,
   .theme-card-grid,
-  .modal-theme-grid {
+  .modal-theme-grid,
+  .modal-primary-fields {
     grid-template-columns: 1fr;
   }
 

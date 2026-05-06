@@ -1090,41 +1090,20 @@
       <div class="signup-modal-card">
         <button type="button" class="signup-modal-close" id="signup-modal-close" aria-label="Close signup">×</button>
         <p class="eyebrow">Free starter</p>
-        <h2>Create your app.</h2>
-        <p>Three quick steps. Square connects next through Square's secure login.</p>
+        <h2>Claim your counter.</h2>
+        <p>Start the app, pick a look, then connect Square when you are ready.</p>
         <form class="modal-signup-form" id="modal-signup-form">
-          <div class="modal-progress" aria-label="Signup progress">
-            <span class="active">1</span>
-            <span>2</span>
-            <span>3</span>
-          </div>
-          <div class="modal-step active" data-modal-step="1">
-            <label>
-              <span>Your name</span>
-              <input type="text" name="contactName" autocomplete="name" placeholder="Samantha" />
-            </label>
-            <label>
-              <span>Email</span>
-              <input type="email" name="email" autocomplete="email" required placeholder="you@yourshop.com" />
-            </label>
-            <button class="button primary modal-next" type="button" data-next-step="2">Next</button>
-          </div>
-          <div class="modal-step" data-modal-step="2">
-            <label>
-              <span>App name</span>
-              <input type="text" name="workspaceSlug" required placeholder="prairie-bean" />
-            </label>
-            <p class="modal-url-preview"><strong>Preview:</strong> <span id="modal-domain-preview">prairie-bean.drinkflowkds.com</span></p>
-            <label>
-              <span>Shop name</span>
-              <input type="text" name="shopName" autocomplete="organization" placeholder="Prairie Bean Co." />
-            </label>
-            <div class="modal-actions">
-              <button class="button secondary modal-prev" type="button" data-prev-step="1">Back</button>
-              <button class="button primary modal-next" type="button" data-next-step="3">Choose theme</button>
+          <div class="instant-app-panel">
+            <div class="modal-primary-fields">
+              <input type="email" name="email" autocomplete="email" required aria-label="Email" placeholder="Email" />
+              <input type="text" name="shopName" autocomplete="organization" required aria-label="Shop name" placeholder="Shop or stand name" />
             </div>
+            <input type="hidden" name="contactName" />
+            <input type="hidden" name="workspaceSlug" />
+            <p class="domain-pill"><span id="modal-domain-preview">your-counter.drinkflowkds.com</span></p>
           </div>
-          <div class="modal-step" data-modal-step="3">
+          <div class="theme-snap">
+            <p class="theme-snap-title">Pick a starter look</p>
             <input type="hidden" name="starterTheme" value="Coffee Bar" />
             <div class="modal-theme-grid">
               <button type="button" class="modal-theme coffee-card active" data-theme="Coffee Bar">
@@ -1140,12 +1119,9 @@
                 <span>Event</span><strong>Artist alley</strong><small>Preorders and pickup</small>
               </button>
             </div>
-            <div class="modal-actions">
-              <button class="button secondary modal-prev" type="button" data-prev-step="2">Back</button>
-              <button class="button primary" type="submit">Create free app</button>
-            </div>
           </div>
           <input type="text" name="company" tabindex="-1" autocomplete="off" class="hidden-field" />
+          <button class="button primary modal-submit" type="submit">Create free app</button>
           <p class="form-status" id="modal-signup-status" role="status" aria-live="polite"></p>
           <div class="starter-card" id="modal-square-card" hidden>
             <p class="eyebrow">Next step</p>
@@ -1182,18 +1158,21 @@
           .slice(0, 42);
       }
 
-      function showModalStep(step) {
-        document.querySelectorAll("[data-modal-step]").forEach((panel) => {
-          panel.classList.toggle("active", panel.dataset.modalStep === String(step));
-        });
-        document.querySelectorAll(".modal-progress span").forEach((dot, index) => {
-          dot.classList.toggle("active", index + 1 <= Number(step));
-        });
+      function getModalSlug() {
+        const shopSlug = cleanWorkspaceSlug(modalSignupForm?.elements.shopName?.value);
+        const emailHandle = cleanWorkspaceSlug(String(modalSignupForm?.elements.email?.value || "").split("@")[0]);
+        return shopSlug || emailHandle || "your-counter";
+      }
+
+      function refreshModalDomain() {
+        const slug = getModalSlug();
+        if (modalSignupForm?.elements.workspaceSlug) modalSignupForm.elements.workspaceSlug.value = slug;
+        modalDomainPreview.textContent = `${slug}.drinkflowkds.com`;
       }
 
       function openSignupModal() {
         signupModal?.removeAttribute("hidden");
-        showModalStep(1);
+        refreshModalDomain();
         setTimeout(() => modalSignupForm?.elements.email?.focus(), 50);
       }
 
@@ -1213,24 +1192,8 @@
         if (event.target === signupModal) closeSignupModal();
       });
 
-      modalSignupForm?.elements.workspaceSlug?.addEventListener("input", (event) => {
-        const slug = cleanWorkspaceSlug(event.target.value) || "your-name";
-        modalDomainPreview.textContent = `${slug}.drinkflowkds.com`;
-      });
-
-      document.querySelectorAll(".modal-next").forEach((button) => {
-        button.addEventListener("click", () => {
-          const nextStep = button.dataset.nextStep;
-          const currentStep = button.closest("[data-modal-step]");
-          const requiredInputs = Array.from(currentStep.querySelectorAll("[required]"));
-          const valid = requiredInputs.every((input) => input.reportValidity());
-          if (valid) showModalStep(nextStep);
-        });
-      });
-
-      document.querySelectorAll(".modal-prev").forEach((button) => {
-        button.addEventListener("click", () => showModalStep(button.dataset.prevStep));
-      });
+      modalSignupForm?.elements.email?.addEventListener("input", refreshModalDomain);
+      modalSignupForm?.elements.shopName?.addEventListener("input", refreshModalDomain);
 
       document.querySelectorAll(".modal-theme").forEach((button) => {
         button.addEventListener("click", () => {
@@ -1302,6 +1265,7 @@
 
       modalSignupForm?.addEventListener("submit", async (event) => {
         event.preventDefault();
+        refreshModalDomain();
         try {
           await createDrinkFlowAppFromForm(
             modalSignupForm,
