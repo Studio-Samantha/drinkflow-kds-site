@@ -82,6 +82,12 @@ a {
   display: block;
 }
 
+.brand-logo {
+  width: 9.4rem;
+  max-width: 36vw;
+  border-radius: 0.4rem;
+}
+
 .mark {
   display: grid;
   gap: 0.16rem;
@@ -372,6 +378,31 @@ h3 {
   font-weight: 850;
 }
 
+.screen-kds .mini-columns p,
+.screen-pickup .pickup-list div,
+.owner-digest-card {
+  animation: softFloat 5.5s ease-in-out infinite;
+}
+
+.screen-kds .mini-columns div:nth-child(2) p {
+  animation-delay: 0.45s;
+}
+
+.screen-kds .mini-columns div:nth-child(3) p,
+.screen-pickup .ready-row {
+  animation-delay: 0.9s;
+}
+
+@keyframes softFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
 .mini-columns span,
 .pickup-list span,
 .admin-row span {
@@ -464,9 +495,9 @@ h3 {
 }
 
 .owner-timeline {
-  display: grid;
-  grid-template-columns: auto 1fr auto 1fr auto;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 0.5rem;
   margin-top: 0.7rem;
   border-radius: 999px;
@@ -475,15 +506,20 @@ h3 {
 }
 
 .owner-timeline span {
-  color: var(--green);
+  color: var(--muted);
   font-size: 0.72rem;
   font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 .owner-timeline strong {
-  height: 0.18rem;
+  height: auto;
   border-radius: 999px;
-  background: linear-gradient(90deg, rgba(15, 64, 54, 0.14), var(--green));
+  padding: 0.26rem 0.55rem;
+  color: #fff;
+  background: var(--green);
+  font-size: 0.78rem;
 }
 
 .pickup-list button {
@@ -2254,32 +2290,6 @@ footer {
   text-transform: uppercase;
 }
 
-.business-type-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-}
-
-.business-type {
-  border: 1px solid rgba(15, 64, 54, 0.1);
-  border-radius: 999px;
-  padding: 0.55rem 0.8rem;
-  color: var(--green);
-  background: rgba(255, 255, 255, 0.76);
-  cursor: pointer;
-  font: inherit;
-  font-size: 0.85rem;
-  font-weight: 900;
-  transition: transform 160ms ease, background 160ms ease, color 160ms ease;
-}
-
-.business-type:hover,
-.business-type.active {
-  color: #fff;
-  background: linear-gradient(135deg, var(--green), #1f6a58);
-  transform: translateY(-1px);
-}
-
 .modal-progress {
   display: flex;
   gap: 0.45rem;
@@ -2337,7 +2347,9 @@ footer {
 }
 
 .modal-theme {
+  position: relative;
   min-height: 9.5rem;
+  overflow: hidden;
   border: 2px solid transparent;
   border-radius: 1rem;
   padding: 0.95rem;
@@ -2348,12 +2360,127 @@ footer {
   box-shadow: 0 18px 40px rgba(15, 64, 54, 0.12);
 }
 
+.modal-theme::after,
+.signup-theme::after {
+  display: block;
+  margin-top: 0.85rem;
+  min-height: 2.2rem;
+  border-radius: 0.65rem;
+  padding: 0.45rem 0.5rem;
+  content: "New   Making   Ready";
+  font-size: 0.62rem;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.modal-theme.coffee-card,
+.signup-theme.coffee-card {
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px) 0 0 / 1rem 1rem,
+    radial-gradient(circle at 86% 20%, rgba(200, 102, 74, 0.35), transparent 5.8rem),
+    linear-gradient(135deg, #1f2e2e, #6a3a2b);
+}
+
+.modal-theme.coffee-card::after,
+.signup-theme.coffee-card::after {
+  color: #1f2e2e;
+  background: linear-gradient(90deg, #f6f3ef 0 31%, #eadbc7 31% 64%, #f6f3ef 64%);
+}
+
 .modal-theme.lemonade-card {
   color: #263313;
   background:
     radial-gradient(circle at 20% 24%, rgba(255, 255, 255, 0.8) 0 0.38rem, transparent 0.4rem),
     radial-gradient(circle at 72% 66%, rgba(255, 255, 255, 0.74) 0 0.34rem, transparent 0.36rem),
     linear-gradient(135deg, #fff3a6, #f2c84b);
+}
+
+.modal-theme.lemonade-card::after,
+.signup-theme.lemonade-card::after {
+  color: #263313;
+  background:
+    radial-gradient(circle at 12% 50%, rgba(255, 255, 255, 0.75) 0 0.25rem, transparent 0.28rem),
+    linear-gradient(90deg, #fffbea 0 31%, #f2c84b 31% 64%, #fffbea 64%);
+}
+
+.modal-theme.smoothie-card,
+.signup-theme.smoothie-card {
+  background:
+    radial-gradient(circle at 18% 22%, rgba(255, 236, 122, 0.95) 0 0.45rem, transparent 0.5rem),
+    radial-gradient(circle at 82% 18%, rgba(255, 255, 255, 0.55) 0 0.34rem, transparent 0.38rem),
+    radial-gradient(circle at 70% 78%, rgba(109, 213, 126, 0.68) 0 0.58rem, transparent 0.62rem),
+    linear-gradient(135deg, #2f6f64, #e85c89);
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+.modal-theme.smoothie-card strong,
+.signup-theme.smoothie-card strong {
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 950;
+}
+
+.modal-theme.smoothie-card::after,
+.signup-theme.smoothie-card::after {
+  border-radius: 999px;
+  color: #173b3a;
+  background: linear-gradient(90deg, #fff7fb 0 31%, #e8ffd7 31% 64%, #fff7fb 64%);
+}
+
+.modal-theme.wine-card,
+.signup-theme.wine-card {
+  background:
+    radial-gradient(circle at 82% 12%, rgba(221, 181, 109, 0.38), transparent 6.5rem),
+    linear-gradient(135deg, #351126, #6d234a 54%, #b9894f);
+}
+
+.modal-theme.wine-card strong,
+.signup-theme.wine-card strong {
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-style: italic;
+}
+
+.modal-theme.wine-card::after,
+.signup-theme.wine-card::after {
+  border-radius: 0.25rem;
+  color: #4b1835;
+  background: linear-gradient(90deg, #fff5ea 0 31%, #e8d0a7 31% 64%, #fff5ea 64%);
+}
+
+.modal-theme.cocoa-card,
+.signup-theme.cocoa-card {
+  background:
+    radial-gradient(circle at 18% 24%, rgba(255, 255, 255, 0.5) 0 0.16rem, transparent 0.2rem),
+    radial-gradient(circle at 78% 26%, rgba(255, 255, 255, 0.45) 0 0.14rem, transparent 0.18rem),
+    linear-gradient(135deg, #3d231b, #7a4432 58%, #d88b4a);
+}
+
+.modal-theme.cocoa-card::after,
+.signup-theme.cocoa-card::after {
+  border-radius: 1rem 1rem 0.45rem 0.45rem;
+  color: #4a2d22;
+  background: linear-gradient(90deg, #fff1dc 0 31%, #f3c28a 31% 64%, #fff1dc 64%);
+}
+
+.modal-theme.vendor-event-card,
+.signup-theme.vendor-event-card {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.12) 25%, transparent 25% 50%, rgba(255, 255, 255, 0.12) 50% 75%, transparent 75%) 0 0 / 1.5rem 1.5rem,
+    linear-gradient(135deg, #173b4f, #7a4ea3 52%, #e05d7a);
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+.modal-theme.vendor-event-card strong,
+.signup-theme.vendor-event-card strong {
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  text-transform: uppercase;
+}
+
+.modal-theme.vendor-event-card::after,
+.signup-theme.vendor-event-card::after {
+  border-style: dashed;
+  color: #173b4f;
+  background: linear-gradient(90deg, #f7f1ff 0 31%, #ffe8ef 31% 64%, #f7f1ff 64%);
 }
 
 .modal-theme.active {

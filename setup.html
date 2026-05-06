@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Free DrinkFlow Starter Setup</title>
+    <title>Free DrinkFlow Workspace</title>
     <meta
       name="description"
-      content="Request a free DrinkFlow starter setup for a coffee shop, drink counter, cart, truck, or event vendor."
+      content="Request a free DrinkFlow workspace for a coffee shop, drink counter, cart, truck, or event vendor."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,8 +16,7 @@
   <body>
     <nav class="nav" aria-label="Main navigation">
       <a class="brand" href="./index.html" aria-label="DrinkFlow KDS home">
-        <img class="brand-mark" src="./assets/drinkflow-mark.svg" alt="" aria-hidden="true" />
-        <span class="brand-stack"><span>DrinkFlow</span><small>KDS</small></span>
+        <img class="brand-mark brand-logo" src="./assets/drinkflow-logo.png" alt="" aria-hidden="true" />
       </a>
       <div class="nav-links">
         <a href="./index.html">Home</a>
@@ -32,23 +31,23 @@
           <p class="eyebrow">Create account</p>
           <h1>Start your free DrinkFlow app.</h1>
           <p>
-            Pick a name for your app, choose a starter look, and connect Square
-            on the next step.
+            Pick a shop name, choose a workspace look, and verify your email
+            before connecting Square.
           </p>
         </div>
 
         <form class="onboarding-form signup-flow" id="onboarding-form">
           <div class="form-intro">
-            <p class="eyebrow">Free starter</p>
+            <p class="eyebrow">Free workspace</p>
             <h3>Create your app.</h3>
             <p>
-              Square opens in its own secure login after this. DrinkFlow never
-              asks for your Square password.
+              Verify your email first. Square opens later through Square&apos;s
+              secure login, and DrinkFlow never asks for your Square password.
             </p>
             <div class="starter-perks">
-              <span>Free starter</span>
+              <span>Free workspace</span>
               <span>Choose a theme</span>
-              <span>Connect Square next</span>
+              <span>Verify email first</span>
             </div>
           </div>
 
@@ -85,15 +84,7 @@
           </section>
 
           <section class="signup-step" data-step="3" hidden>
-            <p class="theme-snap-title">What are you running?</p>
             <input type="hidden" name="businessType" value="Beverage counter" />
-            <div class="business-type-grid">
-              <button type="button" class="business-type active" data-business-type="Beverage counter">Beverage</button>
-              <button type="button" class="business-type" data-business-type="Food counter">Food</button>
-              <button type="button" class="business-type" data-business-type="Retail pickup">Retail</button>
-              <button type="button" class="business-type" data-business-type="Service queue">Services</button>
-              <button type="button" class="business-type" data-business-type="Event booth">Event</button>
-            </div>
             <input type="hidden" name="starterTheme" value="Coffee Bar" />
             <div class="theme-card-grid">
               <button type="button" class="signup-theme active coffee-card" data-theme-value="Coffee Bar">
@@ -147,8 +138,7 @@
 
     <footer>
       <a class="brand" href="./index.html">
-        <img class="brand-mark" src="./assets/drinkflow-mark.svg" alt="" aria-hidden="true" />
-        <span class="brand-stack"><span>DrinkFlow</span><small>KDS</small></span>
+        <img class="brand-mark brand-logo" src="./assets/drinkflow-logo.png" alt="" aria-hidden="true" />
       </a>
       <a href="https://goldieskds.com/developer">Studio Developer Login</a>
     </footer>
@@ -211,14 +201,6 @@
         });
       });
 
-      document.querySelectorAll(".business-type").forEach((button) => {
-        button.addEventListener("click", () => {
-          document.querySelectorAll(".business-type").forEach((type) => type.classList.remove("active"));
-          button.classList.add("active");
-          onboardingForm.elements.businessType.value = button.dataset.businessType || "Beverage counter";
-        });
-      });
-
       onboardingForm?.elements.shopName?.addEventListener("input", refreshSetupDomain);
 
       const setupParams = new URLSearchParams(window.location.search);
@@ -253,7 +235,7 @@
           orderSources: ["In person"],
           averageDailyOrders: "",
           rushWindow: "",
-          pricingComfort: "Free starter",
+          pricingComfort: "Free workspace",
           timeline: "ASAP",
           currentPain: "",
           socialLinks: [],
@@ -294,7 +276,7 @@
           const slug = workspaceResult.workspace?.slug || payload.workspaceSlug;
           const appUrl = workspaceResult.workspace?.app_url || `https://${slug}.drinkflowkds.com`;
           onboardingStatus.textContent = "Your app is reserved. Check your email to verify before setup.";
-          document.getElementById("workspace-url").textContent = `${appUrl} is reserved for your starter app.`;
+          document.getElementById("workspace-url").textContent = `${appUrl} is reserved for your workspace.`;
           const squareLink = document.getElementById("square-connect-link");
           squareLink.href = `./setup.html?workspace=${encodeURIComponent(slug)}`;
           squareLink.textContent = "Open setup after verifying";
