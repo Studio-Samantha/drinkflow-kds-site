@@ -145,10 +145,6 @@
             <span>Email</span>
             <input type="email" name="email" autocomplete="email" required placeholder="you@yourshop.com" />
           </label>
-          <label>
-            <span>Shop or event name</span>
-            <input type="text" name="shopName" autocomplete="organization" placeholder="Your shop or event" />
-          </label>
           <button class="button primary" type="submit">Join the list</button>
           <p class="form-status" id="souvenir-lead-status" role="status" aria-live="polite"></p>
         </form>
@@ -227,7 +223,6 @@
         const data = new FormData(souvenirLeadForm);
         const payload = {
           email: data.get("email"),
-          shopName: data.get("shopName"),
           message: "Souvenir preorder updates",
           source: "drinkflowkds.com/souvenirs",
           pagePath: window.location.pathname,
