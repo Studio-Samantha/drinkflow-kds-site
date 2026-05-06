@@ -14,19 +14,20 @@
       content="Drinks are not slow. The workflow is. See your rush as it happens with DrinkFlow KDS."
     />
     <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <nav class="nav" aria-label="Main navigation">
       <a class="brand" href="#top" aria-label="DrinkFlow KDS home">
-        <span class="mark" aria-hidden="true">
-          <span></span><span></span><span></span>
-        </span>
+        <img class="brand-mark" src="./assets/drinkflow-mark.svg" alt="" aria-hidden="true" />
         <span class="brand-stack"><span>DrinkFlow</span><small>KDS</small></span>
       </a>
       <div class="nav-links">
         <a href="#product">Product</a>
-        <a href="#lemonade">Hardware</a>
+        <a href="#vendors">Themes</a>
         <a href="#owners">Owners</a>
         <a href="#pricing">Pricing</a>
         <a href="./setup.html" class="signup-trigger">Free Setup</a>
@@ -87,22 +88,22 @@
           </div>
           <div class="screen-card screen-report">
             <div class="screen-top">
-              <strong>Owner Graphs</strong>
+              <strong>Owner Read</strong>
               <span>Today</span>
             </div>
-            <div class="report-metrics">
-              <div><span>Drink revenue</span><strong>$487</strong></div>
-              <div><span>Drink units</span><strong>44</strong></div>
-              <div><span>2+ drinks</span><strong>34%</strong></div>
+            <div class="owner-digest-card">
+              <p>Cold drinks carried the morning rush. Keep lids, cups, and cold brew stocked before 9 AM tomorrow.</p>
+              <div class="owner-digest-tags">
+                <span>Peak 8-10 AM</span>
+                <span>44 drinks</span>
+                <span>34% multi-drink</span>
+              </div>
             </div>
-            <div class="bar-chart" aria-hidden="true">
-              <i style="height: 38%"></i>
-              <i style="height: 74%"></i>
-              <i style="height: 92%"></i>
-              <i style="height: 56%"></i>
-              <i style="height: 44%"></i>
+            <div class="owner-metric-stack">
+              <div><span>Avg drink time</span><strong>3:42</strong></div>
+              <div><span>Ready handoff</span><strong>2 min</strong></div>
+              <div><span>Retail filtered</span><strong>Yes</strong></div>
             </div>
-            <p class="screen-note">Written read: cold drinks led the rush. Prep cups before the next warm morning.</p>
           </div>
           <div class="screen-card screen-pickup">
             <div class="screen-top">
@@ -121,7 +122,9 @@
               <span>After close</span>
             </div>
             <p class="owner-note">Morning rush peaked around 9 AM. Cold drinks led volume. Prep more cold cups before the next warm weekday rush.</p>
-            <div class="mini-line-chart" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="owner-timeline" aria-label="Rush summary">
+              <span>7a</span><strong></strong><span>9a peak</span><strong></strong><span>11a</span>
+            </div>
           </div>
         </div>
       </section>
@@ -396,14 +399,14 @@
           <p class="eyebrow">Built for every kind of drink counter</p>
           <h2>DrinkFlow should feel like the business using it.</h2>
           <p>
-            The free starter can begin with simple themes, then grow into deeper
-            setups once the shop knows what screens actually help.
+            Pick a screen style that matches the counter. Themes change the
+            board personality without changing the simple service flow.
           </p>
         </div>
         <div class="vendor-grid">
           <article class="vendor-card coffee-card">
             <span>Coffee bar</span>
-            <h3>Morning rush, fewer shouted names.</h3>
+            <h3>Espresso rush with a clean pickup rhythm.</h3>
             <div class="vendor-mini-screen">
               <b>Making</b>
               <p>#104 Oat Latte</p>
@@ -412,7 +415,7 @@
           </article>
           <article class="vendor-card smoothie-card">
             <span>Smoothie shop</span>
-            <h3>Colorful tickets for fast blends.</h3>
+            <h3>Fruit-bright tickets for fast blends.</h3>
             <div class="vendor-mini-screen">
               <b>Ready</b>
               <p>#212 Mango</p>
@@ -421,12 +424,16 @@
           </article>
           <article class="vendor-card lemonade-card">
             <span>Lemonade stand</span>
-            <h3>Yellow tablets for pop-up days.</h3>
-            <img src="./assets/drinkflow-lemonade-stand.png" alt="Lemonade stand using DrinkFlow on a yellow tablet" />
+            <h3>Bright citrus board for pop-up days.</h3>
+            <div class="vendor-mini-screen">
+              <b>Ready</b>
+              <p>#301 Classic Lemonade</p>
+              <p>#302 Strawberry Lemonade</p>
+            </div>
           </article>
           <article class="vendor-card wine-card">
             <span>Wine cart</span>
-            <h3>Elegant queue for tastings and pours.</h3>
+            <h3>A polished queue for tastings and pours.</h3>
             <div class="vendor-mini-screen">
               <b>New</b>
               <p>#018 Rose Flight</p>
@@ -435,7 +442,7 @@
           </article>
           <article class="vendor-card cocoa-card">
             <span>Hot chocolate bar</span>
-            <h3>Seasonal service without paper chaos.</h3>
+            <h3>Cozy seasonal service without paper chaos.</h3>
             <div class="vendor-mini-screen">
               <b>Ready</b>
               <p>#077 Peppermint Cocoa</p>
@@ -1006,7 +1013,7 @@
           <article class="survey-card">
             <h3>Shop fit survey</h3>
             <p>Best if you run a coffee shop, smoothie bar, food truck, vendor setup, bakery counter, or drink-heavy cafe.</p>
-            <a class="button primary" href="https://goldieskds.com/drinkflow-survey">Take the 2-minute survey</a>
+            <a class="button primary" href="#survey">Take the 2-minute survey</a>
           </article>
           <form class="signup-form" id="lead-form">
             <h3>Get early updates</h3>
@@ -1076,14 +1083,12 @@
 
     <footer>
       <a class="brand" href="#top">
-        <span class="mark" aria-hidden="true">
-          <span></span><span></span><span></span>
-        </span>
+        <img class="brand-mark" src="./assets/drinkflow-mark.svg" alt="" aria-hidden="true" />
         <span class="brand-stack"><span>DrinkFlow</span><small>KDS</small></span>
       </a>
       <span>See your rush as it happens.</span>
       <a href="./setup.html" class="signup-trigger">Free setup</a>
-      <a href="https://goldieskds.com/developer">Plug & Play Beta Login</a>
+      <a href="https://goldieskds.com/developer">Studio Developer Login</a>
     </footer>
 
     <div class="signup-modal" id="signup-modal" hidden>
@@ -1112,6 +1117,15 @@
             </div>
           </div>
           <div class="theme-snap">
+            <p class="theme-snap-title">What are you running?</p>
+            <input type="hidden" name="businessType" value="Beverage counter" />
+            <div class="business-type-grid">
+              <button type="button" class="business-type active" data-business-type="Beverage counter">Beverage</button>
+              <button type="button" class="business-type" data-business-type="Food counter">Food</button>
+              <button type="button" class="business-type" data-business-type="Retail pickup">Retail</button>
+              <button type="button" class="business-type" data-business-type="Service queue">Services</button>
+              <button type="button" class="business-type" data-business-type="Event booth">Event</button>
+            </div>
             <p class="theme-snap-title">Pick a starter look</p>
             <input type="hidden" name="starterTheme" value="Coffee Bar" />
             <div class="modal-theme-grid">
@@ -1133,10 +1147,10 @@
           <button class="button primary modal-submit" type="submit">Create free app</button>
           <p class="form-status" id="modal-signup-status" role="status" aria-live="polite"></p>
           <div class="starter-card" id="modal-square-card" hidden>
-            <p class="eyebrow">Next step</p>
-            <h3>Your app is ready to connect.</h3>
+            <p class="eyebrow">Check your email</p>
+            <h3>Verify before setup.</h3>
             <p id="modal-workspace-url"></p>
-            <a class="button primary" id="modal-square-link" href="#">Connect Square</a>
+            <a class="button primary" id="modal-square-link" href="./setup.html">Open setup after verifying</a>
           </div>
         </form>
         <a class="signup-fallback" href="./setup.html">Use full-page signup instead</a>
@@ -1211,6 +1225,14 @@
         });
       });
 
+      document.querySelectorAll(".business-type").forEach((button) => {
+        button.addEventListener("click", () => {
+          document.querySelectorAll(".business-type").forEach((type) => type.classList.remove("active"));
+          button.classList.add("active");
+          modalSignupForm.elements.businessType.value = button.dataset.businessType || "Beverage counter";
+        });
+      });
+
       async function createDrinkFlowAppFromForm(form, statusEl, squareCardId, workspaceTextId, squareLinkId) {
         statusEl.textContent = "Creating your app...";
         const data = new FormData(form);
@@ -1224,7 +1246,7 @@
           shopName: data.get("shopName"),
           workspaceSlug,
           location: "",
-          businessType: "Drink business",
+          businessType: data.get("businessType") || "Beverage counter",
           posSystem: "Square",
           starterTheme: data.get("starterTheme") || "Coffee Bar",
           screenNeeds: ["Staff KDS", "Orders Up"],
@@ -1273,9 +1295,9 @@
 
         const slug = workspaceResult.workspace?.slug || payload.workspaceSlug;
         const appUrl = workspaceResult.workspace?.app_url || `https://${slug}.drinkflowkds.com`;
-        statusEl.textContent = "App created. Check your email for verification, then connect Square.";
+        statusEl.textContent = "App created. Check your email to verify before setup.";
         document.getElementById(workspaceTextId).textContent = `${appUrl} is reserved for your starter app.`;
-        document.getElementById(squareLinkId).href = `https://goldieskds.com/api/drinkflow/square/oauth/start?slug=${encodeURIComponent(slug)}`;
+        document.getElementById(squareLinkId).href = `./setup.html?workspace=${encodeURIComponent(slug)}`;
         document.getElementById(squareCardId).hidden = false;
       }
 

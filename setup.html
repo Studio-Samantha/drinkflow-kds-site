@@ -8,20 +8,21 @@
       name="description"
       content="Request a free DrinkFlow starter setup for a coffee shop, drink counter, cart, truck, or event vendor."
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <nav class="nav" aria-label="Main navigation">
       <a class="brand" href="./index.html" aria-label="DrinkFlow KDS home">
-        <span class="mark" aria-hidden="true">
-          <span></span><span></span><span></span>
-        </span>
+        <img class="brand-mark" src="./assets/drinkflow-mark.svg" alt="" aria-hidden="true" />
         <span class="brand-stack"><span>DrinkFlow</span><small>KDS</small></span>
       </a>
       <div class="nav-links">
         <a href="./index.html">Home</a>
         <a href="https://goldieskds.com/case-study/goldies">Live proof</a>
-        <a href="https://goldieskds.com/developer" class="nav-button">Beta Login</a>
+        <a href="https://goldieskds.com/developer" class="nav-button">Studio Developer Login</a>
       </div>
     </nav>
 
@@ -53,7 +54,7 @@
 
           <div class="signup-steps" aria-label="Signup progress">
             <span class="active">1 Account</span>
-            <span>2 App name</span>
+            <span>2 Shop link</span>
             <span>3 Theme</span>
             <span>4 Square</span>
           </div>
@@ -72,14 +73,11 @@
 
           <section class="signup-step" data-step="2" hidden>
             <label>
-              <span>App name</span>
-              <input type="text" name="workspaceSlug" required placeholder="prairie-bean" />
-            </label>
-            <p class="signup-hint">This reserves your future app URL: app-name.drinkflowkds.com</p>
-            <label>
               <span>Shop name</span>
-              <input type="text" name="shopName" autocomplete="organization" placeholder="Prairie Bean Co." />
+              <input type="text" name="shopName" autocomplete="organization" required placeholder="Prairie Bean Co." />
             </label>
+            <input type="hidden" name="workspaceSlug" />
+            <p class="signup-hint">Your app link: <strong id="setup-domain-preview">prairie-bean-co.drinkflowkds.com</strong></p>
             <div class="step-actions">
               <button class="button secondary" type="button" data-prev-step="1">Back</button>
               <button class="button primary" type="button" data-next-step="3">Next</button>
@@ -87,6 +85,15 @@
           </section>
 
           <section class="signup-step" data-step="3" hidden>
+            <p class="theme-snap-title">What are you running?</p>
+            <input type="hidden" name="businessType" value="Beverage counter" />
+            <div class="business-type-grid">
+              <button type="button" class="business-type active" data-business-type="Beverage counter">Beverage</button>
+              <button type="button" class="business-type" data-business-type="Food counter">Food</button>
+              <button type="button" class="business-type" data-business-type="Retail pickup">Retail</button>
+              <button type="button" class="business-type" data-business-type="Service queue">Services</button>
+              <button type="button" class="business-type" data-business-type="Event booth">Event</button>
+            </div>
             <input type="hidden" name="starterTheme" value="Coffee Bar" />
             <div class="theme-card-grid">
               <button type="button" class="signup-theme active coffee-card" data-theme-value="Coffee Bar">
@@ -140,12 +147,10 @@
 
     <footer>
       <a class="brand" href="./index.html">
-        <span class="mark" aria-hidden="true">
-          <span></span><span></span><span></span>
-        </span>
+        <img class="brand-mark" src="./assets/drinkflow-mark.svg" alt="" aria-hidden="true" />
         <span class="brand-stack"><span>DrinkFlow</span><small>KDS</small></span>
       </a>
-      <a href="https://goldieskds.com/developer">Plug & Play Beta Login</a>
+      <a href="https://goldieskds.com/developer">Studio Developer Login</a>
     </footer>
 
     <script>
@@ -153,8 +158,25 @@
       const onboardingStatus = document.getElementById("onboarding-status");
       const progressSteps = Array.from(document.querySelectorAll(".signup-steps span"));
       const signupSteps = Array.from(document.querySelectorAll(".signup-step[data-step]"));
+      const setupDomainPreview = document.getElementById("setup-domain-preview");
+
+      function cleanWorkspaceSlug(value) {
+        return String(value || "")
+          .toLowerCase()
+          .replace(/[^a-z0-9-]+/g, "-")
+          .replace(/^-+|-+$/g, "")
+          .replace(/-{2,}/g, "-")
+          .slice(0, 42);
+      }
+
+      function refreshSetupDomain() {
+        const slug = cleanWorkspaceSlug(onboardingForm?.elements.shopName?.value) || "your-counter";
+        onboardingForm.elements.workspaceSlug.value = slug;
+        if (setupDomainPreview) setupDomainPreview.textContent = `${slug}.drinkflowkds.com`;
+      }
 
       function showStep(step) {
+        refreshSetupDomain();
         signupSteps.forEach((panel) => {
           const isActive = panel.dataset.step === String(step);
           panel.hidden = !isActive;
@@ -189,8 +211,32 @@
         });
       });
 
+      document.querySelectorAll(".business-type").forEach((button) => {
+        button.addEventListener("click", () => {
+          document.querySelectorAll(".business-type").forEach((type) => type.classList.remove("active"));
+          button.classList.add("active");
+          onboardingForm.elements.businessType.value = button.dataset.businessType || "Beverage counter";
+        });
+      });
+
+      onboardingForm?.elements.shopName?.addEventListener("input", refreshSetupDomain);
+
+      const setupParams = new URLSearchParams(window.location.search);
+      const verifiedWorkspace = cleanWorkspaceSlug(setupParams.get("workspace") || "");
+      if (setupParams.get("email") === "verified" && verifiedWorkspace) {
+        onboardingStatus.textContent = "Email verified. You can connect Square now.";
+        document.getElementById("workspace-url").textContent = `https://${verifiedWorkspace}.drinkflowkds.com is verified and ready for Square.`;
+        const squareLink = document.getElementById("square-connect-link");
+        squareLink.href = `https://goldieskds.com/api/drinkflow/square/oauth/start?slug=${encodeURIComponent(verifiedWorkspace)}`;
+        squareLink.textContent = "Connect Square";
+        showStep(4);
+      } else {
+        refreshSetupDomain();
+      }
+
       onboardingForm?.addEventListener("submit", async (event) => {
         event.preventDefault();
+        refreshSetupDomain();
         onboardingStatus.textContent = "Reserving your app...";
 
         const data = new FormData(onboardingForm);
@@ -200,7 +246,7 @@
           shopName: data.get("shopName"),
           workspaceSlug: data.get("workspaceSlug"),
           location: "",
-          businessType: "Drink business",
+          businessType: data.get("businessType") || "Beverage counter",
           posSystem: "Square",
           starterTheme: data.get("starterTheme"),
           screenNeeds: ["Staff KDS", "Orders Up"],
@@ -247,10 +293,11 @@
 
           const slug = workspaceResult.workspace?.slug || payload.workspaceSlug;
           const appUrl = workspaceResult.workspace?.app_url || `https://${slug}.drinkflowkds.com`;
-          onboardingStatus.textContent = "Your app is reserved. Check your email for verification, then connect Square when you are ready.";
+          onboardingStatus.textContent = "Your app is reserved. Check your email to verify before setup.";
           document.getElementById("workspace-url").textContent = `${appUrl} is reserved for your starter app.`;
           const squareLink = document.getElementById("square-connect-link");
-          squareLink.href = `https://goldieskds.com/api/drinkflow/square/oauth/start?slug=${encodeURIComponent(slug)}`;
+          squareLink.href = `./setup.html?workspace=${encodeURIComponent(slug)}`;
+          squareLink.textContent = "Open setup after verifying";
           showStep(4);
         } catch (error) {
           const message = error.message || "";
