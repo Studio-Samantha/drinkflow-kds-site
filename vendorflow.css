@@ -181,6 +181,71 @@
   justify-self: end;
 }
 
+.vf-cta {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.85fr);
+  gap: clamp(1rem, 3vw, 2rem);
+  align-items: start;
+}
+
+.vf-signup {
+  display: grid;
+  gap: 0.85rem;
+  padding: 1.15rem;
+  border: 1px solid rgba(9, 35, 63, 0.12);
+  border-radius: 20px;
+  background:
+    linear-gradient(180deg, rgba(255, 250, 240, 0.98), rgba(255, 255, 255, 0.96));
+  box-shadow: 0 18px 40px rgba(9, 35, 63, 0.08);
+}
+
+.vf-signup label {
+  display: grid;
+  gap: 0.45rem;
+  font-weight: 700;
+}
+
+.vf-signup span {
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(9, 35, 63, 0.72);
+}
+
+.vf-signup input,
+.vf-signup textarea {
+  width: 100%;
+  min-height: 3.25rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(9, 35, 63, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--ink);
+  font: inherit;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease, background 160ms ease;
+}
+
+.vf-signup textarea {
+  resize: vertical;
+}
+
+.vf-signup input::placeholder,
+.vf-signup textarea::placeholder {
+  color: rgba(9, 35, 63, 0.44);
+}
+
+.vf-signup input:focus,
+.vf-signup textarea:focus {
+  outline: none;
+  border-color: rgba(47, 91, 78, 0.42);
+  background: white;
+  box-shadow:
+    0 0 0 4px rgba(184, 36, 31, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  transform: translateY(-1px);
+}
+
 .vf-live img.vf-shop-photo {
   border: 0;
   background: transparent;
@@ -196,7 +261,8 @@
 
   .vf-steps,
   .vf-use-cases,
-  .vf-pain-grid {
+  .vf-pain-grid,
+  .vf-cta {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -210,7 +276,8 @@
   .demo-columns,
   .vf-steps,
   .vf-use-cases,
-  .vf-pain-grid {
+  .vf-pain-grid,
+  .vf-cta {
     grid-template-columns: 1fr;
   }
 
