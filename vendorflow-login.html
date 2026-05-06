@@ -327,6 +327,53 @@
         color: var(--muted);
         line-height: 1.5;
       }
+      .lead-panel {
+        display: grid;
+        gap: 0.85rem;
+        margin-top: 1rem;
+        padding: 1rem;
+        border: 2px solid rgba(9, 35, 63, 0.18);
+        border-radius: 14px;
+        background: #fff;
+        box-shadow: 0 10px 28px rgba(9, 35, 63, 0.09);
+      }
+      .lead-panel header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+      .lead-panel h3 {
+        margin: 0;
+      }
+      .lead-count {
+        padding: 0.35rem 0.7rem;
+        border: 2px solid rgba(9, 35, 63, 0.14);
+        border-radius: 999px;
+        background: var(--cream);
+        font-size: 0.84rem;
+        font-weight: 900;
+      }
+      .lead-list {
+        display: grid;
+        gap: 0.65rem;
+      }
+      .lead-item {
+        padding: 0.75rem;
+        border: 1px solid rgba(9, 35, 63, 0.12);
+        border-radius: 14px;
+        background: #fffaf0;
+      }
+      .lead-item strong {
+        display: block;
+        color: var(--red);
+      }
+      .lead-item small {
+        display: block;
+        margin-top: 0.2rem;
+        color: rgba(9, 35, 63, 0.7);
+        line-height: 1.35;
+      }
       .footer {
         margin-top: 2rem;
         padding: 1rem 0 0;
@@ -464,6 +511,19 @@
           </article>
         </section>
 
+        <section class="lead-panel">
+          <header>
+            <h3>Souvenir shop leads</h3>
+            <span class="lead-count" id="lead-count">0 leads</span>
+          </header>
+          <div class="lead-list" id="lead-list">
+            <div class="lead-item">
+              <strong>No leads yet.</strong>
+              <small>When someone joins the souvenir shop updates form, their lead will show up here.</small>
+            </div>
+          </div>
+        </section>
+
         <section class="dashboard-card">
           <div class="stats">
             <div class="stat"><strong>New</strong><span>incoming preorders</span></div>
@@ -509,9 +569,13 @@
     <script>
       const LOGIN_KEY = "vendorflow-souvenir-auth";
       const PASSWORD = "0806Z@hra0806";
+      const LEADS_URL = "https://goldieskds.com/api/drinkflow-leads";
       const form = document.getElementById("vendorflow-login-form");
       const status = document.getElementById("login-status");
       const logoutButton = document.getElementById("logout-button");
+      const leadCount = document.getElementById("lead-count");
+      const leadList = document.getElementById("lead-list");
+      let leadRefreshTimer = null;
 
       function showDashboard() {
         document.body.classList.add("authenticated");
@@ -525,10 +589,74 @@
 
       function hideDashboard() {
         document.body.classList.remove("authenticated");
+        if (leadRefreshTimer) {
+          clearInterval(leadRefreshTimer);
+          leadRefreshTimer = null;
+        }
         try {
           localStorage.removeItem(LOGIN_KEY);
         } catch {
           // ignore storage issues
+        }
+      }
+
+      function renderLeads(leads = []) {
+        if (leadCount) {
+          leadCount.textContent = `${leads.length} lead${leads.length === 1 ? "" : "s"}`;
+        }
+
+        if (!leadList) return;
+
+        if (!leads.length) {
+          leadList.innerHTML = `
+            <div class="lead-item">
+              <strong>No leads yet.</strong>
+              <small>When someone joins the souvenir shop updates form, their lead will show up here.</small>
+            </div>
+          `;
+          return;
+        }
+
+        leadList.innerHTML = leads
+          .map((lead) => {
+            const date = lead.updatedAt || lead.createdAt
+              ? new Date(lead.updatedAt || lead.createdAt).toLocaleString([], {
+                  month: "short",
+                  day: "numeric",
+                  hour: "numeric",
+                  minute: "2-digit",
+                })
+              : "Recently";
+            const meta = [lead.shopName, lead.featureInterest, lead.source].filter(Boolean).join(" · ");
+            return `
+              <div class="lead-item">
+                <strong>${lead.email || "Lead"}</strong>
+                <small>${meta || "Souvenir updates"}${meta ? " · " : ""}${date}</small>
+              </div>
+            `;
+          })
+          .join("");
+      }
+
+      async function loadLeads() {
+        try {
+          const response = await fetch(LEADS_URL, { credentials: "include" });
+          if (!response.ok) {
+            throw new Error(`Lead load failed: ${response.status}`);
+          }
+
+          const payload = await response.json();
+          renderLeads(Array.isArray(payload.leads) ? payload.leads : []);
+        } catch {
+          if (leadCount) leadCount.textContent = "Unavailable";
+          if (leadList) {
+            leadList.innerHTML = `
+              <div class="lead-item">
+                <strong>Leads unavailable.</strong>
+                <small>Check the lead API connection and Supabase table.</small>
+              </div>
+            `;
+          }
         }
       }
 
@@ -546,6 +674,10 @@
 
         if (value === PASSWORD) {
           showDashboard();
+          loadLeads();
+          if (!leadRefreshTimer) {
+            leadRefreshTimer = setInterval(loadLeads, 30000);
+          }
           return;
         }
 
@@ -553,6 +685,11 @@
       });
 
       logoutButton?.addEventListener("click", hideDashboard);
+
+      if (document.body.classList.contains("authenticated")) {
+        loadLeads();
+        leadRefreshTimer = setInterval(loadLeads, 30000);
+      }
     </script>
   </body>
 </html>
