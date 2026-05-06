@@ -35,16 +35,20 @@
 }
 
 .topbar .nav-button {
-  min-height: 42px;
-  padding: 0 1rem;
+  min-height: 0;
+  padding: 0.55rem 0.85rem;
   border: 2px solid rgba(9, 35, 63, 0.14);
   border-radius: 999px;
   background: #fffaf0;
   color: var(--ink);
   font: inherit;
+  font-size: 0.82rem;
   font-weight: 900;
-  box-shadow: 6px 6px 0 rgba(9, 35, 63, 0.14);
+  line-height: 1;
+  box-shadow: 0 0 0 transparent;
   cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
 }
 
 .ship-note {
