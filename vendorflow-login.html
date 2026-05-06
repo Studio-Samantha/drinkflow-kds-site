@@ -374,6 +374,53 @@
         color: rgba(9, 35, 63, 0.7);
         line-height: 1.35;
       }
+      .catalog-panel {
+        display: none;
+        gap: 0.9rem;
+        margin-top: 1rem;
+        padding: 1rem;
+        border: 2px solid rgba(9, 35, 63, 0.18);
+        border-radius: 14px;
+        background: #fff;
+        box-shadow: 0 10px 28px rgba(9, 35, 63, 0.09);
+      }
+      .catalog-panel.is-open {
+        display: grid;
+      }
+      .catalog-panel header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+      .catalog-panel h3 {
+        margin: 0;
+      }
+      .catalog-grid {
+        display: grid;
+        gap: 0.85rem;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .catalog-group {
+        padding: 0.9rem;
+        border: 1px solid rgba(9, 35, 63, 0.12);
+        border-radius: 14px;
+        background: #fffaf0;
+      }
+      .catalog-group h4 {
+        margin: 0 0 0.65rem;
+        font-size: 1rem;
+        color: var(--red);
+      }
+      .catalog-group ul {
+        margin: 0;
+        padding-left: 1rem;
+        color: rgba(9, 35, 63, 0.8);
+      }
+      .catalog-group li {
+        margin-bottom: 0.45rem;
+        line-height: 1.35;
+      }
       .footer {
         margin-top: 2rem;
         padding: 1rem 0 0;
@@ -398,6 +445,9 @@
       }
       .session-nav {
         display: none;
+      }
+      .catalog-toggle {
+        margin-top: 0.5rem;
       }
       body.authenticated .public-nav {
         display: none;
@@ -458,7 +508,7 @@
           </p>
           <div class="hero-actions">
             <a class="button primary" href="#login">Open login</a>
-            <a class="button" href="/souvenirs">View the catalog</a>
+            <button class="button" id="catalog-button" type="button">View the catalog</button>
           </div>
         </div>
 
@@ -536,6 +586,45 @@
           </div>
         </section>
 
+        <section class="catalog-panel" id="catalog-panel" aria-hidden="true">
+          <header>
+            <h3>Souvenir catalog</h3>
+            <button class="button catalog-toggle" id="catalog-close-button" type="button">Close catalog</button>
+          </header>
+          <div class="catalog-grid">
+            <article class="catalog-group">
+              <h4>Tees · $20</h4>
+              <ul>
+                <li>Summer Ride Gazebo Tee</li>
+                <li>Exira Water Tower Tee</li>
+                <li>Littlefield Lake Tee</li>
+                <li>Pedal Snack Repeat Tee</li>
+                <li>Brake for Pie Tee</li>
+                <li>Ride Recovery Team Tee</li>
+                <li>Iowa Heart Tee</li>
+              </ul>
+            </article>
+            <article class="catalog-group">
+              <h4>Totes · $10</h4>
+              <ul>
+                <li>Littlefield Lake Map Tote</li>
+                <li>Summer Ride Gazebo Tote</li>
+                <li>Tree in the Middle of the Road Tote</li>
+                <li>Iowa Typography Tote</li>
+                <li>Exira Pattern Tote</li>
+              </ul>
+            </article>
+            <article class="catalog-group">
+              <h4>Hats · $25</h4>
+              <ul>
+                <li>Iowa Patch Trucker Hat</li>
+                <li>Iowa Script Cap</li>
+                <li>Ride Week Circle Cap</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
         <section class="dashboard-card">
           <div class="stats">
             <div class="stat"><strong>New</strong><span>incoming preorders</span></div>
@@ -586,6 +675,9 @@
       const status = document.getElementById("login-status");
       const logoutButton = document.getElementById("logout-button");
       const topLogoutButton = document.getElementById("top-logout-button");
+      const catalogButton = document.getElementById("catalog-button");
+      const catalogPanel = document.getElementById("catalog-panel");
+      const catalogCloseButton = document.getElementById("catalog-close-button");
       const leadCount = document.getElementById("lead-count");
       const leadList = document.getElementById("lead-list");
       let leadRefreshTimer = null;
@@ -598,6 +690,19 @@
           // ignore storage issues
         }
         status.textContent = "";
+      }
+
+      function openCatalog() {
+        if (!catalogPanel) return;
+        catalogPanel.classList.add("is-open");
+        catalogPanel.setAttribute("aria-hidden", "false");
+        catalogPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      function closeCatalog() {
+        if (!catalogPanel) return;
+        catalogPanel.classList.remove("is-open");
+        catalogPanel.setAttribute("aria-hidden", "true");
       }
 
       function hideDashboard() {
@@ -691,6 +796,7 @@
           if (!leadRefreshTimer) {
             leadRefreshTimer = setInterval(loadLeads, 30000);
           }
+          openCatalog();
           return;
         }
 
@@ -699,10 +805,20 @@
 
       logoutButton?.addEventListener("click", hideDashboard);
       topLogoutButton?.addEventListener("click", hideDashboard);
+      catalogButton?.addEventListener("click", () => {
+        if (document.body.classList.contains("authenticated")) {
+          openCatalog();
+          return;
+        }
+
+        document.getElementById("login")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+      catalogCloseButton?.addEventListener("click", closeCatalog);
 
       if (document.body.classList.contains("authenticated")) {
         loadLeads();
         leadRefreshTimer = setInterval(loadLeads, 30000);
+        openCatalog();
       }
     </script>
   </body>
