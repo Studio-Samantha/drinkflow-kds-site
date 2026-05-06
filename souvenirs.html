@@ -26,6 +26,7 @@
         <a href="#tees">Tees</a>
         <a href="#totes">Totes</a>
         <a href="#hats">Hats</a>
+        <button type="button" class="nav-button" id="order-status-open">Order status</button>
       </nav>
     </header>
 
@@ -164,16 +165,49 @@
       <button type="button" aria-label="Close enlarged product photo">×</button>
       <img src="" alt="" />
     </div>
+    <div class="status-modal" id="status-modal" aria-hidden="true">
+      <div class="status-modal-card" role="dialog" aria-modal="true" aria-labelledby="status-title">
+        <button type="button" class="status-modal-close" id="status-modal-close" aria-label="Close order status form">×</button>
+        <p class="script">Order status</p>
+        <h2 id="status-title">Check your order</h2>
+        <p>Use the email from your confirmation and your order number to see where your preorder stands.</p>
+        <form class="status-form" id="status-form">
+          <label>
+            <span>Email</span>
+            <input type="email" name="email" autocomplete="email" required placeholder="you@youremail.com" />
+          </label>
+          <label>
+            <span>Order number</span>
+            <input type="text" name="orderNumber" required placeholder="#1234" />
+          </label>
+          <button class="button primary" type="submit">Check status</button>
+          <p class="form-status" id="status-form-result" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
     <script>
       const lightbox = document.querySelector(".lightbox");
       const lightboxImage = lightbox.querySelector("img");
       const souvenirLeadForm = document.getElementById("souvenir-lead-form");
       const souvenirLeadStatus = document.getElementById("souvenir-lead-status");
+      const orderStatusOpen = document.getElementById("order-status-open");
+      const statusModal = document.getElementById("status-modal");
+      const statusModalClose = document.getElementById("status-modal-close");
+      const statusForm = document.getElementById("status-form");
+      const statusFormResult = document.getElementById("status-form-result");
       const launchCountdown = document.getElementById("launch-countdown");
       const closeLightbox = () => {
         lightbox.classList.remove("is-open");
         lightbox.setAttribute("aria-hidden", "true");
         lightboxImage.src = "";
+      };
+      const openStatusModal = () => {
+        statusModal?.classList.add("is-open");
+        statusModal?.setAttribute("aria-hidden", "false");
+      };
+      const closeStatusModal = () => {
+        statusModal?.classList.remove("is-open");
+        statusModal?.setAttribute("aria-hidden", "true");
       };
 
       if (launchCountdown) {
@@ -211,8 +245,27 @@
         }
       });
 
+      orderStatusOpen?.addEventListener("click", openStatusModal);
+      statusModalClose?.addEventListener("click", closeStatusModal);
+      statusModal?.addEventListener("click", (event) => {
+        if (event.target === statusModal) {
+          closeStatusModal();
+        }
+      });
+
+      statusForm?.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const data = new FormData(statusForm);
+        const email = String(data.get("email") || "").trim();
+        const orderNumber = String(data.get("orderNumber") || "").trim();
+        statusFormResult.textContent = `Thanks. We'll use ${email} and ${orderNumber} to check your order status.`;
+      });
+
       document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") closeLightbox();
+        if (event.key === "Escape") {
+          closeLightbox();
+          closeStatusModal();
+        }
       });
 
       souvenirLeadForm?.addEventListener("submit", async (event) => {
