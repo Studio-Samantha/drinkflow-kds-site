@@ -111,14 +111,16 @@
 }
 
 .vf-steps,
-.vf-use-cases {
+.vf-use-cases,
+.vf-pain-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0.85rem;
 }
 
 .vf-steps article,
-.vf-use-cases article {
+.vf-use-cases article,
+.vf-pain-grid article {
   padding: 1rem;
   border: 2px solid rgba(9, 35, 63, 0.18);
   border-radius: 14px;
@@ -158,6 +160,19 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.vf-pain-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.vf-pain-grid article {
+  background: #fffaf0;
+}
+
+.vf-shop-photo {
+  aspect-ratio: 1.15;
+  object-fit: cover;
+}
+
 @media (max-width: 920px) {
   .vf-hero,
   .vf-live {
@@ -165,7 +180,8 @@
   }
 
   .vf-steps,
-  .vf-use-cases {
+  .vf-use-cases,
+  .vf-pain-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -178,7 +194,8 @@
 
   .demo-columns,
   .vf-steps,
-  .vf-use-cases {
+  .vf-use-cases,
+  .vf-pain-grid {
     grid-template-columns: 1fr;
   }
 
