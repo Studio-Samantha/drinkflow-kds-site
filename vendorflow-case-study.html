@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VendorFlow Case Study | Studio Samantha Souvenir Shop</title>
+    <meta
+      name="description"
+      content="A living VendorFlow case study showing how the souvenir shop uses preorders, pickup flow, and live vendor production."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700;800;900&family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #09233f;
+        --cream: #fff6e4;
+        --paper: #fffaf0;
+        --red: #b8241f;
+        --gold: #d19a2a;
+        --blue: #0d315d;
+        --muted: #5f5948;
+        --line: rgba(9, 35, 63, 0.14);
+        --shadow: 0 16px 44px rgba(9, 35, 63, 0.14);
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        color: var(--ink);
+        font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background:
+          radial-gradient(circle at 18% 10%, rgba(183, 216, 223, 0.55), transparent 28rem),
+          radial-gradient(circle at 86% 6%, rgba(209, 154, 42, 0.24), transparent 22rem),
+          linear-gradient(180deg, #fff8ea 0%, #f8ecd5 44%, #eef5ef 100%);
+      }
+      a { color: inherit; }
+      .topbar,
+      .footer {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 1rem clamp(1rem, 4vw, 3rem);
+        background: rgba(255, 250, 240, 0.9);
+        border-bottom: 2px solid rgba(9, 35, 63, 0.12);
+        backdrop-filter: blur(18px);
+      }
+      .footer {
+        border-bottom: 0;
+        border-top: 3px solid var(--ink);
+        background: var(--blue);
+        color: #fff;
+      }
+      .brand,
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42px;
+        padding: 0 1rem;
+        border-radius: 999px;
+        border: 2px solid rgba(9, 35, 63, 0.14);
+        background: #fffaf0;
+        text-decoration: none;
+        font-weight: 850;
+        box-shadow: 6px 6px 0 rgba(9, 35, 63, 0.14);
+      }
+      .button.primary {
+        background: var(--red);
+        border-color: var(--ink);
+        color: #fff;
+        box-shadow: 6px 6px 0 var(--ink);
+      }
+      .brand {
+        gap: 0.75rem;
+        color: var(--ink);
+      }
+      .brand span {
+        display: grid;
+        place-items: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        background: var(--ink);
+        color: #fff;
+      }
+      .topbar nav,
+      .footer nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+      .topbar nav a,
+      .footer nav a {
+        text-decoration: none;
+        font-weight: 800;
+      }
+      main {
+        width: min(1180px, calc(100% - 2rem));
+        margin: 0 auto;
+        padding: 2rem 0 3rem;
+      }
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.05fr);
+        gap: clamp(1.25rem, 4vw, 3rem);
+        align-items: center;
+        padding: clamp(1.5rem, 4vw, 3rem) 0 2rem;
+      }
+      .eyebrow {
+        margin: 0 0 0.75rem;
+        color: var(--gold);
+        font-size: 0.76rem;
+        font-weight: 900;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+      h1, h2, h3, p { margin-top: 0; }
+      h1 {
+        margin-bottom: 1rem;
+        font-family: "Bebas Neue", Impact, sans-serif;
+        font-size: clamp(3.5rem, 9vw, 6.2rem);
+        line-height: 0.88;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+      h2 {
+        margin-bottom: 0.8rem;
+        font-family: "Bebas Neue", Impact, sans-serif;
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        line-height: 0.92;
+        text-transform: uppercase;
+      }
+      .lede {
+        max-width: 40rem;
+        margin-bottom: 1.5rem;
+        color: var(--muted);
+        font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+        line-height: 1.5;
+        font-weight: 700;
+      }
+      .hero-card,
+      .panel {
+        border: 2px solid rgba(9, 35, 63, 0.18);
+        border-radius: 14px;
+        background: #fffaf0;
+        box-shadow: 14px 14px 0 rgba(9, 35, 63, 0.13);
+      }
+      .hero-card {
+        padding: 1.25rem;
+      }
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.75rem;
+      }
+      .stat {
+        padding: 1rem;
+        border: 2px solid rgba(9, 35, 63, 0.14);
+        border-radius: 14px;
+        background: #fff;
+        box-shadow: 0 10px 28px rgba(9, 35, 63, 0.09);
+      }
+      .stat strong {
+        display: block;
+        font-size: 1.7rem;
+        line-height: 1;
+      }
+      .stat span {
+        display: block;
+        margin-top: 0.35rem;
+        color: var(--muted);
+        font-size: 0.88rem;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.85rem;
+        margin-top: 1rem;
+      }
+      .panel {
+        padding: 1rem;
+        background: #fff;
+      }
+      .panel p,
+      li {
+        color: var(--muted);
+        line-height: 1.55;
+      }
+      .panel ul {
+        margin: 0;
+        padding-left: 1.1rem;
+      }
+      .script {
+        margin-bottom: 0.15rem;
+        color: var(--red);
+        font-family: Pacifico, cursive;
+        font-size: clamp(1.4rem, 4vw, 2.5rem);
+        line-height: 1;
+      }
+      .footer {
+        margin-top: 2rem;
+      }
+      @media (max-width: 960px) {
+        .hero,
+        .stats,
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/vendorflow">
+        <span>V</span>
+        <strong>VendorFlow</strong>
+      </a>
+      <nav>
+        <a href="/vendorflow">VendorFlow</a>
+        <a href="/vendorflow-login">Dashboard</a>
+        <a href="/souvenirs">Souvenir shop</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Living case study</p>
+          <h1>VendorFlow for the souvenir shop</h1>
+          <p class="lede">
+            This dashboard tracks a real preorder shop, not a mock demo. Once Square is connected, the same flow can
+            collect live product data, pickup activity, and sell-through patterns from the souvenir shop.
+          </p>
+          <a class="button primary" href="/vendorflow-login">Open the dashboard</a>
+        </div>
+        <div class="hero-card">
+          <p class="script">What it proves</p>
+          <div class="stats">
+            <div class="stat"><strong>Preorders</strong><span>real demand before the event</span></div>
+            <div class="stat"><strong>Pickup</strong><span>line control at the booth</span></div>
+            <div class="stat"><strong>Square</strong><span>sales data source of truth</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid">
+        <article class="panel">
+          <h2 style="font-size:2.6rem;">What you are tracking</h2>
+          <ul>
+            <li>tees, totes, and hats sold through preorder</li>
+            <li>pickup timing and live event handoff</li>
+            <li>what people actually choose to buy</li>
+          </ul>
+        </article>
+        <article class="panel">
+          <h2 style="font-size:2.6rem;">Why it matters</h2>
+          <p>
+            This makes the souvenir side measurable. You can see what is moving, what is sitting, and what should be
+            made next without overproducing.
+          </p>
+        </article>
+        <article class="panel">
+          <h2 style="font-size:2.6rem;">Build link</h2>
+          <p>
+            The dashboard stays private, the public shop stays customer-facing, and the case study stays separate so
+            you can show the story publicly.
+          </p>
+        </article>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>VendorFlow case study · Studio Samantha</span>
+      <nav>
+        <a href="/vendorflow">VendorFlow</a>
+        <a href="/vendorflow-login">Dashboard</a>
+        <a href="/souvenirs">Souvenir shop</a>
+        <a href="/policy.html">Policy</a>
+      </nav>
+    </footer>
+  </body>
+</html>
