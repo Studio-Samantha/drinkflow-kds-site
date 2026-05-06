@@ -171,12 +171,20 @@
 .vf-shop-photo {
   aspect-ratio: 1.15;
   max-height: 560px;
+  width: 100%;
   border: 0;
   border-radius: 0;
   background: transparent;
   box-shadow: none;
   object-fit: contain;
   filter: drop-shadow(0 24px 42px rgba(9, 35, 63, 0.18));
+}
+
+.vf-live img.vf-shop-photo {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
 }
 
 @media (max-width: 920px) {
