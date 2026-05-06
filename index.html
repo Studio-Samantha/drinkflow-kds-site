@@ -1095,12 +1095,21 @@
         <form class="modal-signup-form" id="modal-signup-form">
           <div class="instant-app-panel">
             <div class="modal-primary-fields">
-              <input type="email" name="email" autocomplete="email" required aria-label="Email" placeholder="Email" />
-              <input type="text" name="shopName" autocomplete="organization" required aria-label="Shop name" placeholder="Shop or stand name" />
+              <label class="claim-row">
+                <span>Email</span>
+                <input type="email" name="email" autocomplete="email" required aria-label="Email" placeholder="you@yourshop.com" />
+              </label>
+              <label class="claim-row">
+                <span>Shop</span>
+                <input type="text" name="shopName" autocomplete="organization" required aria-label="Shop name" placeholder="Prairie Bean Co." />
+              </label>
             </div>
             <input type="hidden" name="contactName" />
             <input type="hidden" name="workspaceSlug" />
-            <p class="domain-pill"><span id="modal-domain-preview">your-counter.drinkflowkds.com</span></p>
+            <div class="app-link-preview" aria-live="polite">
+              <span>App link</span>
+              <strong id="modal-domain-preview">your-counter.drinkflowkds.com</strong>
+            </div>
           </div>
           <div class="theme-snap">
             <p class="theme-snap-title">Pick a starter look</p>
@@ -1160,8 +1169,7 @@
 
       function getModalSlug() {
         const shopSlug = cleanWorkspaceSlug(modalSignupForm?.elements.shopName?.value);
-        const emailHandle = cleanWorkspaceSlug(String(modalSignupForm?.elements.email?.value || "").split("@")[0]);
-        return shopSlug || emailHandle || "your-counter";
+        return shopSlug || "your-counter";
       }
 
       function refreshModalDomain() {
@@ -1206,11 +1214,15 @@
       async function createDrinkFlowAppFromForm(form, statusEl, squareCardId, workspaceTextId, squareLinkId) {
         statusEl.textContent = "Creating your app...";
         const data = new FormData(form);
+        const workspaceSlug = cleanWorkspaceSlug(data.get("workspaceSlug"));
+        if (!workspaceSlug || workspaceSlug === "your-counter") {
+          throw new Error("Add your shop or stand name to claim a DrinkFlow link.");
+        }
         const payload = {
           contactName: data.get("contactName"),
           email: data.get("email"),
           shopName: data.get("shopName"),
-          workspaceSlug: cleanWorkspaceSlug(data.get("workspaceSlug")),
+          workspaceSlug,
           location: "",
           businessType: "Drink business",
           posSystem: "Square",
@@ -1242,7 +1254,11 @@
         });
         const workspaceResult = await workspaceResponse.json().catch(() => ({}));
         if (!workspaceResponse.ok) {
-          throw new Error(workspaceResult.error || "Your app could not be created yet.");
+          throw new Error(
+            workspaceResult.error?.toLowerCase().includes("already")
+              ? "That shop link is already taken. Try adding your city, cart, or booth name."
+              : workspaceResult.error || "Your app could not be created yet."
+          );
         }
 
         const response = await fetch("https://goldieskds.com/api/drinkflow-onboarding", {
