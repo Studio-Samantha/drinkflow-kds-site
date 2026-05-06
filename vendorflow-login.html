@@ -16,15 +16,17 @@
     />
     <style>
       :root {
-        --paper: #fffaf2;
-        --cream: #f4e7c9;
-        --ink: #16352f;
-        --gold: #cc8b2f;
-        --blue: #2d637f;
-        --red: #b73b31;
-        --muted: #6a5f4e;
-        --line: rgba(22, 53, 47, 0.14);
-        --shadow: 0 22px 60px rgba(22, 53, 47, 0.16);
+        --ink: #09233f;
+        --cream: #fff6e4;
+        --paper: #fffaf0;
+        --red: #b8241f;
+        --green: #496227;
+        --gold: #d19a2a;
+        --blue: #0d315d;
+        --sky: #b7d8df;
+        --muted: #5f5948;
+        --line: rgba(9, 35, 63, 0.14);
+        --shadow: 0 16px 44px rgba(9, 35, 63, 0.14);
       }
 
       * { box-sizing: border-box; }
@@ -34,8 +36,9 @@
         font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         color: var(--ink);
         background:
-          radial-gradient(circle at top left, rgba(204, 139, 47, 0.12), transparent 24%),
-          linear-gradient(180deg, #fffaf2 0%, #f4e7c9 60%, #fffaf2 100%);
+          radial-gradient(circle at 18% 10%, rgba(183, 216, 223, 0.55), transparent 28rem),
+          radial-gradient(circle at 86% 6%, rgba(209, 154, 42, 0.24), transparent 22rem),
+          linear-gradient(180deg, #fff8ea 0%, #f8ecd5 44%, #eef5ef 100%);
       }
       a { color: inherit; }
       .topbar {
@@ -47,9 +50,9 @@
         justify-content: space-between;
         gap: 1rem;
         padding: 1rem clamp(1rem, 4vw, 3rem);
-        background: rgba(255, 250, 242, 0.86);
-        backdrop-filter: blur(14px);
-        border-bottom: 1px solid rgba(22, 53, 47, 0.08);
+        background: rgba(255, 250, 240, 0.88);
+        backdrop-filter: blur(18px);
+        border-bottom: 2px solid rgba(9, 35, 63, 0.12);
       }
       .brand {
         display: inline-flex;
@@ -65,7 +68,7 @@
         place-items: center;
         width: 36px;
         height: 36px;
-        border-radius: 10px;
+        border-radius: 8px;
         background: var(--ink);
         color: #fff;
         font-size: 0.95rem;
@@ -84,16 +87,18 @@
         min-height: 42px;
         padding: 0 1rem;
         border-radius: 999px;
-        border: 1px solid rgba(22, 53, 47, 0.14);
-        background: rgba(255, 255, 255, 0.82);
+        border: 2px solid rgba(9, 35, 63, 0.14);
+        background: #fffaf0;
         text-decoration: none;
         font-size: 0.95rem;
         font-weight: 850;
+        box-shadow: 6px 6px 0 rgba(9, 35, 63, 0.14);
       }
       .button.primary {
-        background: var(--ink);
+        background: var(--red);
         border-color: var(--ink);
         color: #fff;
+        box-shadow: 6px 6px 0 var(--ink);
       }
       main {
         width: min(1180px, calc(100% - 2rem));
@@ -119,9 +124,11 @@
       h1 {
         margin-bottom: 1rem;
         color: var(--ink);
-        font-size: clamp(3rem, 6vw, 5.5rem);
-        line-height: 0.96;
+        font-family: "Bebas Neue", Impact, sans-serif;
+        font-size: clamp(3.5rem, 9vw, 6.2rem);
+        line-height: 0.88;
         letter-spacing: 0;
+        text-transform: uppercase;
       }
       .lede {
         max-width: 40rem;
@@ -129,6 +136,7 @@
         color: var(--muted);
         font-size: clamp(1.05rem, 1.8vw, 1.35rem);
         line-height: 1.5;
+        font-weight: 700;
       }
       .hero-actions {
         display: flex;
@@ -137,17 +145,21 @@
       }
       .login-panel,
       .dashboard-card {
-        border: 1px solid rgba(22, 53, 47, 0.14);
-        border-radius: 24px;
-        background: rgba(255, 255, 255, 0.82);
-        box-shadow: var(--shadow);
+        border: 2px solid rgba(9, 35, 63, 0.18);
+        border-radius: 14px;
+        background: #fffaf0;
+        box-shadow: 14px 14px 0 rgba(9, 35, 63, 0.13);
       }
       .login-panel {
         padding: 1.25rem;
+        transform: rotate(0.2deg);
       }
       .login-panel h2 {
         margin-bottom: 0.45rem;
-        font-size: 1.8rem;
+        font-family: "Bebas Neue", Impact, sans-serif;
+        font-size: clamp(2.5rem, 4vw, 3.4rem);
+        line-height: 0.92;
+        text-transform: uppercase;
       }
       .login-panel p {
         color: var(--muted);
@@ -167,14 +179,14 @@
         font-weight: 900;
         letter-spacing: 0.08em;
         text-transform: uppercase;
-        color: rgba(22, 53, 47, 0.72);
+        color: rgba(9, 35, 63, 0.72);
       }
       .field input {
         width: 100%;
-        min-height: 3rem;
+        min-height: 3.25rem;
         padding: 0.8rem 0.05rem 0.7rem;
         border: 0;
-        border-bottom: 1px solid rgba(22, 53, 47, 0.18);
+        border-bottom: 1px solid rgba(9, 35, 63, 0.18);
         background: transparent;
         color: var(--ink);
         font: inherit;
@@ -230,7 +242,7 @@
         width: 100%;
         max-height: 620px;
         object-fit: contain;
-        filter: drop-shadow(0 24px 42px rgba(22, 53, 47, 0.18));
+        filter: drop-shadow(0 24px 42px rgba(9, 35, 63, 0.18));
       }
       .dashboard-card {
         padding: 1.1rem;
@@ -242,9 +254,10 @@
       }
       .stat {
         padding: 1rem;
-        border: 1px solid var(--line);
-        border-radius: 18px;
-        background: #fffdf8;
+        border: 2px solid rgba(9, 35, 63, 0.14);
+        border-radius: 14px;
+        background: #fff;
+        box-shadow: 0 10px 28px rgba(9, 35, 63, 0.09);
       }
       .stat strong {
         display: block;
@@ -267,9 +280,10 @@
       .lane {
         min-height: 260px;
         padding: 0.9rem;
-        border: 1px solid rgba(22, 53, 47, 0.14);
-        border-radius: 18px;
+        border: 2px solid rgba(9, 35, 63, 0.18);
+        border-radius: 14px;
         background: #fff;
+        box-shadow: 0 10px 28px rgba(9, 35, 63, 0.09);
       }
       .lane h3 {
         margin-bottom: 0.8rem;
@@ -280,7 +294,7 @@
         margin-bottom: 0.65rem;
         padding: 0.7rem;
         border-radius: 14px;
-        background: #fff3d4;
+        background: #fff2d2;
       }
       .ticket b {
         display: block;
@@ -301,9 +315,10 @@
       }
       .panel {
         padding: 1rem;
-        border: 1px solid rgba(22, 53, 47, 0.14);
-        border-radius: 18px;
-        background: rgba(255, 250, 242, 0.9);
+        border: 2px solid rgba(9, 35, 63, 0.18);
+        border-radius: 14px;
+        background: #fff;
+        box-shadow: 0 10px 28px rgba(9, 35, 63, 0.09);
       }
       .panel h3 {
         margin-bottom: 0.45rem;
@@ -315,13 +330,15 @@
       .footer {
         margin-top: 2rem;
         padding: 1rem 0 0;
-        border-top: 1px solid rgba(22, 53, 47, 0.12);
+        border-top: 3px solid var(--ink);
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
         gap: 1rem;
-        color: var(--muted);
+        color: #fff;
         font-size: 0.95rem;
+        background: var(--blue);
+        padding: 1rem clamp(1rem, 4vw, 3rem);
       }
       .footer nav {
         display: flex;
