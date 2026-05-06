@@ -125,7 +125,7 @@
           </article>
           <article>
             <h3>How do I cover upfront event costs?</h3>
-            <p>Preorder money can help cover vendor applications, booth deposits, blanks, transfers, packaging, and the supplies needed before the event opens.</p>
+            <p>Preorder proceeds can help cover vendor applications, booth deposits, blanks, transfers, packaging, and the supplies needed before the event opens.</p>
           </article>
           <article>
             <h3>How do I keep event stock separate?</h3>
@@ -174,6 +174,30 @@
           <article><h3>Food trucks and drink stands</h3><p>Move orders through a visual board instead of calling names into a crowd.</p></article>
         </div>
       </section>
+
+      <section class="vf-section vf-cta" id="contact">
+        <div>
+          <p class="script">Stay in the loop</p>
+          <h2>Get VendorFlowDS updates when the event flow is ready.</h2>
+          <p>Join the list if you want preorder tools, pickup boards, and the customer side of the event flow as it gets built.</p>
+        </div>
+        <form class="vf-signup" id="vendorflow-lead-form">
+          <label>
+            <span>Email</span>
+            <input type="email" name="email" autocomplete="email" required placeholder="you@yourshop.com" />
+          </label>
+          <label>
+            <span>Shop or booth name</span>
+            <input type="text" name="shopName" autocomplete="organization" placeholder="Your shop or booth" />
+          </label>
+          <label>
+            <span>What are you selling?</span>
+            <textarea name="message" rows="4" placeholder="Tees, hats, cups, cupcakes, stickers, art, books, or another event setup..."></textarea>
+          </label>
+          <button class="button primary" type="submit">Join the list</button>
+          <p class="form-status" id="vendorflow-lead-status" role="status" aria-live="polite"></p>
+        </form>
+      </section>
     </main>
 
     <footer>
@@ -181,5 +205,41 @@
       <span>Preorders, pickup boards, and event fulfillment for small shops.</span>
       <a href="/souvenirs">View the Studio Samantha souvenir shop</a>
     </footer>
+    <script>
+      const vendorflowLeadForm = document.getElementById("vendorflow-lead-form");
+      const vendorflowLeadStatus = document.getElementById("vendorflow-lead-status");
+
+      vendorflowLeadForm?.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        vendorflowLeadStatus.textContent = "Sending...";
+
+        const data = new FormData(vendorflowLeadForm);
+        const payload = {
+          email: data.get("email"),
+          shopName: data.get("shopName"),
+          message: data.get("message"),
+          source: "drinkflowkds.com/vendorflow",
+          pagePath: window.location.pathname,
+          referrer: document.referrer,
+        };
+
+        try {
+          const response = await fetch("https://goldieskds.com/api/drinkflow-leads", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+
+          if (!response.ok) {
+            throw new Error("Lead request failed");
+          }
+
+          vendorflowLeadForm.reset();
+          vendorflowLeadStatus.textContent = "You're on the list.";
+        } catch (error) {
+          vendorflowLeadStatus.textContent = "That did not send. Email samantha@studiosamantha.com and mention VendorFlow.";
+        }
+      });
+    </script>
   </body>
 </html>
