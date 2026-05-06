@@ -1465,17 +1465,39 @@ h3 {
 .onboarding-form select,
 .onboarding-form textarea {
   width: 100%;
-  border: 1px solid var(--line);
-  border-radius: 0.65rem;
-  padding: 0.68rem 0.78rem;
+  border: 0;
+  border-bottom: 1px solid rgba(15, 64, 54, 0.16);
+  border-radius: 0;
+  padding: 0.65rem 0.1rem 0.78rem;
   color: var(--ink);
-  background: #fffdf8;
+  background: transparent;
   font: inherit;
+  box-shadow: none;
+  transition: border-color 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
 }
 
 .signup-form textarea,
 .onboarding-form textarea {
   resize: vertical;
+}
+
+.signup-form input::placeholder,
+.signup-form textarea::placeholder,
+.onboarding-form input::placeholder,
+.onboarding-form select::placeholder,
+.onboarding-form textarea::placeholder {
+  color: rgba(20, 33, 29, 0.46);
+}
+
+.signup-form input:focus,
+.signup-form textarea:focus,
+.onboarding-form input:focus,
+.onboarding-form select:focus,
+.onboarding-form textarea:focus {
+  outline: none;
+  border-bottom-color: var(--clay);
+  box-shadow: 0 8px 0 -7px rgba(15, 64, 54, 0.24);
+  background: rgba(255, 255, 255, 0.18);
 }
 
 .onboarding-form fieldset {
