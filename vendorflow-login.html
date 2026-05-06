@@ -396,6 +396,15 @@
         text-decoration: none;
         font-weight: 800;
       }
+      .session-nav {
+        display: none;
+      }
+      body.authenticated .public-nav {
+        display: none;
+      }
+      body.authenticated .session-nav {
+        display: inline-flex;
+      }
       .status {
         min-height: 1.3rem;
         margin-top: 0.75rem;
@@ -428,10 +437,13 @@
         <span>V</span>
         <strong>VendorFlow</strong>
       </a>
-      <nav>
+      <nav class="public-nav">
         <a href="/vendorflow">VendorFlow</a>
         <a href="/souvenirs">Souvenir shop</a>
         <a href="#login">Login</a>
+      </nav>
+      <nav class="session-nav">
+        <button class="button primary" id="top-logout-button" type="button">Log off</button>
       </nav>
     </header>
 
@@ -491,7 +503,7 @@
               <div class="stat"><strong>19/20</strong><span>pickup days</span></div>
             </div>
             <div class="logout">
-              <button class="button" id="logout-button" type="button">Lock dashboard</button>
+              <button class="button" id="logout-button" type="button">Log off</button>
             </div>
           </div>
         </section>
@@ -573,6 +585,7 @@
       const form = document.getElementById("vendorflow-login-form");
       const status = document.getElementById("login-status");
       const logoutButton = document.getElementById("logout-button");
+      const topLogoutButton = document.getElementById("top-logout-button");
       const leadCount = document.getElementById("lead-count");
       const leadList = document.getElementById("lead-list");
       let leadRefreshTimer = null;
@@ -685,6 +698,7 @@
       });
 
       logoutButton?.addEventListener("click", hideDashboard);
+      topLogoutButton?.addEventListener("click", hideDashboard);
 
       if (document.body.classList.contains("authenticated")) {
         loadLeads();
