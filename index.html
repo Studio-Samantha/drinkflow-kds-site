@@ -28,7 +28,6 @@
         <a href="#pricing">Pricing</a>
         <a href="#proof">Proof</a>
         <a href="/vendorflow">VendorFlowDS</a>
-        <a href="/setup" class="nav-button signup-trigger">Claim free workspace</a>
       </div>
     </nav>
 
@@ -39,7 +38,6 @@
           <h1>Stop losing customers in the rush.</h1>
           <p class="lead">DrinkFlow keeps the line moving, shows pickup status, and helps drink-first shops see the day clearly.</p>
           <div class="hero-actions">
-            <a class="button primary signup-trigger" href="/setup">Claim free workspace</a>
             <a class="button secondary" href="#pricing">See the $30/month fit</a>
           </div>
           <div class="hero-proof">
@@ -259,9 +257,9 @@
       <div class="signup-modal-card">
         <button type="button" class="signup-modal-close" id="signup-modal-close" aria-label="Close signup">×</button>
         <p class="eyebrow">Free workspace</p>
-        <h2>Claim your counter.</h2>
-        <p>Latest: live features, pricing comparison, and a shorter path to setup.</p>
-        <p>Start the app, pick a look, then connect Square when you are ready.</p>
+        <h2>Setup path coming soon.</h2>
+        <p>Latest: live features, pricing comparison, and product screenshots.</p>
+        <p>The public page stays focused on the product until the setup flow is ready again.</p>
         <form class="modal-signup-form" id="modal-signup-form">
           <div class="instant-app-panel">
             <div class="modal-primary-fields">
@@ -301,16 +299,16 @@
             </div>
           </div>
           <input type="text" name="company" tabindex="-1" autocomplete="off" class="hidden-field" />
-          <button class="button primary modal-submit" type="submit">Create free app</button>
+          <button class="button primary modal-submit" type="submit">Join updates</button>
           <p class="form-status" id="modal-signup-status" role="status" aria-live="polite"></p>
           <div class="starter-card" id="modal-square-card" hidden>
             <p class="eyebrow">Check your email</p>
-            <h3>Verify before setup.</h3>
+            <h3>Verify before updates.</h3>
             <p id="modal-workspace-url"></p>
-            <a class="button primary" id="modal-square-link" href="/setup">Open setup after verifying</a>
+            <a class="button primary" id="modal-square-link" href="/#contact">Back to product</a>
           </div>
         </form>
-        <a class="signup-fallback" href="/setup">Use full-page signup instead</a>
+        <a class="signup-fallback" href="/#contact">Back to product</a>
       </div>
     </div>
 
@@ -387,7 +385,7 @@
         const data = new FormData(form);
         const workspaceSlug = cleanWorkspaceSlug(data.get("workspaceSlug"));
         if (!workspaceSlug || workspaceSlug === "your-counter") {
-          throw new Error("Add your shop or stand name to claim a DrinkFlow link.");
+          throw new Error("Add your shop or stand name to join updates.");
         }
         const payload = {
           contactName: data.get("contactName"),
@@ -444,9 +442,9 @@
 
         const slug = workspaceResult.workspace?.slug || payload.workspaceSlug;
         const appUrl = workspaceResult.workspace?.app_url || `https://${slug}.drinkflowkds.com`;
-        statusEl.textContent = "App created. Check your email to verify before setup.";
-        document.getElementById(workspaceTextId).textContent = `${appUrl} is reserved for your workspace.`;
-        document.getElementById(squareLinkId).href = `/setup?workspace=${encodeURIComponent(slug)}`;
+        statusEl.textContent = "You're on the list. Check your email for updates.";
+        document.getElementById(workspaceTextId).textContent = `${appUrl} is reserved for updates.`;
+        document.getElementById(squareLinkId).href = `/#contact`;
         document.getElementById(squareCardId).hidden = false;
       }
 
@@ -523,7 +521,7 @@
 
       onboardingForm?.addEventListener("submit", async (event) => {
         event.preventDefault();
-        onboardingStatus.textContent = "Sending setup request...";
+          onboardingStatus.textContent = "Sending update request...";
 
         const data = new FormData(onboardingForm);
         const socialLinks = String(data.get("socialLinks") || "")
@@ -566,9 +564,9 @@
           }
 
           onboardingForm.reset();
-          onboardingStatus.textContent = "Setup request received. Your fit will be reviewed next.";
+          onboardingStatus.textContent = "Update request received. Your fit will be reviewed next.";
         } catch (error) {
-          onboardingStatus.textContent = "That did not send. Email samantha@studiosamantha.com and mention DrinkFlow setup.";
+          onboardingStatus.textContent = "That did not send. Email samantha@studiosamantha.com and mention DrinkFlow updates.";
         }
       });
     </script>
