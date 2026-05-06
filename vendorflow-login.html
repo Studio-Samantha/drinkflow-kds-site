@@ -506,9 +506,6 @@
             Open the dashboard that matches the shop: preorder flow, product counts, pickup boards, and the
             live event view for tees, totes, and hats.
           </p>
-          <div class="hero-actions">
-            <button class="button" id="catalog-button" type="button">View the catalog</button>
-          </div>
         </div>
 
         <div class="login-panel" id="login">
@@ -715,7 +712,6 @@
       const status = document.getElementById("login-status");
       const logoutButton = document.getElementById("logout-button");
       const topLogoutButton = document.getElementById("top-logout-button");
-      const catalogButton = document.getElementById("catalog-button");
       const catalogPanel = document.getElementById("catalog-panel");
       const catalogCloseButton = document.getElementById("catalog-close-button");
       const leadCount = document.getElementById("lead-count");
@@ -845,14 +841,6 @@
 
       logoutButton?.addEventListener("click", hideDashboard);
       topLogoutButton?.addEventListener("click", hideDashboard);
-      catalogButton?.addEventListener("click", () => {
-        if (document.body.classList.contains("authenticated")) {
-          openCatalog();
-          return;
-        }
-
-        document.getElementById("login")?.scrollIntoView({ behavior: "smooth", block: "start" });
-      });
       catalogCloseButton?.addEventListener("click", closeCatalog);
 
       if (document.body.classList.contains("authenticated")) {
