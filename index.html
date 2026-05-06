@@ -28,8 +28,8 @@
         <a href="#vendors">Themes</a>
         <a href="#pricing">Pricing</a>
         <a href="#proof">Proof</a>
-        <a href="./vendorflow.html">VendorFlowDS</a>
-        <a href="./setup.html" class="nav-button signup-trigger">Claim free workspace</a>
+        <a href="/vendorflow">VendorFlowDS</a>
+        <a href="/setup" class="nav-button signup-trigger">Claim free workspace</a>
       </div>
     </nav>
 
@@ -48,7 +48,7 @@
             <span>Start free, keep drink sales separate from retail, and grow only when the tool is worth it.</span>
           </div>
           <div class="hero-actions">
-            <a class="button primary signup-trigger" href="./setup.html">Claim free workspace</a>
+            <a class="button primary signup-trigger" href="/setup">Claim free workspace</a>
             <a class="button secondary" href="#pricing">See the $30/month fit</a>
             <a class="button secondary" href="#screens">See screens</a>
           </div>
@@ -281,8 +281,8 @@
           <span>Vendor/Event Booth</span>
           <strong>Preorders, kiosk orders, pickup board</strong>
           <p>Built for RAGBRAI-style days where a phone or tablet should be enough to run the booth.</p>
-          <a class="button secondary" href="./vendorflow.html">See VendorFlowDS</a>
-          <a class="button primary" href="./souvenirs.html">View souvenir shop</a>
+          <a class="button secondary" href="/vendorflow">See VendorFlowDS</a>
+          <a class="button primary" href="/souvenirs">View souvenir shop</a>
         </div>
       </section>
 
@@ -775,7 +775,7 @@
           <p class="eyebrow">Free workspace setup</p>
           <h3>Ready to try it on your counter?</h3>
           <p>Setup has its own page now so this homepage can stay fast, visual, and easy to skim.</p>
-          <a class="button primary signup-trigger" href="./setup.html">Create free app</a>
+          <a class="button primary signup-trigger" href="/setup">Create free app</a>
         </div>
         <form class="onboarding-form homepage-hidden-form" id="onboarding-form">
           <div class="form-intro">
@@ -1084,9 +1084,9 @@
         <img class="brand-mark brand-logo" src="./assets/drinkflow-logo.png" alt="" aria-hidden="true" />
       </a>
       <span>See your rush as it happens.</span>
-      <a href="./setup.html" class="signup-trigger">Free setup</a>
-      <a href="./vendorflow.html">VendorFlowDS</a>
-      <a href="./souvenirs.html">Summer souvenir shop</a>
+      <a href="/setup" class="signup-trigger">Free setup</a>
+      <a href="/vendorflow">VendorFlowDS</a>
+      <a href="/souvenirs">Summer souvenir shop</a>
       <a href="https://goldieskds.com/developer">Studio Developer Login</a>
     </footer>
 
@@ -1141,10 +1141,10 @@
             <p class="eyebrow">Check your email</p>
             <h3>Verify before setup.</h3>
             <p id="modal-workspace-url"></p>
-            <a class="button primary" id="modal-square-link" href="./setup.html">Open setup after verifying</a>
+            <a class="button primary" id="modal-square-link" href="/setup">Open setup after verifying</a>
           </div>
         </form>
-        <a class="signup-fallback" href="./setup.html">Use full-page signup instead</a>
+        <a class="signup-fallback" href="/setup">Use full-page signup instead</a>
       </div>
     </div>
 
@@ -1280,7 +1280,7 @@
         const appUrl = workspaceResult.workspace?.app_url || `https://${slug}.drinkflowkds.com`;
         statusEl.textContent = "App created. Check your email to verify before setup.";
         document.getElementById(workspaceTextId).textContent = `${appUrl} is reserved for your workspace.`;
-        document.getElementById(squareLinkId).href = `./setup.html?workspace=${encodeURIComponent(slug)}`;
+        document.getElementById(squareLinkId).href = `/setup?workspace=${encodeURIComponent(slug)}`;
         document.getElementById(squareCardId).hidden = false;
       }
 

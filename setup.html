@@ -15,11 +15,13 @@
   </head>
   <body>
     <nav class="nav" aria-label="Main navigation">
-      <a class="brand" href="./index.html" aria-label="DrinkFlow KDS home">
+      <a class="brand" href="/" aria-label="DrinkFlow KDS home">
         <img class="brand-mark brand-logo" src="./assets/drinkflow-logo.png" alt="" aria-hidden="true" />
       </a>
       <div class="nav-links">
-        <a href="./index.html">Home</a>
+        <a href="/">Home</a>
+        <a href="/vendorflow">VendorFlowDS</a>
+        <a href="/souvenirs">Souvenir shop</a>
         <a href="https://goldieskds.com/case-study/goldies">Live proof</a>
         <a href="https://goldieskds.com/developer" class="nav-button">Studio Developer Login</a>
       </div>
@@ -137,7 +139,7 @@
     </main>
 
     <footer>
-      <a class="brand" href="./index.html">
+      <a class="brand" href="/">
         <img class="brand-mark brand-logo" src="./assets/drinkflow-logo.png" alt="" aria-hidden="true" />
       </a>
       <a href="https://goldieskds.com/developer">Studio Developer Login</a>
@@ -278,7 +280,7 @@
           onboardingStatus.textContent = "Your app is reserved. Check your email to verify before setup.";
           document.getElementById("workspace-url").textContent = `${appUrl} is reserved for your workspace.`;
           const squareLink = document.getElementById("square-connect-link");
-          squareLink.href = `./setup.html?workspace=${encodeURIComponent(slug)}`;
+          squareLink.href = `/setup?workspace=${encodeURIComponent(slug)}`;
           squareLink.textContent = "Open setup after verifying";
           showStep(4);
         } catch (error) {
