@@ -257,6 +257,26 @@ h3 {
   min-width: 0;
 }
 
+.hero-copy,
+.case-copy,
+.section-heading,
+.gallery-grid article,
+.comparison-cards article,
+.real-screens figure {
+  min-width: 0;
+}
+
+.hero-proof span,
+.gallery-grid span,
+.gallery-grid h3,
+.gallery-grid p,
+.comparison-cards span,
+.comparison-cards strong,
+.comparison-cards p,
+.real-screens figcaption {
+  overflow-wrap: anywhere;
+}
+
 .button {
   display: inline-flex;
   min-height: 3rem;
