@@ -706,7 +706,7 @@ h3 {
 
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
 }
 
@@ -763,6 +763,15 @@ h3 {
   color: var(--muted);
   font-size: 0.9rem;
   font-weight: 820;
+}
+
+.hero-note {
+  max-width: 42rem;
+  margin: 1rem 0 0;
+  color: var(--muted);
+  font-size: 1rem;
+  font-weight: 720;
+  line-height: 1.5;
 }
 
 .comparison-band,
