@@ -289,8 +289,8 @@
           showStep(4);
         } catch (error) {
           const message = error.message || "";
-          onboardingStatus.textContent = message.includes("Supabase setup")
-            ? message
+          onboardingStatus.textContent = message.includes("setup")
+            ? "Almost there. The DrinkFlow signup system needs one setup step before app names can be reserved."
             : message.includes("schema cache") || message.includes("drinkflow_workspaces")
               ? "Almost there. The DrinkFlow signup system needs one setup step before app names can be reserved."
               : message || "That did not send. Email samantha@studiosamantha.com and mention DrinkFlow.";
