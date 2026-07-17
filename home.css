@@ -475,6 +475,90 @@ h3 {
   background: var(--paper);
 }
 
+.market-section {
+  padding: 5rem 3rem;
+  color: var(--paper);
+  background: var(--cobalt);
+}
+
+.market-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(20rem, 0.7fr);
+  gap: 1.5rem 3rem;
+  align-items: end;
+  max-width: 88rem;
+  margin-bottom: 2rem;
+}
+
+.market-heading .section-label {
+  grid-column: span 2;
+  margin: 0;
+  color: var(--butter);
+}
+
+.market-heading h2,
+.market-heading p {
+  margin: 0;
+}
+
+.market-heading p {
+  max-width: 42rem;
+  font-size: 1.08rem;
+  font-weight: 800;
+}
+
+.market-options {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-width: 96rem;
+  border: 3px solid var(--espresso);
+  margin-bottom: 1.5rem;
+  color: var(--espresso);
+  background: var(--espresso);
+  box-shadow: var(--hard-shadow);
+}
+
+.market-options article {
+  display: flex;
+  flex-direction: column;
+  min-height: 24rem;
+  border-right: 3px solid var(--espresso);
+  padding: 1.35rem;
+  background: var(--paper);
+}
+
+.market-options article:nth-child(2) {
+  background: var(--butter);
+}
+
+.market-options article:last-child {
+  border-right: 0;
+}
+
+.market-options .market-options__drinkflow {
+  color: var(--paper);
+  background: var(--tomato);
+}
+
+.market-options span {
+  margin-bottom: 1.4rem;
+  font-size: 0.72rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.market-options p {
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.market-options strong {
+  border-top: 2px solid currentColor;
+  margin-top: auto;
+  padding-top: 1rem;
+  line-height: 1.35;
+}
+
 .difference-copy {
   max-width: 45rem;
 }
@@ -1347,6 +1431,7 @@ textarea {
   .hero-system,
   .service-map,
   .difference-section,
+  .market-section,
   .operations-section,
   .customer-section,
   .insights-section,
@@ -1363,6 +1448,7 @@ textarea {
   .hero-system,
   .service-map,
   .difference-section,
+  .market-section,
   .operations-section,
   .customer-section,
   .insights-section,
@@ -1381,6 +1467,7 @@ textarea {
 
   .hero-system,
   .difference-section,
+  .market-heading,
   .insights-section,
   .fit-section,
   .demo-section {
@@ -1427,6 +1514,7 @@ textarea {
 
   .map-layout,
   .customer-heading,
+  .market-heading,
   .proof-section {
     grid-template-columns: 1fr;
   }
@@ -1447,6 +1535,10 @@ textarea {
   .customer-heading .section-label {
     grid-column: span 1;
     margin-bottom: 0;
+  }
+
+  .market-heading .section-label {
+    grid-column: span 1;
   }
 
   .operations-grid {
@@ -1494,6 +1586,7 @@ textarea {
   .hero-system,
   .service-map,
   .difference-section,
+  .market-section,
   .operations-section,
   .customer-section,
   .insights-section,
@@ -1530,6 +1623,7 @@ textarea {
   .connected-views,
   .operations-grid,
   .customer-path,
+  .market-options,
   .proof-results,
   .dashboard-metrics,
   .demo-form {
@@ -1561,6 +1655,17 @@ textarea {
   .customer-path article,
   .proof-results article {
     min-height: auto;
+  }
+
+  .market-options article,
+  .market-options article:last-child {
+    min-height: auto;
+    border-right: 0;
+    border-bottom: 3px solid var(--espresso);
+  }
+
+  .market-options article:last-child {
+    border-bottom: 0;
   }
 
   .customer-mockup,
