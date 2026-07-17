@@ -8,6 +8,7 @@
       name="description"
       content="Private VendorFlow dashboard for the Studio Samantha souvenir shop. Open orders, preorder flow, and pickup tracking in one place."
     />
+    <meta name="robots" content="noindex, nofollow, noarchive" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -510,14 +511,18 @@
 
         <div class="login-panel" id="login">
           <p class="eyebrow">Studio access</p>
-          <h2>Enter the shop password.</h2>
-          <p>Use the password you set for the vendor workspace, then the dashboard opens in this page.</p>
+          <h2>Sign in to the private workspace.</h2>
+          <p>Use your Studio Samantha account to open VendorFlow leads and production tools.</p>
           <form class="login-form" id="vendorflow-login-form">
             <label class="field">
-              <span>Password</span>
-              <input type="password" name="password" autocomplete="current-password" placeholder="Password" />
+              <span>Username</span>
+              <input type="text" name="username" autocomplete="username" placeholder="Username" required />
             </label>
-            <button class="button primary" type="submit">Unlock dashboard</button>
+            <label class="field">
+              <span>Password</span>
+              <input type="password" name="password" autocomplete="current-password" placeholder="Password" required />
+            </label>
+            <button class="button primary" type="submit">Sign in</button>
             <div class="status" id="login-status" aria-live="polite"></div>
           </form>
           <p class="hint">This is the private layer for preorder setup, vendor prep, and pickup control.</p>
@@ -697,7 +702,7 @@
         <div>VendorFlow connects with Square® and does not replace Square.</div>
         <nav>
           <a href="/vendorflow">VendorFlow</a>
-          <a href="/vendorflow-case-study.html">Case study</a>
+          <a href="/vendorflow-case-study">Case study</a>
           <a href="/souvenirs">Souvenir shop</a>
           <a href="/policy">Policies</a>
         </nav>
@@ -705,9 +710,10 @@
     </main>
 
     <script>
-      const LOGIN_KEY = "vendorflow-souvenir-auth";
-      const PASSWORD = "0806Z@hra0806";
-      const LEADS_URL = "https://goldieskds.com/api/drinkflow-leads";
+      const SESSION_URL = "/api/developer/session";
+      const LOGIN_URL = "/api/developer/login";
+      const LOGOUT_URL = "/api/developer/logout";
+      const LEADS_URL = "/api/developer/vendorflow-leads";
       const form = document.getElementById("vendorflow-login-form");
       const status = document.getElementById("login-status");
       const logoutButton = document.getElementById("logout-button");
@@ -720,11 +726,6 @@
 
       function showDashboard() {
         document.body.classList.add("authenticated");
-        try {
-          localStorage.setItem(LOGIN_KEY, "true");
-        } catch {
-          // ignore storage issues
-        }
         status.textContent = "";
       }
 
@@ -747,11 +748,13 @@
           clearInterval(leadRefreshTimer);
           leadRefreshTimer = null;
         }
-        try {
-          localStorage.removeItem(LOGIN_KEY);
-        } catch {
-          // ignore storage issues
-        }
+        closeCatalog();
+      }
+
+      function escapeHtml(value) {
+        const element = document.createElement("div");
+        element.textContent = String(value || "");
+        return element.innerHTML;
       }
 
       function renderLeads(leads = []) {
@@ -781,11 +784,14 @@
                   minute: "2-digit",
                 })
               : "Recently";
-            const meta = [lead.shopName, lead.featureInterest, lead.source].filter(Boolean).join(" · ");
+            const meta = [lead.shopName, lead.featureInterest, lead.source]
+              .filter(Boolean)
+              .map(escapeHtml)
+              .join(" · ");
             return `
               <div class="lead-item">
-                <strong>${lead.email || "Lead"}</strong>
-                <small>${meta || "Souvenir updates"}${meta ? " · " : ""}${date}</small>
+                <strong>${escapeHtml(lead.email || "Lead")}</strong>
+                <small>${meta || "Souvenir updates"}${meta ? " · " : ""}${escapeHtml(date)}</small>
               </div>
             `;
           })
@@ -795,6 +801,11 @@
       async function loadLeads() {
         try {
           const response = await fetch(LEADS_URL, { credentials: "include" });
+          if (response.status === 401) {
+            hideDashboard();
+            status.textContent = "Your session ended. Sign in again.";
+            return;
+          }
           if (!response.ok) {
             throw new Error(`Lead load failed: ${response.status}`);
           }
@@ -814,40 +825,81 @@
         }
       }
 
-      try {
-        if (localStorage.getItem(LOGIN_KEY) === "true") {
-          showDashboard();
+      function startLeadRefresh() {
+        loadLeads();
+        if (!leadRefreshTimer) {
+          leadRefreshTimer = setInterval(loadLeads, 30000);
         }
-      } catch {
-        // ignore storage issues
       }
 
-      form?.addEventListener("submit", (event) => {
-        event.preventDefault();
-        const value = new FormData(form).get("password") || "";
-
-        if (value === PASSWORD) {
-          showDashboard();
-          loadLeads();
-          if (!leadRefreshTimer) {
-            leadRefreshTimer = setInterval(loadLeads, 30000);
+      async function checkSession() {
+        status.textContent = "Checking access...";
+        try {
+          const response = await fetch(SESSION_URL, { credentials: "include" });
+          const payload = await response.json().catch(() => ({}));
+          if (response.ok && payload.authenticated) {
+            showDashboard();
+            startLeadRefresh();
+            openCatalog();
+            return;
           }
-          openCatalog();
-          return;
+        } catch {
+          // The sign-in form remains available when the session check fails.
         }
 
-        status.textContent = "That password did not unlock the dashboard.";
+        hideDashboard();
+        status.textContent = "";
+      }
+
+      form?.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const data = new FormData(form);
+        const username = String(data.get("username") || "").trim();
+        const password = String(data.get("password") || "");
+        const submitButton = form.querySelector('button[type="submit"]');
+        status.textContent = "Signing in...";
+        if (submitButton) submitButton.disabled = true;
+
+        try {
+          const response = await fetch(LOGIN_URL, {
+            method: "POST",
+            credentials: "include",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, password }),
+          });
+          const payload = await response.json().catch(() => ({}));
+          if (!response.ok) {
+            throw new Error(payload.error || "That login did not unlock the dashboard.");
+          }
+
+          showDashboard();
+          form.reset();
+          startLeadRefresh();
+          openCatalog();
+        } catch (error) {
+          hideDashboard();
+          status.textContent = error.message || "That login did not unlock the dashboard.";
+        } finally {
+          if (submitButton) submitButton.disabled = false;
+        }
       });
 
-      logoutButton?.addEventListener("click", hideDashboard);
-      topLogoutButton?.addEventListener("click", hideDashboard);
-      catalogCloseButton?.addEventListener("click", closeCatalog);
-
-      if (document.body.classList.contains("authenticated")) {
-        loadLeads();
-        leadRefreshTimer = setInterval(loadLeads, 30000);
-        openCatalog();
+      async function logOut() {
+        try {
+          await fetch(LOGOUT_URL, {
+            method: "POST",
+            credentials: "include",
+          });
+        } finally {
+          hideDashboard();
+          status.textContent = "Signed out.";
+        }
       }
+
+      logoutButton?.addEventListener("click", logOut);
+      topLogoutButton?.addEventListener("click", logOut);
+      catalogCloseButton?.addEventListener("click", closeCatalog);
+      checkSession();
     </script>
   </body>
 </html>

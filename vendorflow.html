@@ -8,6 +8,11 @@
       name="description"
       content="VendorFlow helps small vendors take preorders, organize pickup, and keep event lines moving with catalog pages, order status, and simple fulfillment screens. VendorFlow connects with Square&reg; and does not replace Square."
     />
+    <link rel="canonical" href="https://drinkflowkds.com/vendorflow" />
+    <meta property="og:title" content="VendorFlow | Event Preorders + Pickup Boards" />
+    <meta property="og:description" content="Preorders, pickup boards, and event fulfillment for small vendors." />
+    <meta property="og:url" content="https://drinkflowkds.com/vendorflow" />
+    <meta property="og:type" content="website" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -199,11 +204,11 @@
       <span>VendorFlow</span>
       <span>Preorders, pickup boards, and event fulfillment for small shops.</span>
       <a href="/">DrinkFlow</a>
-      <a href="/vendorflow-case-study.html">Case study</a>
-      <a href="/policy.html">Policy</a>
-      <a href="/policy.html#data-use">Data use</a>
-      <a href="/policy.html#ownership">Ownership</a>
-      <a href="/policy.html#trademarks">Trademarks</a>
+      <a href="/vendorflow-case-study">Case study</a>
+      <a href="/policy">Policy</a>
+      <a href="/policy#data-use">Data use</a>
+      <a href="/policy#ownership">Ownership</a>
+      <a href="/policy#trademarks">Trademarks</a>
     </footer>
     <script>
       const vendorflowLeadForm = document.getElementById("vendorflow-lead-form");
@@ -217,14 +222,14 @@
         const payload = {
           email: data.get("email"),
           shopName: data.get("shopName"),
-          message: data.get("message"),
-          source: "drinkflowkds.com/vendorflow",
+          featureInterest: data.get("message"),
+          source: "website",
           pagePath: window.location.pathname,
           referrer: document.referrer,
         };
 
         try {
-          const response = await fetch("https://goldieskds.com/api/drinkflow-leads", {
+          const response = await fetch("/api/vendorflow-leads", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload),

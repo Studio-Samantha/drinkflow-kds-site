@@ -3,21 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DrinkFlow KDS | Coffee Shop Order Screen & Owner Reports</title>
+    <title>DrinkFlow KDS | Drink Service Operations System</title>
     <meta
       name="description"
-      content="DrinkFlow KDS is a Square-connected kitchen display system and cafe operations dashboard for coffee shops, smoothie bars, carts, and drink counters."
+      content="DrinkFlow KDS connects focused drink preparation, full transaction lookup, customer ordering and pickup displays, menu availability, and owner reporting in one drink-service system."
     />
     <meta name="robots" content="index, follow" />
     <meta
       name="keywords"
-      content="coffee shop KDS, kitchen display system, Square KDS, cafe order screen, drink order board, coffee shop owner reports, pickup display, cafe operations software"
+      content="drink KDS, coffee shop KDS, drink order screen, cafe pickup display, drink prep workflow, food truck drink orders, coffee shop owner reports, mixed transaction lookup, self order kiosk"
     />
     <link rel="canonical" href="https://drinkflowkds.com/" />
     <meta property="og:title" content="DrinkFlow KDS" />
     <meta
       property="og:description"
-      content="A Square-connected kitchen display system, pickup display, and owner-reporting dashboard for busy drink shops."
+      content="Keep the drink line focused while prep, pickup, ordering, transaction lookup, and owner reporting stay connected."
     />
     <meta property="og:url" content="https://drinkflowkds.com/" />
     <meta property="og:type" content="website" />
@@ -26,609 +26,518 @@
     <meta name="twitter:title" content="DrinkFlow KDS" />
     <meta
       name="twitter:description"
-      content="Coffee shop KDS, pickup displays, online/kiosk ordering paths, and owner reports for Square-connected drink shops."
+      content="A connected operating system for drink prep, customer pickup, full-order lookup, and owner decisions."
     />
     <meta name="twitter:image" content="https://drinkflowkds.com/assets/drinkflow-ipad-kds.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Nunito+Sans:wght@400;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./home.css" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "Organization",
-            "@id": "https://drinkflowkds.com/#organization",
-            "name": "Studio Samantha",
-            "url": "https://drinkflowkds.com/"
-          },
-          {
-            "@type": "WebSite",
-            "@id": "https://drinkflowkds.com/#website",
-            "url": "https://drinkflowkds.com/",
-            "name": "DrinkFlow KDS",
-            "publisher": {
-              "@id": "https://drinkflowkds.com/#organization"
-            }
-          },
-          {
-            "@type": "SoftwareApplication",
-            "@id": "https://drinkflowkds.com/#software",
-            "name": "DrinkFlow KDS",
-            "applicationCategory": "BusinessApplication",
-            "operatingSystem": "Web",
-            "url": "https://drinkflowkds.com/",
-            "image": "https://drinkflowkds.com/assets/drinkflow-ipad-kds.png",
-            "description": "A Square-connected kitchen display system and cafe operations dashboard for drink-heavy shops, with staff order boards, customer pickup displays, online or kiosk ordering paths, and owner reports.",
-            "creator": {
-              "@id": "https://drinkflowkds.com/#organization"
-            },
-            "offers": {
-              "@type": "Offer",
-              "availability": "https://schema.org/PreOrder",
-              "priceCurrency": "USD",
-              "description": "Demo and setup conversations available by request."
-            }
-          },
-          {
-            "@type": "FAQPage",
-            "@id": "https://drinkflowkds.com/#faq",
-            "mainEntity": [
-              {
-                "@type": "Question",
-                "name": "What is a KDS?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "A KDS, or Kitchen Display System, is a digital order board that helps staff see new orders, orders being made, and orders ready for pickup."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What does DrinkFlow KDS do?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "DrinkFlow KDS helps drink shops manage the rush from order to pickup to owner reports, including staff order screens, customer pickup displays, online or kiosk ordering paths, and owner reporting."
-                }
-              }
-            ]
-          }
-        ]
+        "@type": "SoftwareApplication",
+        "name": "DrinkFlow KDS",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "url": "https://drinkflowkds.com/",
+        "description": "A drink-service operations system connecting focused preparation, customer pickup, transaction lookup, ordering, menu availability, and owner reporting.",
+        "offers": {
+          "@type": "Offer",
+          "availability": "https://schema.org/PreOrder",
+          "priceCurrency": "USD",
+          "description": "Demo and early pilot conversations available by request."
+        }
       }
     </script>
   </head>
   <body>
-    <nav class="nav" aria-label="Main navigation">
+    <nav class="site-nav" aria-label="Main navigation">
       <a class="brand" href="#top" aria-label="DrinkFlow KDS home">
-        <img class="brand-mark brand-logo" src="./assets/drinkflow-logo.png" alt="" aria-hidden="true" />
+        <span class="brand-stamp" aria-hidden="true">DF</span>
+        <strong>DrinkFlow <span>KDS</span></strong>
       </a>
       <div class="nav-links">
-        <a href="#screens">Product</a>
-        <a href="#proof">Proof</a>
-        <a href="#contact">Contact</a>
+        <a href="#difference">Why it is different</a>
+        <a href="#operations">Staff tools</a>
+        <a href="#customers">Customer flow</a>
+        <a href="#insights">Owner reports</a>
+        <a href="#proof">Case study</a>
       </div>
+      <a class="nav-cta" href="#demo">Request demo</a>
     </nav>
 
     <main id="top">
-      <section class="hero">
+      <section class="hero-system" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <p class="eyebrow">Square-connected cafe operations</p>
-          <h1>DrinkFlow KDS</h1>
-          <p class="lead">A drink-focused KDS and owner-reporting system for busy cafes: live drink queues, customer-facing displays, menu updates, report exports, and online or kiosk ordering paths.</p>
-          <div class="hero-actions">
-            <a class="button secondary" href="#screens">See the system</a>
-            <a class="button primary" href="mailto:samantha@studiosamantha.com?subject=DrinkFlow%20KDS%20demo">Request demo</a>
-          </div>
-          <p class="hero-note">
-            DrinkFlow is built for the way drink shops actually move orders: rushes, modifiers, pickup names, repeated drinks, menu changes, owner questions, and customer-facing status.
+          <p class="section-label">Order. Make. Hand off. Learn.</p>
+          <h1 id="hero-title">DrinkFlow KDS keeps the whole drink counter moving.</h1>
+          <p class="hero-lead">
+            Keep the preparation queue focused while mixed sales, customer ordering,
+            pickup displays, full-order lookup, menu availability, and owner reporting
+            stay connected in one clear service flow.
           </p>
-          <div class="hero-proof">
-            <span><strong>Square</strong> workflow</span>
-            <span><strong>Avg time</strong> to ready</span>
-            <span><strong>Today&apos;s</strong> count</span>
-            <span><strong>Boards</strong> and pickup</span>
-            <span><strong>Drive thru</strong> + online</span>
-            <span><strong>Kiosk</strong> ready</span>
+          <div class="hero-actions" aria-label="Primary actions">
+            <a class="button primary" href="#demo">Request a demo</a>
+            <a class="button secondary" href="#system">See how it connects</a>
           </div>
-        </div>
-
-        <div class="screen-wall" aria-label="DrinkFlow product screen examples">
-          <div class="screen-card screen-kds">
-            <div class="screen-top">
-              <strong>Staff KDS</strong>
-              <span>Live</span>
-            </div>
-            <div class="mini-columns">
-              <div>
-                <b>New</b>
-                <p>Megan<br /><span>Iced Latte</span></p>
-                <p>#104<br /><span>Chai</span></p>
-              </div>
-              <div>
-                <b>Making</b>
-                <p>#101<br /><span>Cold Brew</span></p>
-                <p>#102<br /><span>Matcha</span></p>
-              </div>
-              <div>
-                <b>Ready</b>
-                <p>#098<br /><span>Americano</span></p>
-              </div>
-            </div>
-          </div>
-          <div class="screen-card screen-report">
-            <div class="screen-top">
-              <strong>Owner Read</strong>
-              <span>Today</span>
-            </div>
-            <div class="owner-digest-card">
-              <p>Cold drinks carried the morning rush. Keep lids, cups, and cold brew stocked before 9 AM tomorrow.</p>
-              <div class="owner-digest-tags">
-                <span>Peak 8-10 AM</span>
-                <span>44 drinks</span>
-                <span>34% multi-drink</span>
-              </div>
-            </div>
-            <div class="owner-metric-stack">
-              <div><span>Avg drink time</span><strong>3:42</strong></div>
-              <div><span>Ready handoff</span><strong>2 min</strong></div>
-              <div><span>Retail filtered</span><strong>Yes</strong></div>
-            </div>
-          </div>
-          <div class="screen-card screen-pickup">
-            <div class="screen-top">
-              <strong>Orders Up</strong>
-              <span>Pickup</span>
-            </div>
-            <div class="pickup-list">
-              <div><b>Making</b><span>#101 Cold Brew</span></div>
-              <div class="ready-row"><b>Ready</b><span>#098 Americano</span></div>
-              <button type="button">Order picked up</button>
-            </div>
-          </div>
-          <div class="screen-card screen-owner">
-            <div class="screen-top">
-              <strong>Written Owner Read</strong>
-              <span>After close</span>
-            </div>
-            <p class="owner-note">Morning rush peaked around 9 AM. Cold drinks led volume. Prep more cold cups before the next warm weekday rush.</p>
-            <div class="owner-timeline" aria-label="Rush summary">
-              <span>Peak window</span>
-              <strong>8-10 AM</strong>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="case-study" id="what-is-drinkflow">
-        <div class="case-copy">
-          <p class="eyebrow">Plain-English explanation</p>
-          <h2>A workflow board for drink shops.</h2>
-          <p>
-            A KDS is a Kitchen Display System: a digital order board that shows staff what just came in,
-            what is being made, and what is ready for pickup. DrinkFlow starts there, then adds customer
-            pickup screens, menu availability, online or kiosk ordering paths, and owner reports.
-          </p>
-          <p>
-            Think of it as an operations dashboard for a coffee shop rush: order status for staff,
-            pickup clarity for customers, and a clearer day-end read for the owner.
-          </p>
-        </div>
-        <div class="case-panel">
-          <div class="stat"><strong>Staff</strong><span>Order board</span></div>
-          <div class="stat"><strong>Guests</strong><span>Pickup status</span></div>
-          <div class="stat"><strong>Owner</strong><span>Reports</span></div>
-        </div>
-      </section>
-      <section class="case-study" id="proof">
-        <div class="case-copy">
-          <p class="eyebrow">Live proof</p>
-          <h2>Already working in a real coffee rush.</h2>
-          <p>
-            DrinkFlow is being proven at Goldie's Coffee & Goods in Exira, Iowa. Goldie's is the proof point, not the whole product: a real service environment where the KDS, pickup displays, owner reports, menu behavior, and ordering paths can be shaped by actual shop use.
-          </p>
-          <p>
-            Current proof build: v1.10.29, including the repaired customer Online Ordering path, clean /online-ordering and /order routes, and checkout return flow.
-          </p>
-          <p><a class="button secondary" href="https://goldieskds.com/case-study/goldies">Read the Goldie's case study</a></p>
-        </div>
-        <div class="case-panel">
-          <div class="stat"><strong>v1.10.29</strong><span>Current proof build</span></div>
-          <div class="stat"><strong>Pickup</strong><span>Visible</span></div>
-          <div class="stat"><strong>Reports</strong><span>Drink-first</span></div>
         </div>
       </section>
 
-      <section class="screen-gallery" id="screens">
-        <div class="section-heading compact-heading">
-          <p class="eyebrow">Live features</p>
-          <h2>What drink shops use day to day.</h2>
-          <p>DrinkFlow keeps the counter readable, customer pickup clearer, and owner reporting easier to review after service.</p>
+        <section class="service-map" id="system" aria-label="DrinkFlow connected product views">
+          <div class="map-topbar">
+            <strong>DrinkFlow service map</strong>
+            <span><i aria-hidden="true"></i> Connected</span>
+          </div>
+          <div class="traction-row" aria-label="What DrinkFlow keeps connected">
+            <article>
+              <strong>Focused prep</strong>
+              <span>Drink work, modifiers, timing, and checkoffs stay clear.</span>
+            </article>
+            <article>
+              <strong>Complete context</strong>
+              <span>The full sale remains available for lookup and reporting.</span>
+            </article>
+            <article>
+              <strong>Clear handoff</strong>
+              <span>Ordering, preparation, and pickup views move together.</span>
+            </article>
+          </div>
+          <div class="map-layout">
+            <article class="mixed-sale">
+              <span class="order-stamp">Sample sale #1842</span>
+              <h2>One mixed order arrives</h2>
+              <ul>
+                <li class="drink-item"><b>2x</b> Iced latte + modifiers</li>
+                <li class="drink-item"><b>1x</b> Matcha latte</li>
+                <li><b>1x</b> Retail item</li>
+                <li><b>1x</b> Bakery item</li>
+              </ul>
+              <p>One transaction stays intact. Each screen gets only the context it needs.</p>
+            </article>
+
+            <div class="connected-views">
+              <article class="view-panel staff-view">
+                <span>Staff</span>
+                <h2>Focus Board</h2>
+                <strong>3 drinks to make</strong>
+                <p>Modifiers, timers, names, and drink-by-drink checkoffs.</p>
+              </article>
+              <article class="view-panel lookup-view">
+                <span>Lookup</span>
+                <h2>Full order</h2>
+                <strong>5 items preserved</strong>
+                <p>Retail, food, service type, notes, source, and order history.</p>
+              </article>
+              <article class="view-panel guest-view">
+                <span>Customers</span>
+                <h2>Pickup flow</h2>
+                <strong>Making &rarr; Ready</strong>
+                <p>Orders Up, drive-thru, online-order, and menu displays.</p>
+              </article>
+              <article class="view-panel owner-view">
+                <span>Owners</span>
+                <h2>Decision view</h2>
+                <strong>Demand + timing</strong>
+                <p>Drink revenue, volume, mix, service timing, guidance, and exports.</p>
+              </article>
+            </div>
+          </div>
+      </section>
+
+      <section class="difference-section" id="difference" aria-labelledby="difference-title">
+        <div class="difference-copy">
+          <p class="section-label">The differentiator</p>
+          <h2 id="difference-title">A regular KDS shows tickets. DrinkFlow understands the transaction around them.</h2>
+          <p>
+            Hybrid counters do not sell drinks in isolation. A sale may also contain
+            retail, food, pickup details, customer notes, and multiple service types.
+            DrinkFlow separates the work without throwing away the business context.
+          </p>
         </div>
-        <div class="gallery-grid">
-          <article>
-            <span>Boards</span>
-            <h3>Make board</h3>
-            <p>New, Making, Ready, and volume board views keep the rush readable.</p>
+
+        <div class="sorting-story" aria-label="How DrinkFlow separates a mixed transaction">
+          <article class="sale-stack">
+            <span>Point-of-sale order</span>
+            <b>Latte</b>
+            <b>Tea</b>
+            <b class="non-drink">Retail item</b>
+            <b class="non-drink">Bakery item</b>
           </article>
-          <article>
-            <span>Pickup</span>
-            <h3>Orders Up</h3>
-            <p>Pickup, drive thru, and online orders stay visible without the yelling.</p>
+          <div class="sort-mark" aria-hidden="true">
+            <strong>DF</strong>
+            <span>sorts the work</span>
+          </div>
+          <div class="sorted-results">
+            <article>
+              <span>Focus Board</span>
+              <strong>Latte + tea</strong>
+              <p>Only makeable drinks, modifiers, names, and checkoffs.</p>
+            </article>
+            <article>
+              <span>Full dashboard + lookup</span>
+              <strong>All four items</strong>
+              <p>The entire sale is still available when staff or owners need it.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="operations-section" id="operations" aria-labelledby="operations-title">
+        <div class="section-heading">
+          <p class="section-label">Staff operations</p>
+          <h2 id="operations-title">Two levels of detail, because a rush and a transaction question are different jobs.</h2>
+          <a class="button secondary" href="https://goldieskds.com/demo">Open interactive sample</a>
+        </div>
+
+        <div class="operations-grid">
+          <article class="feature-block feature-focus">
+            <span class="feature-kicker">Focus Board</span>
+            <h3>Give the bar the shortest path to the next drink.</h3>
+            <div class="focus-sample" aria-label="Sample focused drink ticket">
+              <div><b>Mia</b><span>#T1002</span><em>Making 3 min</em></div>
+              <p><i aria-hidden="true"></i> 2x Latte</p>
+              <small>Extra hot, oat milk</small>
+              <strong>1 non-drink item hidden here</strong>
+            </div>
+            <p>
+              Drink-only tickets, modifiers, stage timers, customer names, and large
+              touch controls help the team move without reading the entire basket.
+            </p>
           </article>
-          <article>
-            <span>Insights</span>
-            <h3>Avg time + count</h3>
-            <p>Average drink time, timing reports, customer insights, and today&apos;s count stay simple.</p>
+
+          <article class="feature-block feature-full">
+            <span class="feature-kicker">Full dashboard</span>
+            <h3>Bring the whole order back when context matters.</h3>
+            <p>
+              Staff can see every item, who took the order, service type, order source,
+              notes, and customer callout name. Hidden from prep never means lost.
+            </p>
+            <div class="detail-tags" aria-label="Full dashboard details">
+              <span>Retail + food</span><span>Employee</span><span>Dining option</span><span>Order source</span>
+            </div>
           </article>
-          <article>
-            <span>Menu</span>
-            <h3>Menu availability</h3>
-            <p>Mark items out of stock fast so online ordering and front-facing menus stay current.</p>
+
+          <article class="feature-block feature-checkoff">
+            <span class="feature-kicker">Item checkoffs</span>
+            <h3>Finish a multi-drink order one item at a time.</h3>
+            <p>Drink checkoffs keep a large order readable and can move the ticket forward when its drink work is complete.</p>
           </article>
-          <article>
-            <span>Reports</span>
-            <h3>Owner reports</h3>
-            <p>Review category mix, hourly volume, timing, shop notes, and exportable reports.</p>
+
+          <article class="feature-block feature-lookup">
+            <span class="feature-kicker">Order lookup</span>
+            <h3>Find completed transactions by day.</h3>
+            <p>Review drink and non-drink items, modifiers, notes, category, time, and status after the ticket leaves the live board.</p>
           </article>
-          <article>
-            <span>Kiosk</span>
-            <h3>Self-order mode</h3>
-            <p>Run a kiosk when a shop or event needs customers to order without slowing the line.</p>
+
+          <article class="feature-block feature-training">
+            <span class="feature-kicker">Training mode</span>
+            <h3>Practice without touching live orders.</h3>
+            <p>Sample tickets and counts let staff learn the workflow without changing production data.</p>
           </article>
         </div>
-        <div class="real-screens">
-          <figure>
-            <img src="./assets/drinkflow-ipad-kds.png" alt="DrinkFlow KDS running on an iPad at a coffee counter" />
-            <figcaption>Staff board, volume, and timing views.</figcaption>
+      </section>
+
+      <section class="customer-section" id="customers" aria-labelledby="customers-title">
+        <div class="customer-heading">
+          <p class="section-label">Customer flow</p>
+          <h2 id="customers-title">The customer experience is part of the same system.</h2>
+          <p>
+            DrinkFlow does more than organize the bar. It connects how customers order,
+            what the menu can sell, where an order is in the process, and how pickup is communicated.
+          </p>
+        </div>
+
+        <div class="customer-showcase" aria-label="Concept mockups of the DrinkFlow customer experience">
+          <figure class="customer-mockup customer-mockup-kiosk">
+            <img
+              src="assets/customer-experience/self-order-kiosk.jpg"
+              alt="Concept mockup of a customer customizing a drink on a self-order kiosk"
+              width="1536"
+              height="1024"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>
+              <span>Concept 01 · Self-order</span>
+              <strong>Customize without holding up the counter.</strong>
+            </figcaption>
           </figure>
-          <figure>
-            <img src="./assets/drinkflow-screen-setup.png" alt="DrinkFlow KDS running across a wall display, tablet, and phone" />
-            <figcaption>Orders Up, menu board, and kiosk-ready setup.</figcaption>
+
+          <figure class="customer-mockup customer-mockup-online">
+            <img
+              src="assets/customer-experience/order-ahead.jpg"
+              alt="Concept mockup of a customer ordering a customized drink from a phone"
+              width="1536"
+              height="1024"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>
+              <span>Concept 02 · Order ahead</span>
+              <strong>Use the same menu and availability before arrival.</strong>
+            </figcaption>
           </figure>
+
+          <figure class="customer-mockup customer-mockup-pickup">
+            <img
+              src="assets/customer-experience/pickup-display.jpg"
+              alt="Concept mockup of customers watching an in-progress and ready pickup display"
+              width="1536"
+              height="1024"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>
+              <span>Concept 03 · Pickup</span>
+              <strong>Know what is moving and what is ready.</strong>
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="customer-path" aria-label="Connected DrinkFlow customer tools">
+          <article>
+            <span>01</span>
+            <h3>Menu + availability</h3>
+            <p>Keep customer-facing drink menus aligned and mark unavailable items without rebuilding the display.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Online or self-order</h3>
+            <p>Offer a branded ordering path or kiosk that sends drink work into the same operating flow.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Live preparation</h3>
+            <p>Names, modifiers, service type, online due time, and item checkoffs stay visible to staff.</p>
+          </article>
+          <article>
+            <span>04</span>
+            <h3>Pickup displays</h3>
+            <p>Use Orders Up, Online Orders, and Drive-Thru views to show useful status without exposing internal detail.</p>
+          </article>
+          <article>
+            <span>05</span>
+            <h3>Volume Board</h3>
+            <p>Share the rhythm of the day with a customer-safe view of hourly drink volume.</p>
+          </article>
         </div>
       </section>
 
-      <section class="comparison-band" id="pricing">
+      <section class="insights-section" id="insights" aria-labelledby="insights-title">
+        <div class="owner-dashboard" aria-label="Sample DrinkFlow owner report">
+          <div class="dashboard-topline">
+            <strong>Owner Reports</strong>
+            <span>Sample view</span>
+          </div>
+          <div class="dashboard-metrics">
+            <article><span>Drink revenue</span><b>isolated</b><small>before tax + collected</small></article>
+            <article><span>Drink units</span><b>counted</b><small>by category and item</small></article>
+            <article><span>Multi-drink rate</span><b>visible</b><small>basket behavior</small></article>
+            <article><span>Prep time</span><b>measured</b><small>start to ready</small></article>
+          </div>
+          <div class="volume-chart" aria-label="Sample hourly drink volume chart">
+            <span style="--height: 28%"></span>
+            <span style="--height: 55%"></span>
+            <span style="--height: 92%"></span>
+            <span style="--height: 76%"></span>
+            <span style="--height: 64%"></span>
+            <span style="--height: 48%"></span>
+            <span style="--height: 31%"></span>
+            <span style="--height: 18%"></span>
+          </div>
+          <div class="export-row"><span>Today</span><span>7 days</span><span>30 days</span><span>Quarter</span><span>Custom</span><b>CSV / Excel / PDF</b></div>
+        </div>
+
+        <div class="insights-copy">
+          <p class="section-label">Owner decisions</p>
+          <h2 id="insights-title">Measure the counter you actually run.</h2>
+          <p>
+            There is no borrowed industry statistic pretending every drink should take
+            the same amount of time. DrinkFlow builds a baseline from your own service,
+            then makes the patterns visible enough to test improvements.
+          </p>
+          <ul>
+            <li>Drink revenue, tax, units, top items, and category mix</li>
+            <li>Hourly demand, busiest windows, and slower periods</li>
+            <li>Start-to-ready timing by hour and drink name</li>
+            <li>Multi-drink order behavior and non-drink attachment context</li>
+            <li>Plain-language preparation and staffing cues</li>
+            <li>Custom date ranges with CSV, Excel, and PDF exports</li>
+          </ul>
+          <a class="button light" href="https://goldieskds.com/demo/owner">Explore sample owner reports</a>
+        </div>
+      </section>
+
+      <section class="proof-section" id="proof" aria-labelledby="proof-title">
+        <div class="proof-heading">
+          <p class="section-label">Evidence behind the product</p>
+          <h2 id="proof-title">Real service confirmed the problem DrinkFlow was built to solve.</h2>
+          <p>
+            The first live deployment showed that mixed drink, retail, and food sales are
+            not unusual exceptions. They are a normal counter condition. DrinkFlow responds
+            by separating what staff must make from everything the business still needs to know.
+          </p>
+          <a class="button secondary" href="https://goldieskds.com/case-study/goldies">See the full field case study</a>
+        </div>
+
+        <div class="proof-results">
+          <article class="proof-finding">
+            <span>Field finding</span>
+            <strong>44%</strong>
+            <p>of drink orders in the first deployment also included non-drink items.</p>
+          </article>
+          <article class="proof-response">
+            <span>How DrinkFlow responds</span>
+            <h3>One sale. Different views. No lost context.</h3>
+            <ul>
+              <li>The preparation board receives only drink work.</li>
+              <li>The complete transaction stays available for lookup.</li>
+              <li>Customer displays receive clear, customer-safe status.</li>
+              <li>Owner reports retain timing, demand, and order-mix context.</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="learning-note">
+          <span>Evidence, not overpromising</span>
+          <p>
+            The same deployment established a measurable start-to-ready baseline. It has not
+            yet proven a sustained speed gain, so DrinkFlow does not sell that claim. It sells
+            clearer coordination and the ability to test improvements using each shop&apos;s own service data.
+          </p>
+        </div>
+      </section>
+
+      <section class="fit-section" aria-labelledby="fit-title">
         <div>
-          <p class="eyebrow">Current product package</p>
-          <h2>A working operations layer around Square.</h2>
-          <p>
-            DrinkFlow is not trying to replace Square. It adds a drink-focused operations layer: staff KDS, customer displays, menu availability, owner reports, online ordering, kiosk ordering, and a real cafe proof story.
-          </p>
+          <p class="section-label">Where the fit is strongest</p>
+          <h2 id="fit-title">For counters where drinks, merchandise, food, and pickup collide.</h2>
         </div>
-        <div class="comparison-cards">
-          <article>
-            <span>Core workflow</span>
-            <strong>KDS + displays</strong>
-            <p>New, Making, Ready, pickup boards, menu boards, online order visibility, and kiosk-ready ordering paths.</p>
-          </article>
-          <article class="drinkflow-card">
-            <span>DrinkFlow</span>
-            <strong>Owner insight</strong>
-            <p>Average drink time, customer insights, today&apos;s count, menu toggles, category mix, hourly volume, and exportable reports.</p>
-          </article>
+        <div class="fit-list">
+          <span>Coffee shops</span>
+          <span>Smoothie and juice bars</span>
+          <span>Food trucks</span>
+          <span>Drink carts</span>
+          <span>Event beverage stands</span>
+          <span>Hybrid retail counters</span>
+          <span>Drive-thru pickup</span>
         </div>
       </section>
 
-      <section class="cta" id="contact">
-        <p class="eyebrow">DrinkFlowKDS.com</p>
-        <h2>Your drink counter should feel easier to read.</h2>
-        <p>DrinkFlow keeps pickup clear, the line calmer, and the day easier to read.</p>
-        <a class="button primary" href="mailto:samantha@studiosamantha.com?subject=DrinkFlow%20KDS%20setup">Ask about setup</a>
+      <section class="demo-section" id="demo" aria-labelledby="demo-title">
+        <div class="demo-copy">
+          <p class="section-label">Early shop pilots</p>
+          <h2 id="demo-title">Start with one counter problem we can measure.</h2>
+          <p>
+            Show us one busy service day: what customers order, what staff need to see,
+            where pickup gets confusing, and what the owner still cannot measure. The
+            first conversation is about fit and evidence, not forcing a giant software setup.
+          </p>
+          <div class="demo-expectations" aria-label="What happens after requesting a demo">
+            <span>1. Workflow review</span>
+            <span>2. Focused product walkthrough</span>
+            <span>3. One measurable pilot question</span>
+          </div>
+        </div>
+        <form id="demo-request-form" class="demo-form">
+          <label>
+            <span>Name</span>
+            <input type="text" name="contactName" autocomplete="name" placeholder="Your name" />
+          </label>
+          <label>
+            <span>Email</span>
+            <input type="email" name="email" autocomplete="email" placeholder="you@shop.com" required />
+          </label>
+          <label>
+            <span>Shop name</span>
+            <input type="text" name="shopName" autocomplete="organization" placeholder="Your shop name" required />
+          </label>
+          <label>
+            <span>Counter type</span>
+            <select name="businessType" required>
+              <option value="">What are you running?</option>
+              <option>Coffee shop</option>
+              <option>Smoothie or juice bar</option>
+              <option>Food truck</option>
+              <option>Drink cart</option>
+              <option>Event beverage stand</option>
+              <option>Bakery or cafe counter</option>
+              <option>Other fast-service counter</option>
+            </select>
+          </label>
+          <label>
+            <span>POS system</span>
+            <select name="posSystem" required>
+              <option value="">Select your POS</option>
+              <option>Square</option>
+              <option>Clover</option>
+              <option>Toast</option>
+              <option>Shopify</option>
+              <option>Lightspeed</option>
+              <option>Not sure yet</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label class="full">
+            <span>What gets messy during service?</span>
+            <textarea name="currentPain" rows="4" placeholder="Mixed retail and drink orders, pickup names, online orders, menu updates, owner reports..." required></textarea>
+          </label>
+          <input class="hidden-field" type="text" name="company" tabindex="-1" autocomplete="off" />
+          <button class="button primary demo-submit" type="submit">Request demo</button>
+          <p class="form-status" id="demo-request-status" role="status" aria-live="polite"></p>
+        </form>
       </section>
     </main>
 
-    <footer>
+    <footer class="site-footer">
       <a class="brand" href="#top">
-        <img class="brand-mark brand-logo" src="./assets/drinkflow-logo.png" alt="" aria-hidden="true" />
+        <span class="brand-stamp" aria-hidden="true">DF</span>
+        <strong>DrinkFlow <span>KDS</span></strong>
       </a>
-      <span>See your rush as it happens.</span>
+      <span>Focused drink work. Connected service. Useful owner evidence.</span>
       <a href="/vendorflow">VendorFlowDS</a>
-      <a href="/policy.html">Policy</a>
-      <a href="/policy.html#data-use">Data use</a>
-      <a href="/policy.html#ownership">Ownership</a>
-      <a href="/policy.html#trademarks">Trademarks</a>
+      <a href="/policy">Policy</a>
+      <a href="/policy#ownership">Ownership</a>
     </footer>
 
-    <div class="signup-modal" id="signup-modal" hidden>
-      <div class="signup-modal-card">
-        <button type="button" class="signup-modal-close" id="signup-modal-close" aria-label="Close signup">×</button>
-        <p class="eyebrow">Demo interest</p>
-        <h2>Setup path coming soon.</h2>
-        <p>Latest: live features, product notes, and setup-path updates.</p>
-        <p>The public page stays focused on the product until the setup flow is ready again.</p>
-        <form class="modal-signup-form" id="modal-signup-form">
-          <div class="instant-app-panel">
-            <div class="modal-primary-fields">
-              <label class="claim-row">
-                <span>Email</span>
-                <input type="email" name="email" autocomplete="email" required aria-label="Email" placeholder="you@yourshop.com" />
-              </label>
-              <label class="claim-row">
-                <span>Shop</span>
-                <input type="text" name="shopName" autocomplete="organization" required aria-label="Shop name" placeholder="Prairie Bean Co." />
-              </label>
-            </div>
-            <input type="hidden" name="contactName" />
-            <input type="hidden" name="workspaceSlug" />
-            <div class="app-link-preview" aria-live="polite">
-              <span>App link</span>
-              <strong id="modal-domain-preview">your-counter.drinkflowkds.com</strong>
-            </div>
-          </div>
-          <div class="theme-snap">
-            <input type="hidden" name="businessType" value="Beverage counter" />
-            <p class="theme-snap-title">Pick a workspace look</p>
-            <input type="hidden" name="starterTheme" value="Coffee Bar" />
-            <div class="modal-theme-grid">
-              <button type="button" class="modal-theme coffee-card active" data-theme="Coffee Bar">
-                <span>Coffee</span><strong>Morning rush</strong><small>Warm counter tones</small>
-              </button>
-              <button type="button" class="modal-theme lemonade-card" data-theme="Lemonade Stand">
-                <span>Lemonade</span><strong>Sunny stand</strong><small>Bright with citrus pattern</small>
-              </button>
-              <button type="button" class="modal-theme smoothie-card" data-theme="Smoothie Shop">
-                <span>Smoothie</span><strong>Fresh bar</strong><small>Fruit color energy</small>
-              </button>
-              <button type="button" class="modal-theme vendor-event-card" data-theme="Vendor/Event Booth">
-                <span>Event</span><strong>Artist alley</strong><small>Preorders and pickup</small>
-              </button>
-            </div>
-          </div>
-          <input type="text" name="company" tabindex="-1" autocomplete="off" class="hidden-field" />
-          <button class="button primary modal-submit" type="submit">Join updates</button>
-          <p class="form-status" id="modal-signup-status" role="status" aria-live="polite"></p>
-          <div class="starter-card" id="modal-square-card" hidden>
-            <p class="eyebrow">Check your email</p>
-            <h3>Verify before updates.</h3>
-            <p id="modal-workspace-url"></p>
-            <a class="button primary" id="modal-square-link" href="/#contact">Back to product</a>
-          </div>
-        </form>
-        <a class="signup-fallback" href="/#contact">Back to product</a>
-      </div>
-    </div>
-
     <script>
-      const leadForm = document.getElementById("lead-form");
-      const leadStatus = document.getElementById("lead-status");
-      const onboardingForm = document.getElementById("onboarding-form");
-      const onboardingStatus = document.getElementById("onboarding-status");
-      const themePreview = document.getElementById("theme-preview");
-      const upgradeModal = document.getElementById("upgrade-modal");
-      const upgradeTitle = document.getElementById("upgrade-title");
-      const upgradeClose = document.getElementById("upgrade-close");
-      const signupModal = document.getElementById("signup-modal");
-      const signupModalClose = document.getElementById("signup-modal-close");
-      const modalSignupForm = document.getElementById("modal-signup-form");
-      const modalSignupStatus = document.getElementById("modal-signup-status");
-      const modalDomainPreview = document.getElementById("modal-domain-preview");
+      const demoForm = document.getElementById("demo-request-form");
+      const demoStatus = document.getElementById("demo-request-status");
 
-      function cleanWorkspaceSlug(value) {
-        return String(value || "")
-          .toLowerCase()
-          .replace(/[^a-z0-9-]+/g, "-")
-          .replace(/^-+|-+$/g, "")
-          .replace(/-{2,}/g, "-")
-          .slice(0, 42);
-      }
+      demoForm?.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        demoStatus.textContent = "Sending your request...";
 
-      function getModalSlug() {
-        const shopSlug = cleanWorkspaceSlug(modalSignupForm?.elements.shopName?.value);
-        return shopSlug || "your-counter";
-      }
-
-      function refreshModalDomain() {
-        const slug = getModalSlug();
-        if (modalSignupForm?.elements.workspaceSlug) modalSignupForm.elements.workspaceSlug.value = slug;
-        modalDomainPreview.textContent = `${slug}.drinkflowkds.com`;
-      }
-
-      function openSignupModal() {
-        signupModal?.removeAttribute("hidden");
-        refreshModalDomain();
-        setTimeout(() => modalSignupForm?.elements.email?.focus(), 50);
-      }
-
-      function closeSignupModal() {
-        signupModal?.setAttribute("hidden", "");
-      }
-
-      document.querySelectorAll(".signup-trigger").forEach((link) => {
-        link.addEventListener("click", (event) => {
-          event.preventDefault();
-          openSignupModal();
-        });
-      });
-
-      signupModalClose?.addEventListener("click", closeSignupModal);
-      signupModal?.addEventListener("click", (event) => {
-        if (event.target === signupModal) closeSignupModal();
-      });
-
-      modalSignupForm?.elements.email?.addEventListener("input", refreshModalDomain);
-      modalSignupForm?.elements.shopName?.addEventListener("input", refreshModalDomain);
-
-      document.querySelectorAll(".modal-theme").forEach((button) => {
-        button.addEventListener("click", () => {
-          document.querySelectorAll(".modal-theme").forEach((theme) => theme.classList.remove("active"));
-          button.classList.add("active");
-          modalSignupForm.elements.starterTheme.value = button.dataset.theme;
-        });
-      });
-
-      async function createDrinkFlowAppFromForm(form, statusEl, squareCardId, workspaceTextId, squareLinkId) {
-        statusEl.textContent = "Creating your app...";
-        const data = new FormData(form);
-        const workspaceSlug = cleanWorkspaceSlug(data.get("workspaceSlug"));
-        if (!workspaceSlug || workspaceSlug === "your-counter") {
-          throw new Error("Add your shop or stand name to join updates.");
-        }
+        const data = new FormData(demoForm);
         const payload = {
           contactName: data.get("contactName"),
           email: data.get("email"),
           shopName: data.get("shopName"),
-          workspaceSlug,
-          location: "",
-          businessType: data.get("businessType") || "Beverage counter",
-          posSystem: "Square",
-          starterTheme: data.get("starterTheme") || "Coffee Bar",
-          screenNeeds: ["Staff KDS", "Orders Up"],
-          orderSources: ["In person"],
-          averageDailyOrders: "",
-          rushWindow: "",
-          pricingComfort: "Free workspace",
-          timeline: "ASAP",
-          currentPain: "",
-          socialLinks: [],
-          notes: "",
-          company: data.get("company"),
-          source: "drinkflowkds.com-modal",
-          pagePath: window.location.pathname,
-          referrer: document.referrer
-        };
-
-        const workspaceResponse = await fetch("https://goldieskds.com/api/drinkflow-workspaces", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            slug: payload.workspaceSlug,
-            shopName: payload.shopName,
-            ownerName: payload.contactName,
-            ownerEmail: payload.email
-          })
-        });
-        const workspaceResult = await workspaceResponse.json().catch(() => ({}));
-        if (!workspaceResponse.ok) {
-          throw new Error(
-            workspaceResult.error?.toLowerCase().includes("already")
-              ? "That shop link is already taken. Try adding your city, cart, or booth name."
-              : workspaceResult.error || "Your app could not be created yet."
-          );
-        }
-
-        const response = await fetch("https://goldieskds.com/api/drinkflow-onboarding", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload)
-        });
-        const result = await response.json().catch(() => ({}));
-        if (!response.ok) {
-          throw new Error(result.error || "Setup request failed");
-        }
-
-        const slug = workspaceResult.workspace?.slug || payload.workspaceSlug;
-        const appUrl = workspaceResult.workspace?.app_url || `https://${slug}.drinkflowkds.com`;
-        statusEl.textContent = "You're on the list. Check your email for updates.";
-        document.getElementById(workspaceTextId).textContent = `${appUrl} is reserved for updates.`;
-        document.getElementById(squareLinkId).href = `/#contact`;
-        document.getElementById(squareCardId).hidden = false;
-      }
-
-      modalSignupForm?.addEventListener("submit", async (event) => {
-        event.preventDefault();
-        refreshModalDomain();
-        try {
-          await createDrinkFlowAppFromForm(
-            modalSignupForm,
-            modalSignupStatus,
-            "modal-square-card",
-            "modal-workspace-url",
-            "modal-square-link"
-          );
-        } catch (error) {
-          modalSignupStatus.textContent = error.message || "That did not work yet. Try the full-page signup.";
-        }
-      });
-
-      document.querySelectorAll(".theme-choice").forEach((button) => {
-        button.addEventListener("click", () => {
-          document.querySelectorAll(".theme-choice").forEach((choice) => choice.classList.remove("active"));
-          button.classList.add("active");
-          themePreview?.setAttribute("data-theme", button.dataset.theme || "coffee");
-        });
-      });
-
-      document.querySelectorAll(".locked-feature").forEach((button) => {
-        button.addEventListener("click", () => {
-          if (upgradeTitle) upgradeTitle.textContent = button.dataset.upgrade || "Upgrade feature";
-          upgradeModal?.removeAttribute("hidden");
-        });
-      });
-
-      upgradeClose?.addEventListener("click", () => {
-        upgradeModal?.setAttribute("hidden", "");
-      });
-
-      upgradeModal?.addEventListener("click", (event) => {
-        if (event.target === upgradeModal) upgradeModal.setAttribute("hidden", "");
-      });
-
-      leadForm?.addEventListener("submit", async (event) => {
-        event.preventDefault();
-        leadStatus.textContent = "Sending...";
-
-        const data = new FormData(leadForm);
-        const payload = {
-          email: data.get("email"),
-          shopName: data.get("shopName"),
-          message: data.get("message"),
-          source: "drinkflowkds.com",
-          pagePath: window.location.pathname,
-          referrer: document.referrer
-        };
-
-        try {
-          const response = await fetch("https://goldieskds.com/api/drinkflow-leads", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload)
-          });
-
-          if (!response.ok) {
-            throw new Error("Lead request failed");
-          }
-
-          leadForm.reset();
-          leadStatus.textContent = "You're on the list. Thank you.";
-        } catch (error) {
-          leadStatus.textContent = "That did not send. Email samantha@studiosamantha.com and mention DrinkFlow.";
-        }
-      });
-
-      onboardingForm?.addEventListener("submit", async (event) => {
-        event.preventDefault();
-          onboardingStatus.textContent = "Sending update request...";
-
-        const data = new FormData(onboardingForm);
-        const socialLinks = String(data.get("socialLinks") || "")
-          .split(/\n|,/)
-          .map((item) => item.trim())
-          .filter(Boolean);
-        const payload = {
-          contactName: data.get("contactName"),
-          email: data.get("email"),
-          shopName: data.get("shopName"),
-          location: data.get("location"),
           businessType: data.get("businessType"),
           posSystem: data.get("posSystem"),
-          starterTheme: data.get("starterTheme"),
-          screenNeeds: data.getAll("screenNeeds"),
-          orderSources: data.getAll("orderSources"),
-          averageDailyOrders: data.get("averageDailyOrders"),
-          rushWindow: data.get("rushWindow"),
-          pricingComfort: data.get("pricingComfort"),
-          timeline: data.get("timeline"),
+          screenNeeds: [
+            "Staff Focus Board",
+            "Full transaction lookup",
+            "Customer displays",
+            "Owner reports",
+            "Online ordering and menu availability"
+          ],
+          orderSources: ["In person", "Online or kiosk"],
+          timeline: "Demo requested",
           currentPain: data.get("currentPain"),
-          socialLinks,
-          notes: data.get("notes"),
+          notes: "Demo request from DrinkFlowKDS.com homepage.",
           company: data.get("company"),
-          source: "drinkflowkds.com-onboarding",
+          source: "drinkflowkds.com-demo",
           pagePath: window.location.pathname,
           referrer: document.referrer
         };
 
         try {
-          const response = await fetch("https://goldieskds.com/api/drinkflow-onboarding", {
+          const response = await fetch("/api/drinkflow-onboarding", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload)
@@ -636,13 +545,13 @@
           const result = await response.json().catch(() => ({}));
 
           if (!response.ok) {
-            throw new Error(result.error || "Setup request failed");
+            throw new Error(result.error || "Demo request failed");
           }
 
-          onboardingForm.reset();
-          onboardingStatus.textContent = "Update request received. Your fit will be reviewed next.";
+          demoForm.reset();
+          demoStatus.textContent = "Demo request sent. I will reply from samantha@studiosamantha.com.";
         } catch (error) {
-          onboardingStatus.textContent = "That did not send. Email samantha@studiosamantha.com and mention DrinkFlow updates.";
+          demoStatus.textContent = "That did not send yet. Email samantha@studiosamantha.com and mention DrinkFlow demo.";
         }
       });
     </script>

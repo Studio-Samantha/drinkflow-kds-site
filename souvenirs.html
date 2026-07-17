@@ -8,6 +8,11 @@
       name="description"
       content="Unofficial small-town summer souvenir shop from Studio Samantha in Exira, Iowa. Preorder tees, totes, and hats for local pickup or shipping."
     />
+    <link rel="canonical" href="https://drinkflowkds.com/souvenirs" />
+    <meta property="og:title" content="Exira Iowa Summer Souvenir Shop" />
+    <meta property="og:description" content="Preorder tees, totes, and hats for local pickup or shipping." />
+    <meta property="og:url" content="https://drinkflowkds.com/souvenirs" />
+    <meta property="og:type" content="website" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -156,10 +161,10 @@
       <span>Unofficial local summer ride merch. Final products may vary from digital previews.</span>
       <a href="/vendorflow-login" style="opacity:0.68">Studio login</a>
       <a href="/vendorflow">Powered by VendorFlowDS</a>
-      <a href="/policy.html">Policy</a>
-      <a href="/policy.html#data-use">Data use</a>
-      <a href="/policy.html#ownership">Ownership</a>
-      <a href="/policy.html#trademarks">Trademarks</a>
+      <a href="/policy">Policy</a>
+      <a href="/policy#data-use">Data use</a>
+      <a href="/policy#ownership">Ownership</a>
+      <a href="/policy#trademarks">Trademarks</a>
     </footer>
     <div class="lightbox" aria-hidden="true">
       <button type="button" aria-label="Close enlarged product photo">×</button>
@@ -275,14 +280,14 @@
         const data = new FormData(souvenirLeadForm);
         const payload = {
           email: data.get("email"),
-          message: "Souvenir preorder updates",
-          source: "drinkflowkds.com/souvenirs",
+          featureInterest: "Souvenir preorder updates",
+          source: "souvenir-shop",
           pagePath: window.location.pathname,
           referrer: document.referrer,
         };
 
         try {
-          const response = await fetch("https://goldieskds.com/api/drinkflow-leads", {
+          const response = await fetch("/api/vendorflow-leads", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload),

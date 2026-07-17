@@ -1,14 +1,27 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
-  "rewrites": [
+  "redirects": [
     {
       "source": "/drinkflow-kds",
-      "destination": "/index.html"
+      "destination": "/",
+      "permanent": true
     },
     {
       "source": "/drinkflow",
-      "destination": "/index.html"
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/setup",
+      "destination": "/#demo",
+      "permanent": false
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://goldieskds.com/api/:path*"
     }
   ],
   "headers": [
