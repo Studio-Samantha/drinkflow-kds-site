@@ -21,6 +21,7 @@
     />
     <link rel="stylesheet" href="ragbrai.css" />
     <link rel="stylesheet" href="vendorflow.css" />
+    <link rel="stylesheet" href="product-shell.css" />
   </head>
   <body>
     <header class="topbar">
@@ -200,15 +201,19 @@
       </section>
     </main>
 
-    <footer>
-      <span>VendorFlow</span>
-      <span>Preorders, pickup boards, and event fulfillment for small shops.</span>
-      <a href="/">DrinkFlow</a>
-      <a href="/vendorflow-case-study">Case study</a>
-      <a href="/policy">Policy</a>
-      <a href="/policy#data-use">Data use</a>
-      <a href="/policy#ownership">Ownership</a>
-      <a href="/policy#trademarks">Trademarks</a>
+    <footer class="product-footer product-footer--vendorflow">
+      <div class="product-footer__identity">
+        <strong>VendorFlow</strong>
+        <span>Preorders, pickup boards, and event fulfillment for small shops.</span>
+      </div>
+      <nav aria-label="VendorFlow footer links">
+        <a href="/vendorflow">Product</a>
+        <a href="/vendorflow-case-study">Case study</a>
+        <a href="/souvenirs">Live shop</a>
+        <a href="/">DrinkFlow</a>
+        <a href="/policy">Policy</a>
+        <a href="/policy#ownership">Ownership</a>
+      </nav>
     </footer>
     <script>
       const vendorflowLeadForm = document.getElementById("vendorflow-lead-form");

@@ -1,0 +1,176 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: #201713;
+  background: #fffdf6;
+  font-family: "Nunito Sans", Inter, system-ui, sans-serif;
+}
+
+a {
+  color: inherit;
+}
+
+.policy-nav {
+  position: sticky;
+  z-index: 20;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 4.5rem;
+  padding: 0.75rem clamp(1rem, 4vw, 3rem);
+  border-bottom: 2px solid #201713;
+  background: rgba(255, 253, 246, 0.96);
+}
+
+.policy-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-weight: 950;
+  text-decoration: none;
+}
+
+.policy-brand span {
+  display: grid;
+  width: 2.4rem;
+  height: 2.4rem;
+  place-items: center;
+  border: 2px solid #201713;
+  border-radius: 6px;
+  color: #fff;
+  background: #e9432e;
+  box-shadow: 4px 4px 0 #201713;
+}
+
+.policy-nav nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.policy-nav nav a {
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  border-bottom: 3px solid transparent;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.policy-nav nav a:hover,
+.policy-nav nav a:focus-visible {
+  border-bottom-color: #2fb6b2;
+}
+
+.policy-hero {
+  padding: clamp(3.5rem, 8vw, 7rem) clamp(1rem, 6vw, 6rem) 3.5rem;
+  border-bottom: 3px solid #201713;
+  background: #ffd95a;
+}
+
+.policy-hero > div,
+.policy-band > div {
+  width: min(72rem, 100%);
+  margin: 0 auto;
+}
+
+.policy-kicker {
+  margin: 0 0 0.75rem;
+  color: #3157c8;
+  font-size: 0.76rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.policy-hero h1 {
+  max-width: 14ch;
+  margin: 0 0 1rem;
+  font-family: Fraunces, Georgia, serif;
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  line-height: 0.92;
+}
+
+.policy-hero p:last-child {
+  max-width: 54rem;
+  margin: 0;
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  font-weight: 800;
+  line-height: 1.55;
+}
+
+.policy-band {
+  padding: clamp(2.5rem, 6vw, 5rem) clamp(1rem, 6vw, 6rem);
+  border-bottom: 3px solid #201713;
+}
+
+.policy-band h2 {
+  margin: 0 0 0.75rem;
+  font-family: Fraunces, Georgia, serif;
+  font-size: clamp(2rem, 4vw, 3.6rem);
+  line-height: 1;
+}
+
+.policy-band p {
+  max-width: 62rem;
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 750;
+  line-height: 1.7;
+}
+
+.policy-band p + p {
+  margin-top: 1rem;
+}
+
+.policy-band--data {
+  background: #ccefeb;
+}
+
+.policy-band--ownership {
+  color: #fff;
+  background: #3157c8;
+}
+
+.policy-band--trademarks {
+  background: #fff5e3;
+}
+
+.policy-band--contact {
+  background: #ff7b55;
+}
+
+.policy-contact-link {
+  display: inline-block;
+  margin-top: 1.2rem;
+  border-bottom: 3px solid #201713;
+  font-weight: 950;
+  text-decoration: none;
+}
+
+@media (max-width: 680px) {
+  .policy-nav {
+    position: static;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .policy-nav nav {
+    justify-content: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

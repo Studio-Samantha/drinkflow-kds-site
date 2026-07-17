@@ -1,0 +1,105 @@
+:root {
+  --shell-ink: #201713;
+  --shell-paper: #fffdf6;
+  --shell-coral: #ff7b55;
+  --shell-tomato: #e9432e;
+  --shell-turquoise: #2fb6b2;
+  --shell-cobalt: #3157c8;
+  --shell-butter: #ffd95a;
+  --shell-vendor-navy: #09233f;
+  --shell-vendor-red: #b8241f;
+}
+
+.product-footer {
+  display: grid;
+  grid-template-columns: minmax(14rem, 0.9fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  margin: 0;
+  padding: 1.4rem clamp(1rem, 4vw, 3rem);
+  border: 0;
+  border-top: 6px solid var(--shell-turquoise);
+  border-radius: 0;
+  color: #fff;
+  background: var(--shell-ink);
+  font-family: "Nunito Sans", Inter, system-ui, sans-serif;
+  font-size: 0.88rem;
+  box-shadow: none;
+}
+
+.product-footer--vendorflow {
+  border-top-color: var(--shell-butter);
+  background: var(--shell-vendor-navy);
+}
+
+.product-footer--shared {
+  border-top-color: var(--shell-coral);
+  background: var(--shell-cobalt);
+}
+
+.product-footer__identity {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.product-footer__identity strong {
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+.product-footer__identity span {
+  color: rgba(255, 255, 255, 0.76);
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.product-footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.6rem 1.15rem;
+}
+
+.product-footer a,
+.product-footer nav a {
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  color: #fff;
+  background: transparent;
+  font-weight: 900;
+  text-decoration: none;
+  box-shadow: none;
+}
+
+.product-footer a:hover,
+.product-footer a:focus-visible {
+  border-bottom-color: var(--shell-butter);
+}
+
+.product-footer--drinkflow a:nth-child(2n):hover,
+.product-footer--drinkflow a:nth-child(2n):focus-visible {
+  border-bottom-color: var(--shell-coral);
+}
+
+.product-footer a:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 4px;
+}
+
+@media (max-width: 760px) {
+  .product-footer {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .product-footer nav {
+    justify-content: flex-start;
+  }
+}

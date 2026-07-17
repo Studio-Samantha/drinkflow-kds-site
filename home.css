@@ -758,36 +758,84 @@ h3 {
 
 .customer-showcase {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-  grid-template-rows: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
+  gap: 0;
   max-width: 96rem;
   margin-bottom: 1.25rem;
 }
 
+.customer-tour-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border: 3px solid var(--espresso);
+  border-bottom: 0;
+  background: var(--espresso);
+}
+
+.customer-tour-tabs button {
+  min-height: 4.5rem;
+  padding: 0.8rem 1rem;
+  border: 0;
+  border-right: 3px solid var(--espresso);
+  color: var(--espresso);
+  background: var(--butter);
+  font: inherit;
+  font-weight: 950;
+  text-align: left;
+  cursor: pointer;
+}
+
+.customer-tour-tabs button:nth-child(2) {
+  background: var(--coral);
+}
+
+.customer-tour-tabs button:nth-child(3) {
+  border-right: 0;
+  background: var(--matcha);
+}
+
+.customer-tour-tabs button span {
+  display: block;
+  margin-bottom: 0.15rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+
+.customer-tour-tabs button[aria-selected="true"] {
+  color: var(--paper);
+  background: var(--cobalt);
+}
+
+.customer-tour-tabs button:focus-visible {
+  position: relative;
+  z-index: 2;
+  outline: 4px solid var(--paper);
+  outline-offset: -7px;
+}
+
 .customer-mockup {
   display: grid;
-  grid-template-rows: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1.55fr) minmax(18rem, 0.45fr);
   min-width: 0;
-  min-height: 19rem;
+  min-height: 38rem;
   border: 3px solid var(--espresso);
   border-radius: var(--radius);
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
   margin: 0;
   overflow: hidden;
   background: var(--paper);
   box-shadow: var(--hard-shadow);
 }
 
-.customer-mockup-kiosk {
-  grid-row: 1 / span 2;
-  min-height: 40rem;
+.customer-mockup[hidden] {
+  display: none;
 }
 
 .customer-mockup img {
   display: block;
   width: 100%;
   height: 100%;
-  min-height: 0;
+  min-height: 38rem;
   object-fit: cover;
 }
 
@@ -804,13 +852,13 @@ h3 {
 }
 
 .customer-mockup figcaption {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: 1rem;
-  align-items: center;
-  min-height: 5.5rem;
-  border-top: 3px solid var(--espresso);
-  padding: 0.85rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  min-height: 100%;
+  border-left: 3px solid var(--espresso);
+  padding: 1.4rem;
   color: var(--paper);
   background: var(--espresso);
 }
@@ -824,8 +872,15 @@ h3 {
 
 .customer-mockup figcaption strong {
   font-family: Fraunces, Georgia, serif;
-  font-size: 1.2rem;
+  font-size: clamp(1.5rem, 2.5vw, 2.4rem);
   line-height: 1.08;
+}
+
+.customer-mockup figcaption p {
+  margin: 0;
+  color: rgba(255, 253, 246, 0.78);
+  font-weight: 800;
+  line-height: 1.5;
 }
 
 .customer-path {
@@ -1372,19 +1427,17 @@ textarea {
 
   .map-layout,
   .customer-heading,
-  .customer-showcase,
   .proof-section {
     grid-template-columns: 1fr;
   }
 
-  .customer-showcase {
-    grid-template-rows: none;
+  .customer-mockup {
+    grid-template-columns: minmax(0, 1.25fr) minmax(16rem, 0.75fr);
+    min-height: 31rem;
   }
 
-  .customer-mockup,
-  .customer-mockup-kiosk {
-    grid-row: auto;
-    min-height: 27rem;
+  .customer-mockup img {
+    min-height: 31rem;
   }
 
   .mixed-sale {
@@ -1515,8 +1568,36 @@ textarea {
     min-height: 20rem;
   }
 
-  .customer-mockup figcaption {
+  .customer-tour-tabs {
     grid-template-columns: 1fr;
+    border-bottom: 3px solid var(--espresso);
+  }
+
+  .customer-tour-tabs button,
+  .customer-tour-tabs button:nth-child(3) {
+    min-height: 3.8rem;
+    border-right: 0;
+    border-bottom: 3px solid var(--espresso);
+  }
+
+  .customer-tour-tabs button:nth-child(3) {
+    border-bottom: 0;
+  }
+
+  .customer-mockup {
+    grid-template-columns: 1fr;
+    border-top: 0;
+  }
+
+  .customer-mockup img {
+    min-height: 20rem;
+    aspect-ratio: 4 / 3;
+  }
+
+  .customer-mockup figcaption {
+    min-height: auto;
+    border-top: 3px solid var(--espresso);
+    border-left: 0;
     gap: 0.35rem;
   }
 

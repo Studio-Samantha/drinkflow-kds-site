@@ -36,6 +36,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./home.css" />
+    <link rel="stylesheet" href="./product-shell.css" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -251,23 +252,37 @@
           </p>
         </div>
 
-        <div class="customer-showcase" aria-label="Concept mockups of the DrinkFlow customer experience">
-          <figure class="customer-mockup customer-mockup-kiosk">
+        <div class="customer-showcase" data-customer-tour>
+          <div class="customer-tour-tabs" role="tablist" aria-label="Customer experience views">
+            <button id="tour-tab-kiosk" type="button" role="tab" aria-selected="true" aria-controls="tour-panel-kiosk" data-tour-target="kiosk">
+              <span>01</span> Self-order kiosk
+            </button>
+            <button id="tour-tab-online" type="button" role="tab" aria-selected="false" aria-controls="tour-panel-online" data-tour-target="online" tabindex="-1">
+              <span>02</span> Online ordering
+            </button>
+            <button id="tour-tab-pickup" type="button" role="tab" aria-selected="false" aria-controls="tour-panel-pickup" data-tour-target="pickup" tabindex="-1">
+              <span>03</span> Pickup display
+            </button>
+          </div>
+
+          <figure id="tour-panel-kiosk" class="customer-mockup customer-mockup-kiosk" role="tabpanel" aria-labelledby="tour-tab-kiosk" data-tour-panel="kiosk">
             <img
               src="assets/customer-experience/self-order-kiosk.jpg"
               alt="Concept mockup of a customer customizing a drink on a self-order kiosk"
               width="1536"
               height="1024"
-              loading="lazy"
+              loading="eager"
+              fetchpriority="high"
               decoding="async"
             />
             <figcaption>
-              <span>Concept 01 · Self-order</span>
-              <strong>Customize without holding up the counter.</strong>
+              <span>Self-order kiosk</span>
+              <strong>Let guests customize without holding up the counter.</strong>
+              <p>Menu availability, modifiers, service choices, and customer names enter the same connected order flow staff already use.</p>
             </figcaption>
           </figure>
 
-          <figure class="customer-mockup customer-mockup-online">
+          <figure id="tour-panel-online" class="customer-mockup customer-mockup-online" role="tabpanel" aria-labelledby="tour-tab-online" data-tour-panel="online" hidden>
             <img
               src="assets/customer-experience/order-ahead.jpg"
               alt="Concept mockup of a customer ordering a customized drink from a phone"
@@ -277,12 +292,13 @@
               decoding="async"
             />
             <figcaption>
-              <span>Concept 02 · Order ahead</span>
-              <strong>Use the same menu and availability before arrival.</strong>
+              <span>Online ordering</span>
+              <strong>Carry the same menu and availability beyond the counter.</strong>
+              <p>Customers can order ahead while pickup timing, order source, modifiers, and live preparation remain visible to the team.</p>
             </figcaption>
           </figure>
 
-          <figure class="customer-mockup customer-mockup-pickup">
+          <figure id="tour-panel-pickup" class="customer-mockup customer-mockup-pickup" role="tabpanel" aria-labelledby="tour-tab-pickup" data-tour-panel="pickup" hidden>
             <img
               src="assets/customer-experience/pickup-display.jpg"
               alt="Concept mockup of customers watching an in-progress and ready pickup display"
@@ -292,8 +308,9 @@
               decoding="async"
             />
             <figcaption>
-              <span>Concept 03 · Pickup</span>
-              <strong>Know what is moving and what is ready.</strong>
+              <span>Pickup display</span>
+              <strong>Show what is moving and what is ready.</strong>
+              <p>Customer-safe status boards communicate progress without exposing the internal notes and detail staff need behind the counter.</p>
             </figcaption>
           </figure>
         </div>
@@ -334,10 +351,10 @@
             <span>Sample view</span>
           </div>
           <div class="dashboard-metrics">
-            <article><span>Drink revenue</span><b>isolated</b><small>before tax + collected</small></article>
-            <article><span>Drink units</span><b>counted</b><small>by category and item</small></article>
-            <article><span>Multi-drink rate</span><b>visible</b><small>basket behavior</small></article>
-            <article><span>Prep time</span><b>measured</b><small>start to ready</small></article>
+            <article><span>Prep timing</span><b>measured</b><small>start to ready</small></article>
+            <article><span>Demand by hour</span><b>charted</b><small>rushes and slower windows</small></article>
+            <article><span>Drink mix</span><b>compared</b><small>category and item patterns</small></article>
+            <article><span>Order context</span><b>preserved</b><small>service and basket signals</small></article>
           </div>
           <div class="volume-chart" aria-label="Sample hourly drink volume chart">
             <span style="--height: 28%"></span>
@@ -375,20 +392,20 @@
       <section class="proof-section" id="proof" aria-labelledby="proof-title">
         <div class="proof-heading">
           <p class="section-label">Evidence behind the product</p>
-          <h2 id="proof-title">Real service confirmed the problem DrinkFlow was built to solve.</h2>
+          <h2 id="proof-title">Field use shaped a more complete drink-service system.</h2>
           <p>
-            The first live deployment showed that mixed drink, retail, and food sales are
-            not unusual exceptions. They are a normal counter condition. DrinkFlow responds
-            by separating what staff must make from everything the business still needs to know.
+            DrinkFlow records the operational signals a counter can actually act on, while
+            keeping the full transaction available when drinks share a sale with retail,
+            food, pickup details, or another service type.
           </p>
-          <a class="button secondary" href="https://goldieskds.com/case-study/goldies">See the full field case study</a>
+          <a class="button secondary" href="https://goldieskds.com/case-study/goldies">Read a real counter case study</a>
         </div>
 
         <div class="proof-results">
           <article class="proof-finding">
-            <span>Field finding</span>
-            <strong>44%</strong>
-            <p>of drink orders in the first deployment also included non-drink items.</p>
+            <span>What DrinkFlow measures</span>
+            <strong>Service, not vanity.</strong>
+            <p>Queue volume, prep timing, drink mix, order composition, item checkoffs, and handoff status create a baseline a shop can improve against.</p>
           </article>
           <article class="proof-response">
             <span>How DrinkFlow responds</span>
@@ -405,9 +422,9 @@
         <div class="learning-note">
           <span>Evidence, not overpromising</span>
           <p>
-            The same deployment established a measurable start-to-ready baseline. It has not
-            yet proven a sustained speed gain, so DrinkFlow does not sell that claim. It sells
-            clearer coordination and the ability to test improvements using each shop&apos;s own service data.
+            DrinkFlow does not force a borrowed industry target onto every counter. It creates
+            a measurable baseline from each shop&apos;s own workflow, then makes changes testable
+            without turning an early observation into a sales promise.
           </p>
         </div>
       </section>
@@ -493,18 +510,52 @@
       </section>
     </main>
 
-    <footer class="site-footer">
-      <a class="brand" href="#top">
-        <span class="brand-stamp" aria-hidden="true">DF</span>
-        <strong>DrinkFlow <span>KDS</span></strong>
-      </a>
-      <span>Focused drink work. Connected service. Useful owner evidence.</span>
-      <a href="/vendorflow">VendorFlowDS</a>
-      <a href="/policy">Policy</a>
-      <a href="/policy#ownership">Ownership</a>
+    <footer class="site-footer product-footer product-footer--drinkflow">
+      <div class="product-footer__identity">
+        <strong>DrinkFlow KDS</strong>
+        <span>Focused preparation, connected customer flow, and useful owner evidence.</span>
+      </div>
+      <nav aria-label="DrinkFlow footer links">
+        <a href="#top">Product</a>
+        <a href="#customers">Customer experience</a>
+        <a href="#insights">Measurements</a>
+        <a href="/vendorflow">VendorFlow</a>
+        <a href="/policy">Policy</a>
+        <a href="/policy#ownership">Ownership</a>
+      </nav>
     </footer>
 
     <script>
+      const customerTour = document.querySelector("[data-customer-tour]");
+      const customerTourTabs = Array.from(customerTour?.querySelectorAll("[data-tour-target]") || []);
+      const customerTourPanels = Array.from(customerTour?.querySelectorAll("[data-tour-panel]") || []);
+
+      function selectCustomerTour(target, moveFocus = false) {
+        customerTourTabs.forEach((tab) => {
+          const selected = tab.dataset.tourTarget === target;
+          tab.setAttribute("aria-selected", String(selected));
+          tab.tabIndex = selected ? 0 : -1;
+          if (selected && moveFocus) tab.focus();
+        });
+        customerTourPanels.forEach((panel) => {
+          panel.hidden = panel.dataset.tourPanel !== target;
+        });
+      }
+
+      customerTourTabs.forEach((tab, index) => {
+        tab.addEventListener("click", () => selectCustomerTour(tab.dataset.tourTarget));
+        tab.addEventListener("keydown", (event) => {
+          if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+          event.preventDefault();
+          let nextIndex = index;
+          if (event.key === 'ArrowRight') nextIndex = (index + 1) % customerTourTabs.length;
+          if (event.key === 'ArrowLeft') nextIndex = (index - 1 + customerTourTabs.length) % customerTourTabs.length;
+          if (event.key === 'Home') nextIndex = 0;
+          if (event.key === 'End') nextIndex = customerTourTabs.length - 1;
+          selectCustomerTour(customerTourTabs[nextIndex].dataset.tourTarget, true);
+        });
+      });
+
       const demoForm = document.getElementById("demo-request-form");
       const demoStatus = document.getElementById("demo-request-status");
 
